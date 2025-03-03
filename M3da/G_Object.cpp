@@ -2272,16 +2272,16 @@ void BackGround::OglDrawW(int iDspFlgs, double dS1, double dS2) {
 
 		glBegin(GL_POLYGON);
 		glTexCoord2f(0, 0);
-		glVertex3f(-dW / 2, -dH / 2, -0.1);
-		glNormal3f((float)0.0, (float)0.0, (float)1.0);
+		glVertex3f(-dW / 2, -dH / 2, -0.1f);
+		glNormal3f(0.0f, 0.0f, 1.0f);
 		glTexCoord2f(1, 0);
-		glVertex3f(dW / 2, -dH / 2, -0.1);
+		glVertex3f(dW / 2, -dH / 2, -0.1f);
 		glNormal3f((float)0.0, (float)0.0, (float)1.0);
 		glTexCoord2f(1, 1);
-		glVertex3f(dW / 2, dH / 2, -0.1);
+		glVertex3f(dW / 2, dH / 2, -0.1f);
 		glNormal3f((float)0.0, (float)0.0, (float)1.0);
 		glTexCoord2f(0, 1);
-		glVertex3f(-dW / 2, dH / 2, -0.1);
+		glVertex3f(-dW / 2, dH / 2, -0.1f);
 		glNormal3f((float)0.0, (float)0.0, (float)1.0);
 		glEnd();
 		glDeleteTextures(1, &textureID);
@@ -16154,8 +16154,7 @@ Mat E_Object3::BEE_BM_Recovery()
 
 Mat E_Object3::BEE_BB_Recovery()
 {
-	int i, J, JJ;
-	int iDof;
+	int i;
 
 	Mat BB(3, 3 * iNoNodes);
 	Mat BB2(3, 6 * iNoNodes);
@@ -19031,8 +19030,7 @@ Mat E_Object4::BEE_BM_Recovery()
 
 Mat E_Object4::BEE_BB_Recovery()
 {
-	int i, J, JJ;
-	int iDof;
+	int i;
 
 	Mat BB(3, 3 * iNoNodes);
 	Mat BB2(3, 6 * iNoNodes);
@@ -21624,7 +21622,7 @@ Mat E_ObjectR::GetThermMat(PropTable* PropsT, MatTable* MatT)
 	Mat KM(1 * iNoNodes, 1 * iNoNodes);
 	KM.MakeZero();
 	Mat KMB(2,2);
-	Node* pNDs[200];
+
 	Vec<int> Steer(12);
 	*Steer.nn(1) = 1;
 	*Steer.nn(2) = 2;
@@ -24997,12 +24995,10 @@ void ME_Object::ResSetDivInTo(CString sSeq, double dS)
 	double dV;
 
 	int i;
-	int j;
 	iRS = atoi(ExtractSubString2(1, sSeq));
 	iVAR = atoi(ExtractSubString2(2, sSeq));
 	iOPT = atoi(ExtractSubString2(3, sSeq));
 
-	double dVal;
 	ResSet* pC = NULL;
 	pC = ResultsSets[iRS];
 	if (pC != NULL)
@@ -25016,7 +25012,7 @@ void ME_Object::ResSetDivInTo(CString sSeq, double dS)
 				if (abs(dV) > 1.0e-36)
 					*pR->GetAddress(iVAR) = dS / dV;
 				else
-					*pR->GetAddress(iVAR) = 1.0e36;
+					*pR->GetAddress(iVAR) = FLT_MAX;
 			}
 		}
 	}
@@ -25204,8 +25200,8 @@ void ME_Object::DeleteResVectors()
 		delete (pResVectors);
 		pResVectors = NULL;
 	}
-	cBarMax = -1e+20;
-	cBarMin = 1e+20;
+	cBarMax = -FLT_MAX;
+	cBarMin = FLT_MAX;
 }
 
 // 051019
@@ -25676,7 +25672,6 @@ fprintf(pFile,"%6s\n","-1");
 void ME_Object::ExportSTL(CString sFileName)
 {
 	int i;
-	int j;
 	C3dVector vN;
 	std::ofstream file(sFileName);
 	if (!file.is_open()) {
@@ -25717,8 +25712,6 @@ void ME_Object::ExportSTL(CString sFileName)
 
 void ME_Object::ImportSTL(CString sFileName)
 {
-	int i;
-	int j;
 	C3dVector vN;
 	C3dVector vP;
 	Node* pENodes[MaxSelNodes];
@@ -26092,7 +26085,7 @@ return (bRet);
 
 void ME_Object::IterSol3dLin(PropTable* PropsT,MatTable* MatT)
 {
-BOOL bOpt, bErr;
+BOOL bErr;
 CString sSol;
 CString sStep;
 int i,j,neq;
@@ -26858,7 +26851,6 @@ G_Object* ME_Object::AddTempD(double inT, int inSetID)
 {
 	cLinkedList* pSet = NULL;
 	TEMPD* pT = nullptr;
-	int ID;
 	if ((inSetID == -1) && (iCurTSet == -1))
 	{
 		outtext1("ERROR: No Temperature Set Active.");
@@ -27349,7 +27341,7 @@ void ME_Object::GetThermalLoads(PropTable* PropsT,MatTable* MatT,cLinkedList* pT
   E_Object* pE;
   int iNS;
   int iD;
-  int i,j,k;
+  int i,k;
   BOOL bOff;
   C3dVector vOff;
   C3dVector vFl;
@@ -28201,7 +28193,7 @@ int ME_Object::GenDofs()
 int i,j;
 int iDof=1;
 int mdof;
-FILE* pFile;
+
 //pFile = fopen("GENDOF_DIAG.txt","w");
 
 //fprintf(pFile,"%s%i\n","NO of Nodes ",iNdNo);
@@ -28232,7 +28224,7 @@ int ME_Object::GenDofs1D(int iD)
 
 int i;
 int iDof=iD;
-FILE* pFile;
+
 //pFile = fopen("GENDOF_DIAG.txt","w");
 //fprintf(pFile,"%s%i\n","NO of Nodes ",iNdNo);
 for(i=0;i<iNdNo;i++)
@@ -30324,7 +30316,7 @@ Res->lab[4]="RY";
 Res->lab[5]="RZ";
 
 int i;
-FILE* pFile;
+
 //pFile = fopen("DispRes.txt","w");
 //fprintf(pFile,"%s\n","DISPLACEMENTS");
 float X,Y,Z;
@@ -30498,7 +30490,7 @@ void ME_Object::TempBCSet(int iLC, CString sSol, CString sStep, Vec<int> &Steer,
 
 void ME_Object::TranslationalSpringForces(int iLC, CString sSol, CString sStep, PropTable* PropsT,MatTable* MatT,Vec<int> &Steer,Vec<double> &Disp)
 {
-BOOL bOpt, bErr;
+BOOL bErr;
 int i,j,k,iNoNodes;
 double dof1;
 ResSet* ResS=new ResSet();
@@ -30602,7 +30594,7 @@ else
 
 void ME_Object::ForcesBUSH(int iLC, CString sSol, CString sStep, PropTable* PropsT, MatTable* MatT, Vec<int>& Steer, Vec<double>& Disp)
 {
-	BOOL bOpt, bErr;
+	BOOL bErr;
 	int i, j, k, iNoNodes;
 	double dof1;
 	Mat disp;
@@ -31428,7 +31420,7 @@ void ME_Object::RecoverShell(int iLC, CString sSol, CString sStep, PropTable* Pr
 	double cS;
 	double Mag;
 	int MID = -1;
-	int i; int j; int k;
+	int i;
 	double SX, SY, SXY, RX, RY, RXY, TX, TY, BX, BY, BXY;
 	ResSet* ResF;
 	ResSet* ResS;                        //Mid Stress Results Set
@@ -33734,7 +33726,6 @@ void ME_Object::AddOSTRResR(int Vals[], int iCnt, CString sTitle, CString sSubTi
 		ResultsSets[iNoRes]->FCODE = Vals[7];
 		ResultsSets[iNoRes]->SCODE = Vals[8];
 		CString sEL;
-		char s30[30];
 		BOOL isGood = FALSE;
 		if (Vals[2] == 33)
 		{
@@ -33839,11 +33830,7 @@ void ME_Object::AddOSTRResR(int Vals[], int iCnt, CString sTitle, CString sSubTi
 void ME_Object::AddOSTRFCPXRes(int Vals[], int iCnt, CString sTitle, CString sSubTitle, CString inName, double dFreq)
 {
 	int i;
-	double ds11;
-	double ds22;
-	double ds12;
-	double dvmMax;
-	double dvm;
+
 	if (iCnt > 5)
 	{
 		ResultsSets[iNoRes] = new ResSet();
@@ -33923,8 +33910,6 @@ void ME_Object::AddOAG1Res(int Vals[], int iCnt, CString sTitle, CString sSubTit
 {
 	int i;
 	char s30[30];
-	float ModeNo;
-	float ModeFreq;
 	//BuildNodeList();
 	C3dVector vT;
 	C3dVector vR;
@@ -34027,8 +34012,6 @@ void ME_Object::AddOQMRes(int Vals[], int iCnt, CString sTitle, CString sSubTitl
 {
 	int i;
 	char s30[30];
-	float ModeNo;
-	float ModeFreq;
 	//BuildNodeList();
 	C3dVector vT;
 	C3dVector vR;
@@ -39416,8 +39399,7 @@ void MAT1::PutVarValues(int iNo, CString sVar[])
 
 Mat MAT1::DeeMEM()
 {
-	double C, v2, vv,G;
-	int i;
+	double C,G;
 	Mat dee(3, 3);
 	if (dG > 0)  //G has been specified
 		G = dG;
@@ -40812,7 +40794,7 @@ void Pressure::Serialize(CArchive& ar,int iV,ME_Object* MESH)
 
 void Pressure::ExportNAS(FILE* pFile)
 {
-int i;
+
 E_Object* pE;
 if (pObj != NULL)
 {
@@ -40858,7 +40840,7 @@ int Pressure::GetVarValues(CString sVar[])
 
 void Pressure::PutVarValues(PropTable* PT,int iNo, CString sVar[])
 {
-	double dPo,dP;
+	double dP;
 
 	ME_Object* pMe = (ME_Object*)this->pParent;
 	dP = atof(sVar[0]);
@@ -41876,7 +41858,6 @@ void TEMPD::Create(C3dVector vC, G_Object* Parrent, int inSetID, double inDT)
 void TEMPD::Serialize(CArchive& ar, int iV, ME_Object* MESH)
 
 {
-	int iNd;
 	if (ar.IsStoring())
 	{
 		G_Object::Serialize(ar, iV);
@@ -41989,7 +41970,6 @@ void GRAV::Create(C3dVector vC, G_Object* Parrent, int inSID, int inCID, double 
 void GRAV::Serialize(CArchive& ar, int iV, ME_Object* MESH)
 
 {
-	int iNd;
 	if (ar.IsStoring())
 	{
 		G_Object::Serialize(ar, iV);
@@ -43557,7 +43537,6 @@ void Text::Serialize(CArchive& ar, int iV)
 	C3dVector v2;
 	int i;
 	int iNo;
-	Link* pCL;
 	Symbol* pSym = NULL;
 	if (ar.IsStoring())
 	{
@@ -45550,8 +45529,6 @@ void  DIML::Build()
 	vPP1D = vPP1;
 	vPP2D = vPP2;;
 	vDX.Set(1, 0, 0); //Horizontal
-
-	char buff[200];
 	vDY = vNorm.Cross(vDX); vDY.Normalize();
 	pPt1 = new CvPt_Object();
 	pPt1->Create(vDPt1, 1, -1, 0, 0, 11, nullptr);
@@ -49924,7 +49901,6 @@ void NCurve::ExportDXF(FILE* pFile)
 
 	// Write the spline
 	int iL;
-	int i;
 	iL = iFile;
 	if (iL < 0)
 		iL = 0;
@@ -51519,10 +51495,8 @@ return(w);
 
 void NCircle::RotateToUS(double U)
 {
-	double dRad, dA1, dA2;
-	double dSpan, dInc, dAng;
+	double dRad, dA1;
 	int i;
-	int iDiv;
 	C3dMatrix mT;
 	C3dVector vTmp;
 	C3dVector vCent;
@@ -55256,7 +55230,7 @@ if (iThisGp!=-1)
  }
  iNo--;
  char sStr[10];
- itoa (iGp,sStr,10);
+ _itoa (iGp,sStr,10);
  outtextMSG2("GPDEL");
  outtextMSG2(sStr);
    if ((iThisGp>-1) && (iThisGp<iNo))
@@ -55294,7 +55268,7 @@ void CGroupDialog::OnBnClickedOk()
   if (iGp!=-1)
   {
     char sStr[10];
-    itoa (iGp,sStr,10);
+    _itoa (iGp,sStr,10);
 	outtextMSG2("GPSET");
 	outtextMSG2(sStr);
   }
@@ -56495,7 +56469,7 @@ void CGroupDialog::OnBnClickedGroupaddgp()
   if (iGp!=-1)
   {
     char sStr[10];
-    itoa (iGp,sStr,10);
+    _itoa (iGp,sStr,10);
 	outtextMSG2("GPADDGP");
 	outtextMSG2(sStr);
   }
@@ -56509,7 +56483,7 @@ void CGroupDialog::OnBnClickedGroupremgrp()
   if (iGp!=-1)
   {
     char sStr[10];
-    itoa (iGp,sStr,10);
+    _itoa (iGp,sStr,10);
 	outtextMSG2("GPREMGP");
 	outtextMSG2(sStr);
   }
@@ -56524,7 +56498,7 @@ void CGroupDialog::OnBnClickedGroupdspcurrent()
   if (iGp!=-1)
   {
     char sStr[10];
-    itoa (iGp,sStr,10);
+    _itoa (iGp,sStr,10);
 	outtextMSG2("GPSET");
 	outtextMSG2(sStr);
 	outtextMSG2("DSPGP");
@@ -56800,7 +56774,7 @@ void CSETSDialog::OnBnClickedCdelset()
 CListBox* pSets=(CListBox*) GetDlgItem(IDC_LIST1);
 int iSet=pSets->GetCurSel();
 char sStr[10];
-itoa (iSet,sStr,10);
+_itoa (iSet,sStr,10);
 RemoveSet(iSet);        //Must do this before its removed
 outtextMSG2(sDEL);
 outtextMSG2(sStr);
@@ -56829,7 +56803,7 @@ void CSETSDialog::OnBnClickedNoneact()
 {
   // TODO: Add your control notification handler code here
   char sStr[10];
-  itoa(-1, sStr, 10);
+  _itoa(-1, sStr, 10);
   outtextMSG2(sACT);
   outtextMSG2(sStr);
   Refresh();
@@ -56942,7 +56916,7 @@ void CSOLDialog::OnBnClickedAct()
   CListBox* pSol=(CListBox*) GetDlgItem(IDC_SOL_LST);
   int iSol = pSol->GetCurSel();
   char sStr[10];
-  itoa(iSol, sStr, 10);
+  _itoa(iSol, sStr, 10);
   outtextMSG2("SOLACT");
   outtextMSG2(sStr);
   Refresh();
@@ -57251,7 +57225,7 @@ void CSTEPSDialog::OnBnClickedActStep()
   CListBox* pStep=(CListBox*) GetDlgItem(IDC_STEP_LBX);
   int iStep = pStep->GetCurSel();
   char sStr[10];
-  itoa(iStep, sStr, 10);
+  _itoa(iStep, sStr, 10);
   outtextMSG2("STEPACT");
   outtextMSG2(sStr);
   Refresh();
@@ -57310,7 +57284,7 @@ CEntEditDialog::CEntEditDialog()
   pEnt=NULL;
   pO = NULL;
   PT = NULL;
-  m_iItemBeingEdited==1;
+  m_iItemBeingEdited=1;
   eEdit = NULL;
   iNoLayers = 0;
   hdcOld = wglGetCurrentDC();
@@ -57700,14 +57674,14 @@ void CEntEditDialog::OglDraw()
 	sprintf_s(sLab, "%s", "Z");
 	OglString(1, 0.0, 0.0, 0.7, &sLab[0]);
 	glBegin(GL_LINES);
-	glVertex3f(0.0, 0.0, 0.0);
-	glVertex3f(0.0, 0.0, 0.7);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 0.0f, 0.7f);
 	glEnd();
 	sprintf_s(sLab, "%s", "1");
 	OglString(1, 0.7, 0.0, 0.0, &sLab[0]);
 	glBegin(GL_LINES);
-	glVertex3f(0.0, 0.0, 0.0);
-	glVertex3f(0.7, 0.0, 0.0);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.7f, 0.0f, 0.0f);
 	glEnd();
 
 	glFinish();

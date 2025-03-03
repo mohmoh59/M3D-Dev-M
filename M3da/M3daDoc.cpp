@@ -2011,7 +2011,7 @@ void CM3daDoc::OnEditRelatedto()
   int iGp=cDBase->GetItemType();
   //cDBase->SetCurrentGP(iGp);
   char sStr[10];
-  itoa (iGp,sStr,10);
+  _itoa (iGp,sStr,10);
   if (iGp!=-1)
   {
      outtextMSG2(sStr);
@@ -2079,7 +2079,7 @@ void CM3daDoc::OnEditLabel()
   outtextMSG2("LAB");
   int iSelLabType = cDBase->GetItemType();
   char sStr[10];
-  itoa(iSelLabType, sStr, 10);
+  _itoa(iSelLabType, sStr, 10);
   //_itoa_s(iSelLabType, sStr, sizeof(sStr), 10);
   outtextMSG2(sStr);
 }
@@ -3648,7 +3648,7 @@ else
 void CM3daDoc::OnPostContourrawdata()
 {
   // TODO: Add your command handler code here
-  if (cDBase->DspFlags & DSP_LINE == 1)
+  if ((cDBase->DspFlags & DSP_LINE) == 1)
     cDBase->DspFlags=(cDBase->DspFlags ^ DSP_LINE);
   cDBase->DspFlags=(cDBase->DspFlags ^ DSP_CONT);
   cDBase->InvalidateOGL();
