@@ -15,6 +15,11 @@ double gDIM_RADSZ = 0.5;
 double gDIM_CVORD = 2;
 //GLOBAL DEFUALT VALUES ENTERED
 
+zMnu::~zMnu()
+{
+	//outtext1("");
+}
+
 void zMnu::Init(DBase* TheDBase,int iType)
 {
 cDBase = TheDBase;	

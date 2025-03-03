@@ -60,7 +60,7 @@ bool isOp2(char op)
 // 
 bool isPartofNumber(string expression, int iC )
 {
-    int i;
+
     bool brc = false;
     if ((expression[iC] == '+') || (expression[iC] == '-'))
     {

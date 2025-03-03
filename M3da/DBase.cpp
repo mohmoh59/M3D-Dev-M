@@ -2088,7 +2088,7 @@ else
 
 void DBase::AddTEMPD(double T)
 {
-	int i;
+
 	int iSID = -1;
 	double dT;
 	BOOL bIsTempD = FALSE;
@@ -2111,9 +2111,7 @@ void DBase::AddTEMPD(double T)
 
 void DBase::AddGrav(double dScl, C3dVector Vec)
 {
-	int i;
 	int iSID = -1;
-	double dT;
 	GRAV* pGrav = nullptr;
 	cLinkedList* pS = nullptr;
 	if (pCurrentMesh->iCurLC != -1)
@@ -7630,7 +7628,7 @@ void DBase::AddContPolyW(double dWght, double deg)
 			pT = DB_GetBuffbyInd(iCnt);
 			cPolyW->AddVert(pT,dWght);
 		}
-		cPolyW->Generate(deg);
+		cPolyW->Generate(static_cast <int> (deg));
 		C3dVector a = cPolyW->GetPt(0.5);
 		DB_Obj[DB_ObjectCount]=cPolyW;
 		DB_Obj[DB_ObjectCount]->SetToScr(&pModelMat,&pScrMat);
@@ -12191,11 +12189,10 @@ void DBase::NodesOnCurve(NCurve* pC,int iNo, cLinkedList* pN)
 {
 	C3dVector v;
 	Node* pNode;
-	int i, iCO;
 	double dW = 0;
 	double dInc;
 	double dSpan;
-
+	int i;
 	dW = 0;
 	dSpan = pC->we - pC->ws;
 	dInc = dSpan / (iNo - 1);
@@ -12416,12 +12413,8 @@ ReDraw();
 void DBase::GenPointsOnCircle(int iNo)
 {
 	C3dVector v;
-	Node* pNode;
-	int i, iCO;
+	int iCO;
 	double dW = 0;
-	double dInc;
-	double dSpan;
-	NCurve* pC;
 	NCircle* pCir;
 	if (iNo > 0)
 	{
