@@ -1,16 +1,58 @@
-See www.m3dfea.com for tutorials and some videos are on youtube.
+M3D
+=======
 
-M3d Overview:
+M3D is a finite element pre/post processor for NASTRAN/MYSTRAN  (https://www.m3dfea.com)
+
+
+---
+
+[Build Instructions](#Build-Instructions) |
+[Introduction](#Introduction) |
+[Features](#Features) |
+[Get EXE](#Get-EXE) |
+[Tutorials](#Tutorials) |
+[Developmental Goals](#Developmental-Goals) |
+[Community](#community)
+
+---
+
+# Build Instructions
+
+See [BUILD.md](BUILD.md) for Windows build (compiling) instructions.
+
+# Introduction
+
+M3D Overview:
  - Compiled in Visual Studio 2019. Originally started this in C++4 many years ago, before vector classes were added.
- - Written with no add-ins or external modules so it can be deployed with no problems I would like it to stay this way. 
+ - Written with no add-ins or external modules so it can be deployed with no problems. The original author would like it to stay this way. 
  - Used in many commercial aerospace projects and this has driven the development.
  - Most of the structures are shell and beam models built by hand and with abstracted geometry.
 
-M3d Features:
-- Driven mainly from the command line with keywords invoking procedures.
- - The menus and icons simply pass the command keyword to the command line.
- - Each function like "NDCR" node create has a menu class handler which goes into the a command stack to be implemented.
- - All menu classes begin with a z. Find the menu class for a particular command and you can trace it back through the code to see how it works.
- - The main class that embodies everything is the dBASE class. This holds all the objects, the next important object is the mesh object which  can hold every thing to do with a fem.
- - The dBASE object can have many fem objects, you activate the current mesh to work on it or merge them. The base object also holds the geometry.
+# Features
 
+- Driven mainly from the command line with keywords invoking procedures.
+- The menus and icons simply pass the command keyword to the command line.
+- Each function like "NDCR" node create has a menu class handler which goes into the a command stack to be implemented.
+- All menu classes begin with a z. Find the menu class for a particular command and you can trace it back through the code to see how it works.
+- The main class that embodies everything is the dBASE class. This holds all the objects, the next important object is the mesh object which  can hold every thing to do with a fem.
+- The dBASE object can have many fem objects, you activate the current mesh to work on it or merge them. The base object also holds the geometry.
+
+# Get EXE
+
+TBD
+
+# Tutorials
+
+See www.m3dfea.com for tutorials and some videos are on youtube.
+Also, see the following link (https://www.mystran.com/forums/showthread.php?tid=113)
+
+# Developmental Goals
+
+- Improve import capability
+- Implement a quad paver mesher (currently there is only a tri paver mesher)
+- Improve user frienliness
+
+# Community
+
+- [Join our Forums](https://mystran.com/forums)
+- [Join our Discord Channel](https://discord.gg/9k76SkHpHM)
