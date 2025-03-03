@@ -11202,8 +11202,8 @@ void DBase::LineDrag(CDC* pDC, CPoint p1, CPoint p2)
 		SetPen(pDC, 6);
 	else
 		SetPen(pDC, 7);
-	pDC->MoveTo(vS.x, vS.y);
-	pDC->LineTo(vE.x, vE.y);
+	pDC->MoveTo(static_cast <int>(vS.x), static_cast <int>(vS.y));
+	pDC->LineTo(static_cast <int>(vE.x), static_cast <int>(vE.y));
 	RestorePen(pDC);
 }
 
@@ -11689,7 +11689,7 @@ else
   }
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   
-  GLfloat LightPos[]={0.0f,0.0f,50.0*WPSize,1.0f};
+  GLfloat LightPos[]={0.0f,0.0f,static_cast<float> (50.0*WPSize),1.0f};
   GLfloat WhiteLight[]={0.9f,0.9f,0.9f};
   GLfloat light_ambient[]={0.5f,0.5f,0.5f,0.5f};
   glLightfv(GL_LIGHT0,GL_POSITION,LightPos);
@@ -11948,9 +11948,9 @@ int irc;
     float R =cols[i][0];
     float G =cols[i][1];
     float B =cols[i][2];
-    int iR = R*255;
-    int iG = G*255;
-    int iB = B*255;
+    int iR = static_cast<int> (R*255);
+    int iG = static_cast<int> (G*255);
+    int iB = static_cast<int> (B*255);
     Dlg.AddCol(iR,iG,iB);
   }
 
@@ -12545,8 +12545,8 @@ double dUi;
 double dVi;
 int iU;
 int iV;
-iU=dU;
-iV=dV;
+iU= static_cast<int> (dU);
+iV= static_cast<int> (dV);
 
 NSurf* pS;
 
@@ -15752,7 +15752,7 @@ void DBase::CurveDivide(NCurve* pC, NCurve* &pC1, NCurve* &pC2, C3dVector vPt)
 		//cPts.DeleteAll();
 		//knots.DeleteAll();
 		//Second segment curve
-		int iSS;
+
 		cPtsSeg.Size(cPts.n - (k + 1));
 		knotsSeg.Size(cPtsSeg.n + r);
 		for (i = (k + 1); i < cPts.n; i++)
@@ -16322,11 +16322,10 @@ NCircle* DBase::FilletIter(NLine* Ln1, NLine* Ln2, double dR, C3dVector PNear1, 
 	BOOL bErr;
 	double dDir1c = 1;      //Direction check
 	double dDir2c = 1;      //Direction check
-	double dMinDist, dDist;
+	double dMinDist;
 	double dTD;
 	double w1, w2;				//the w values of the near point on the 2 curves
 	double Deltaw1, Deltaw2;
-	int i;
 	C3dVector v1, v2;			//The actual points on curve
 	C3dVector vCur1, vCur2;
 	C3dVector vD1, vD2, vDir1, vDir2;;			//The direction vectors
@@ -20720,7 +20719,6 @@ void DBase::GPByInclude(int iFile)
 
 	CString sTit;
 	CString sNum;
-	int iCO;
 	int iGP;
 
 	sNum.Format(_T("%d"), iFile);
@@ -23898,7 +23896,6 @@ void DBase::QMorph(ObjList* Els)
 void DBase::MeshBeamSize(ObjList* pCurves, double dS)
 {
 	int iCO;
-	int i, j;
 	int iInc;
 	double dL;
 	char S1[200];
@@ -23916,7 +23913,7 @@ void DBase::MeshBeamSize(ObjList* pCurves, double dS)
 				pEdge = (NCurve*) pCurves->Objs[iCO];
 				pEdge->dLSize = dS;		//Set size on element
 				dL = pEdge->getLen();	//Get the length of the edge
-				iInc = dL / dS;			//Calculate the number of elements
+				iInc = static_cast <int> (dL / dS);			//Calculate the number of elements
 				if (iInc < 1)			//Can't have less than 1 element
 					iInc = 1;
 				if ((pEdge->iType==3) && (iInc<4))	//Case of sircle
@@ -23999,7 +23996,7 @@ void DBase::MeshSurfSize(ObjList* pSurfs, double dS)
 					{
 						pEdge = (NCurve*) pS->pExtLoop[i]->pSC;
 						dL = pEdge->getLen();
-						iInc = dL / dS;
+						iInc = static_cast<int>(dL / dS);
 						if ((pS->iNoExtCvs == 1) && (iInc < 4))
 						{
 							iInc = 4;
@@ -24021,7 +24018,7 @@ void DBase::MeshSurfSize(ObjList* pSurfs, double dS)
 						{
 							pEdge = (NCurve*)pS->pIntLoop[i][j]->pSC;
 							dL = pEdge->getLen();
-							iInc = dL / dS;
+							iInc = static_cast<int> (dL / dS);
 							if ((pS->iNoIntCvs[i] == 1) && (iInc < 4))
 							{
 								iInc = 4;
@@ -24280,7 +24277,7 @@ double DBase::CirCircle(cSeg* pSeg, C2dVector pt, C2dVector &pC)
 	double drc = 1e36;
 	double x1, y1, x2, y2, P, Q;
 	double A1, A2, B1, B2;
-	double AA, BB, AB, DET, C1, C2, XX, YY, XC, YC, RR;
+	double AA, BB, AB, DET, C1, C2, XX, YY, RR;
 
 	x1 = pSeg->pt[0]->PP.x;
 	y1 = pSeg->pt[0]->PP.y;
@@ -24316,7 +24313,7 @@ double DBase::CirCircle2d(cSeg* pSeg, C2dVector pt, C2dVector &pC, double dSX, d
 	double drc = 1e36;
 	double x1, y1, x2, y2, P, Q;
 	double A1, A2, B1, B2;
-	double AA, BB, AB, DET, C1, C2, XX, YY, XC, YC, RR;
+	double AA, BB, AB, DET, C1, C2, XX, YY, RR;
 
 	x1 = pSeg->pt[0]->PP.x*dSX;
 	y1 = pSeg->pt[0]->PP.y*dSY;
@@ -24607,7 +24604,7 @@ void DBase::CreateBSegs(ObjList* pP, cLinkedList* pS, double dS, NSurf* pSf)
 			dL = pSf->pExtLoop[i]->getLen();
 			if (dL > dTol)
 			{
-				iInc = dL / dS;
+				iInc = static_cast<int> (dL / dS);
 				if ((pSf->iNoExtCvs == 1) && (iInc < 4))
 				{
 					iInc = 4;
@@ -24663,7 +24660,7 @@ void DBase::CreateBSegs(ObjList* pP, cLinkedList* pS, double dS, NSurf* pSf)
 			if (iInc == -1)
 			{
 				dL = pSf->pIntLoop[k][i]->getLen();
-				iInc = dL / dS;
+				iInc = static_cast<int> (dL / dS);
 				if ((pSf->iNoIntCvs[k] == 1) && (iInc < 4))
 				{
 					iInc = 4;

@@ -294,7 +294,6 @@ template <class T>
 void Vec<T>::ReOrder(int iSt)
 {
 	int i;
-	int a, b;
 
 	Vec<T> copy(n);
 	for (i = 0; i < n; i++)
