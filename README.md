@@ -39,12 +39,12 @@ M3D Overview:
 
 # Get EXE
 
-The EXE provided here (TBD) is a build based on this open-source repository. The EXE provided at (https://www.m3dfea.com) is not necessarily the exact same version.
+The EXE provided here (TBD) is a build based on this open-source repository. The EXE provided at https://www.m3dfea.com is not necessarily the exact same version.
 
 # Tutorials
 
 See www.m3dfea.com for tutorials and some videos are on youtube.
-Also, see the following link (https://www.mystran.com/forums/showthread.php?tid=113)
+Also, see the following link https://www.mystran.com/forums/showthread.php?tid=113
 
 # Developmental Goals
 
