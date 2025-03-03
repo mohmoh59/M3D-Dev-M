@@ -11,6 +11,7 @@ M3D is a finite element pre/post processor for NASTRAN/MYSTRAN  (www.m3dfea.com)
 [Features](#Features) |
 [Get EXE](#Get-EXE) |
 [Tutorials](#Tutorials) |
+[Modifications] (#Modifications) |
 [Developmental Goals](#Developmental-Goals) |
 [Community](#community)
 
@@ -45,6 +46,13 @@ The EXE provided here (TBD) is a build based on this open-source repository. The
 
 See www.m3dfea.com for tutorials and some videos are on youtube.
 Also, see the following link https://www.mystran.com/forums/showthread.php?tid=113
+
+# Modifications
+
+> [!CAUTION]
+> All modifications must be done inside the Microsoft Visual Studio editor. Failing to do so will most likely cause **very** annoying compilation errors.
+
+Optional modificaitons are discussed in [MODIFICATIONS.md](MODIFICATIONS.md) 
 
 # Developmental Goals
 
