@@ -15,12 +15,14 @@ protected:
   int iResumePos;
   int iCancelPos;
   zMnu* pNext;
+
   int iStat;
   int initCnt;
   int S_initCnt;
   int iT;
 public:
 	DBase* cDBase;
+	~zMnu();
 	virtual void DoNext(CString *CInMsg,CPoint Pt);
 	virtual void Init(DBase* TheDBase,int iType);
 	virtual int DoMenu(CString CInMsg,CPoint Pt);

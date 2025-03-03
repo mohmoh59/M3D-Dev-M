@@ -255,32 +255,6 @@ BEGIN
         BEGIN
             MENUITEM "CoordSys",                    ID_CREATE_COORDSYS
             MENUITEM "CoordSys Line",               ID_CREATE_COORDSYSLINE
-            POPUP "Material"
-            BEGIN
-                MENUITEM "Isentropic ",                 ID_MATERIAL_ISENTROPIC
-                MENUITEM "Orthotropic",                 ID_MATERIAL_ORTHOTROPIC
-            END
-            POPUP "Property"
-            BEGIN
-                MENUITEM "Lumped Mass",                 ID_PROPERTY_LUMPEDMASS
-                MENUITEM "Translational Spring",        ID_PROPERTY_TRANSLATIONALSPRING
-                MENUITEM "Rotational Spring",           ID_PROPERTY_ROTATIONALSPRING
-                MENUITEM "Rod",                         ID_PROPERTY_ROD
-                MENUITEM "Beam - Basic",                ID_PROPERTY_BEAM_BASIC
-                MENUITEM "Beam-ROD",                    ID_PROPERTY_BEAM
-                MENUITEM "Beam-BAR",                    ID_PROPERTY_BEAMBAR
-                MENUITEM "Beam-TUBE",                   ID_PROPERTY_BEAMTUBE
-                MENUITEM "Beam-BOX",                    ID_PROPERTY_BEAMBOX
-                MENUITEM "Beam-T2",                     ID_PROPERTY_BEAM_T2
-                MENUITEM "Beam-CHAN2",                  ID_PROPERTY_BEAM_CHAN2
-                MENUITEM "Beam-I2",                     ID_PROPERTY_BEAM_I2
-                MENUITEM "BEAM-L",                      ID_PROPERTY_BEAM_L
-                MENUITEM "Shell",                       ID_PROPERTY_SHELL
-                MENUITEM "Solid",                       ID_PROPERTY_SOLID
-                MENUITEM "2D Plain Stress",             ID_PROPERTY_2DPLAINSTRESS
-                MENUITEM "PCOMP",                       ID_PROPERTY_PCOMP
-                MENUITEM "PBUSH",                       ID_PROPERTY_PBUSH
-            END
             MENUITEM "Node",                        ID_CREATE_NODE
             MENUITEM "Node MoveTo",                 ID_CREATE_NODEMOVETO
             MENUITEM "Nodes Between",               ID_CREATE_NODESBETWEEN
@@ -503,6 +477,32 @@ BEGIN
         END
         MENUITEM "Delete",                      ID_TOOLS_DELETE
         MENUITEM "Insert Planet Earth",         ID_TOOLS_PLANET
+    END
+    POPUP "Materials"
+    BEGIN
+        MENUITEM "Isotropic ",                  ID_MATERIAL_ISENTROPIC
+        MENUITEM "Orthotropic",                 ID_MATERIAL_ORTHOTROPIC
+    END
+    POPUP "Properties"
+    BEGIN
+        MENUITEM "Lumped Mass",                 ID_PROPERTY_LUMPEDMASS
+        MENUITEM "Translational Spring",        ID_PROPERTY_TRANSLATIONALSPRING
+        MENUITEM "Rotational Spring",           ID_PROPERTY_ROTATIONALSPRING
+        MENUITEM "Rod",                         ID_PROPERTY_ROD
+        MENUITEM "Beam - Basic",                ID_PROPERTY_BEAM_BASIC
+        MENUITEM "Beam-ROD",                    ID_PROPERTY_BEAM
+        MENUITEM "Beam-BAR",                    ID_PROPERTY_BEAMBAR
+        MENUITEM "Beam-TUBE",                   ID_PROPERTY_BEAMTUBE
+        MENUITEM "Beam-BOX",                    ID_PROPERTY_BEAMBOX
+        MENUITEM "Beam-T2",                     ID_PROPERTY_BEAM_T2
+        MENUITEM "Beam-CHAN2",                  ID_PROPERTY_BEAM_CHAN2
+        MENUITEM "Beam-I2",                     ID_PROPERTY_BEAM_I2
+        MENUITEM "BEAM-L",                      ID_PROPERTY_BEAM_L
+        MENUITEM "Shell",                       ID_PROPERTY_SHELL
+        MENUITEM "Solid",                       ID_PROPERTY_SOLID
+        MENUITEM "2D Plain Stress",             ID_PROPERTY_2DPLAINSTRESS
+        MENUITEM "PCOMP",                       ID_PROPERTY_PCOMP
+        MENUITEM "PBUSH",                       ID_PROPERTY_PBUSH
     END
     POPUP "LoadsBC"
     BEGIN
