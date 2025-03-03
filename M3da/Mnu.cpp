@@ -17327,7 +17327,7 @@ if (iStat == 3)
 {
   C3dVector ptVec;
   ptVec=cDBase->DB_PopBuff();
-  cDBase->ShellSolids(cDBase->OTemp,ptVec.x);
+  cDBase->ShellSolids(cDBase->OTemp,static_cast<int> (ptVec.x));
   cDBase->FILTER.SetAll();
   cDBase->S_Res();
   RetVal = 1;
