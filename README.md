@@ -1,7 +1,7 @@
 M3D
 =======
 
-M3D is a finite element pre/post processor for NASTRAN/MYSTRAN  (https://www.m3dfea.com)
+M3D is a finite element pre/post processor for NASTRAN/MYSTRAN  (www.m3dfea.com)
 
 
 ---
