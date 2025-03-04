@@ -1,4 +1,4 @@
-# FOR REFERENCE ONLY. Some of these may have been implemented.
+# For Reference Only. Some of these may have been implemented.
 
 > [!CAUTION]
 > All modifications must be done inside the Microsoft Visual Studio editor. Failing to do so will most likely cause **very** annoying compilation errors.
