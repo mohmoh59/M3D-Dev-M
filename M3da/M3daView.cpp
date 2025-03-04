@@ -586,7 +586,7 @@ BOOL CM3daView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 
   double dS = tOrient.GetScl(); // new
   double dSR;
-  dSR=0.1;
+  dSR=0.07;
 	if (zDelta < 0) 
   {
      tOrient.Scl(-dS*dSR);
