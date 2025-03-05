@@ -31,9 +31,9 @@ After selecting the C++ desktop option, select the tab at the top menu called �
    https://github.com/MYSTRANsolver/M3D/blob/main/BUILD_COMPONENTS.jpg
 
 2. The M3D repo is at https://github.com/MYSTRANsolver/M3D. You can clone it or alternatively select the green “Code” button and download a ZIP (and then Extract it to a folder).
-3. Open Visual Studio. Choose Visual C++ for the Development Settings. Choose the appropriate option based on your choice from Step 3. For example, if you extracted the ZIP to a folder, choose “Open a Local Folder”. If you open the “M3da-master” folder, then right click on the `.sln` file that is in the M3d_Setup folder and select “Build”. This will create a “Debug” folder that contains M3da.exe.
+3. Open Visual Studio. Choose Visual C++ for the Development Settings. Choose the appropriate option based on your choice from Step 3. For example, if you extracted the ZIP to a folder, choose “Open a Local Folder”. Open the high level folder (the one above where "M3da" and "M3da_Setup" reside. On the left pane, select "Solution Explorer" at the bottom. Then right click on the `.sln` file that is in the M3d_Setup folder and select “Build”. By default, this will create a “Debug” folder that contains M3da.exe.
 
 > [!TIP]
-> On the top part of the window, you can pick between build configurations, with the 2 dropdown selectors next to the `Local Windows Debugger` button.
+> On the top part of the window, just to the right of the redo and undo icons, there is a drop-down for Build Configurations. The options are x86 Debug, x86 Release, x64 Debug, x64 Release, MinGW.
 >
-> Once you're done with your modifications, you can change the first selector to Release, to produce an optimized executable.
+> Once you're done with any modifications, you can change the first selector to Release, to produce an optimized executable.
