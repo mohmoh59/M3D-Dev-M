@@ -28,7 +28,7 @@ After selecting the C++ desktop option, select the tab at the top menu called �
 	 
 1. On the pane on the right, the list of Individual components is shown for reference. Now install it.
 
-https://github.com/MYSTRANsolver/M3D/BUILD_COMPONENTS.jpg
+   https://github.com/MYSTRANsolver/M3D/blob/main/BUILD_COMPONENTS.jpg
 
 2. The M3D repo is at https://github.com/MYSTRANsolver/M3D. You can clone it or alternatively select the green “Code” button and download a ZIP (and then Extract it to a folder).
 3. Open Visual Studio. Choose Visual C++ for the Development Settings. Choose the appropriate option based on your choice from Step 3. For example, if you extracted the ZIP to a folder, choose “Open a Local Folder”. If you open the “M3da-master” folder, then right click on the `.sln` file that is in the M3d_Setup folder and select “Build”. This will create a “Debug” folder that contains M3da.exe.
