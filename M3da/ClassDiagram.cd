@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="C3dVector">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAEIAAAABAABAAAEAAQAQCAGDAABAAIBADkAQAAAwA=</HashCode>
+      <FileName>3dsupport.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="C3dMatrix">
+    <Position X="2" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAiAAADgAAAABEAeAIAgRiAECBAAAAUAAAkgAgAACA=</HashCode>
+      <FileName>3dsupport.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBase">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="DBase::__unnamed_enum_0004_1" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DBase.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>9/n//X//3//939v9/ef///1/77//f59//f/v//37/v8=</HashCode>
+      <FileName>DBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ME_Object">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kWX0/V7z12bVjsaqvQ0dy+0/v/Gacd3T8t7W6Prs3i8=</HashCode>
+      <FileName>G_object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="10" />
+</ClassDiagram>

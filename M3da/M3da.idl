@@ -1,0 +1,169 @@
+// M3da.idl : type library source for M3da.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (M3da.tlb).
+
+#include "olectl.h"
+[uuid(28298EED-2921-46EF-9177-73085F111828), version(1.0)]
+library M3da
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	//  Primary dispatch interface for CM3daDoc
+
+	[uuid(D0A70CB8-1A81-462F-9171-84EFAB11DD21)]
+	dispinterface IM3da
+	{
+		properties:
+	  [id(17), helpstring("property ElLen")] DOUBLE ElLen;
+	  [id(18), helpstring("property IMode")] SHORT IMode;
+	  [id(19), helpstring("property NoElementsH")] SHORT NoElementsH;
+	  [id(20), helpstring("property NoElementsW")] SHORT NoElementsW;
+	  [id(26), helpstring("property ElDeg")] DOUBLE ElDeg;
+
+	methods:
+	  [id(1), helpstring("method GetNo")] void GetNo(void);
+	  [id(2), helpstring("method APIGetModel")] IDispatch* GetModel(void);
+	  [id(3), helpstring("method DeleteSelectedWG")] void DeleteSelectedWG(void);
+	  [id(4), helpstring("method DesAll")] void DesAll(void);
+	  [id(5), helpstring("method ReDraw")] void ReDraw(void);
+	  [id(6), helpstring("method GenMesh")] void GenMesh(void);
+	  [id(7), helpstring("method ImportCat")] void ImportCat(BSTR FileName);
+	  [id(8), helpstring("method TogOn1d2d")] SHORT Tog1d2d(void);
+	  [id(9), helpstring("method ImportWG")] SHORT ImportWG(BSTR sFName,BSTR WGName);
+	  [id(10), helpstring("method GetDBNoObjs")] LONG GetDBNoObjs(void);
+	  [id(11), helpstring("method GetName")] BSTR GetName(LONG Index);
+	  [id(12), helpstring("method ImpSecT")] void ImpSecT(BSTR sFName);
+	  [id(13), helpstring("method SelectWG")] void SelectWG(BSTR inName);
+	  [id(14), helpstring("method InvertSel")] void InvertSel(void);
+	  [id(15), helpstring("method AddPoint")] void AddPoint(DOUBLE x, DOUBLE y, DOUBLE z, LONG Lab);
+	  [id(16), helpstring("method AddLine")] void AddLine(DOUBLE x1, DOUBLE y1, DOUBLE z1, DOUBLE x2, DOUBLE y2, DOUBLE z2, LONG Lab);
+	  [id(21), helpstring("method ImportWG2")] SHORT ImportWG2(BSTR sFName, BSTR sName);
+	  [id(22), helpstring("method BuildAssem")] SHORT BuildAssem(LPCTSTR sModName);
+	  [id(23), helpstring("method DisplayAll")] void DisplayAll(void);
+	  [id(24), helpstring("method ExportUNV")] SHORT ExportUNV(BSTR sFName);
+	  [id(25), helpstring("method SelectAllWGs")] void SelectAllWGs(void);
+	  [id(27), helpstring("method ExportNAS")] SHORT ExportNAS(BSTR inName);
+	  [id(28), helpstring("method MergeNodes")] void MergeNodes(DOUBLE dTol);
+	  [id(29), helpstring("method ExportGroups")] void ExportGroups(BSTR sFName);
+	  [id(30), helpstring("send m3d a command")] void SendCommand(BSTR sCmd);
+	};
+
+	//  Class information for CM3daDoc
+
+	[uuid(A7226713-7CA7-4243-8B24-4C7AA36D1FA3)]
+	coclass CM3daDoc
+	{
+		[default] dispinterface IM3da;
+	};
+	//  Primary dispatch interface for DBase
+
+	[uuid(45542F2E-3541-4330-9BE0-A4B59B3D392C)]
+	dispinterface IDBase
+	{
+		properties:
+		methods:
+			[id(1), helpstring("method get no of objects in database")] LONG GetNo(void);
+			[id(2), helpstring("Add node to current mesh")] void AddNode(DOUBLE X, DOUBLE Y, DOUBLE Z, LONG ID, LONG COL);
+			[id(3), helpstring("Redraw graphics")] void ReDrawWindow();
+			[id(4), helpstring("Get Object")] IDispatch* GetObject(LONG iNo);
+			[id(5), helpstring("method get no of objects in displayed on screen")] LONG GetNoOnSrn(void);
+			[id(6), helpstring("Get Object")] IDispatch* GetOnSrnObject(LONG iNo);
+			[id(7), helpstring("Get Active FEM Model")] IDispatch* GetActiveMesh();
+			[id(8), helpstring("Create a point at x, y, z coordinates if iLab=-1 (recommended) M3d assigns the ID")] IDispatch* CreatePoint(LONG iLab, LONG iCol, DOUBLE x, DOUBLE y, DOUBLE z);
+			[id(9), helpstring("Create a Line at x1,y1,z1 to x2,y2,z2 if iLab=-1 (recommended) M3d assigns the ID")] IDispatch* CreateLine(LONG iLab, LONG iCol, DOUBLE x1, DOUBLE y1, DOUBLE z1, DOUBLE x2, DOUBLE y2, DOUBLE z2);
+	};
+
+	//  Class information for DBase
+
+	[uuid(D619E744-24BA-46CF-9DF3-4E44AEBA447B)]
+	coclass DBase
+	{
+		[default] dispinterface IDBase;
+	};
+
+	//Primary dispatch interface for G_Object
+	[uuid(2EC99D19-8632-44E0-A22E-294CFB4F5D61)]
+	dispinterface IObject
+	{
+    properties:
+		[id(1), helpstring("Specifies the color of the object")] LONG iColour;
+		[id(3), helpstring("Object label best not to change!")] LONG iLabel;
+		[id(4), helpstring("Specifies the main type of the object")] LONG iObjType;
+		[id(5), helpstring("Specifies the sub type of the object")] LONG iType;
+		[id(6), helpstring("Specifies file no for and FE object (include file)")] LONG iFile;
+	methods:
+		[id(2)] BSTR GetTest();
+		// Method to get a SAFEARRAY of BSTRs as a VARIANT
+		[id(7), helpstring("method Get Object Headers")] HRESULT GetObjectHeaders(VARIANT* pVariant);
+		[id(8), helpstring("method get Object variables as strings")] HRESULT GetObjectVars(VARIANT* pVariant);
+		[id(9), helpstring("method put Object variables as strings")] HRESULT PutObjectVars(VARIANT* pVariant);
+		[id(10), helpstring("Gets the name of the object")] HRESULT GetObjectName([out, retval] BSTR* pName);
+	}
+		//  Class information for DBase
+
+	[uuid(50FB7579-3C0F-4B23-BF30-F9C88B31C307)]
+	coclass G_Object
+	{
+		[default] dispinterface IObject;
+	};
+
+
+	//The Mesh Object
+	//Primary dispatch interface for G_Object
+	[uuid(190D2974-17B6-4295-A4C5-08FA06FC6CD9)]
+	dispinterface IME_Object
+	{
+		properties:
+			[id(1), helpstring("Specifies the color of the object")] LONG iColour;
+			[id(2), helpstring("Object label best not to change!")] LONG iLabel;
+			[id(3), helpstring("Specifies the main type of the object")] LONG iObjType;
+			[id(4), helpstring("Specifies the sub type of the object")] LONG iType;
+			[id(5), helpstring("Specifies file no for and FE object (include file")] LONG iFile;
+			[id(6), helpstring("Internal MESH ID")] LONG iIntID;
+			[id(7), helpstring("No off Nodes")] LONG iNdNo;
+			[id(8), helpstring("No off Elements")] LONG iElNo;
+			[id(9), helpstring("No off Boundary Conditions and Loads (SUPERCEEDED)")] LONG iBCLDs;
+			[id(10), helpstring("No off Coord Systems")] LONG iCYS;
+			[id(20), helpstring("No off Load Case Sets")] LONG  iNoLCs;
+			[id(21), helpstring("ID off Current Load Case Set")] LONG  iCurLC;
+			[id(22), helpstring("No off Boundary Condition Sets")] LONG  iNoBCs;
+			[id(23), helpstring("ID off Current Boundary Condition Set")] LONG  iCurBC;
+			[id(24), helpstring("No off Temperature Sets")] LONG  iNoTSets;
+			[id(25), helpstring("ID off Current Temperature Set")] LONG  iCurTSet;
+			//Post Processing
+			[id(26), helpstring("No of Results Sets")] LONG  iNoRes;
+			[id(27), helpstring("Results Set for Deformation")] LONG  iCurResSetDef;
+			[id(28), helpstring("Results Variable for Deformation -1 for full vector")] LONG  iResValDef;
+			[id(29), helpstring("Posted Deformation Value")] LONG  iCVarDef;
+			[id(30), helpstring("Results Set for Contour")] LONG  iCurResSet;
+			[id(31), helpstring("Results Variable for Contour")] LONG  iResVal;
+			[id(32), helpstring("Secondart Variable for Contour (layer)")] LONG  iPostOpt;
+			[id(33), helpstring("Posted Contour Value")] LONG  iCVar;
+			[id(34), helpstring("Seconday Contour var not used iPostOpt ")] LONG  iSecID;
+			[id(35), helpstring("Results Set for Vector Display")] LONG  iCurResVecSet;
+			[id(36), helpstring("Secondary Option for Vector Display UNUSED")] LONG  iSecVecID;
+		methods:
+			//  Class information for DBase
+			[id(11), helpstring("Get object Headers")] HRESULT GetObjectHeaders(VARIANT* pVariant);
+			[id(12), helpstring("Get object variables as strings")] HRESULT GetObjectVars(VARIANT* pVariant);
+			[id(13), helpstring("Get object variables as strings")] HRESULT PutObjectVars(VARIANT* pVariant);
+			[id(14), helpstring("Get the name of the object")] HRESULT GetObjectName([out, retval] BSTR* pName);
+			[id(15), helpstring("Get the FEM Name")] HRESULT GetFEMName([out, retval] BSTR* pName);
+			[id(16), helpstring("Get Node by Index (NOT ID)")] IDispatch* GetNodeByInd(LONG iNo);
+			[id(17), helpstring("Get Node by ID")] IDispatch* GetNodeByID(LONG iNID);
+			[id(18), helpstring("Get Element by Index (NOT ID)")] IDispatch* GetElementByInd(LONG iNo);
+			[id(19), helpstring("Get Element by ID")] IDispatch* GetElementByID(LONG iEID);
+			[id(37), helpstring("Create a Node with Definition and Output CSYS at x, y, z coordinates")]
+			IDispatch* CreateNode(LONG iLab,LONG iCol, LONG iDef, LONG iOut,DOUBLE x, DOUBLE y, DOUBLE z);
+
+			[id(38), helpstring("Add Node Simple Version")] IDispatch* CreateNode2(DOUBLE x, DOUBLE y, DOUBLE z);
+	}
+		
+	[uuid(7C1C0A34-5974-452F-96E7-DB7F46412B29)]
+	coclass ME_Object
+	{
+		[default] dispinterface IME_Object;
+	};
+};
