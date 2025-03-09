@@ -399,6 +399,7 @@ BEGIN
         BEGIN
             MENUITEM "<placeholder>",               ID_VIEW_TOOLBAR
         END
+        MENUITEM "Toggle On/Off Double Buffering", ID_VIEW_TOGGLEON33455
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "HighLight Limit",             ID_VIEW_HIGHLIGHTLIMIT
         POPUP "VIEW"
@@ -2051,7 +2052,7 @@ BEGIN
     ID_QFILTER_ALL2         "Pick All"
     ID_ELEMENTTYPE_BUSH2    "BUSH 6 DOF Spring Element"
     ID_EDIT_GLOBALPREFERENCES2 "Edit global stored parameters"
-    ID_LOADSBC_CREATETEMPD2 "Create defualt model structural temperature."
+    ID_LOADSBC_CREATETEMPD2 "Toggle On/Off Double Buffering"
 END
 
 STRINGTABLE

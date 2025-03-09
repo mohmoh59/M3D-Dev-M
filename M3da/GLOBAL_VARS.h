@@ -1,5 +1,5 @@
 #pragma once
-
+extern bool gDOUBLEBUFF;
 extern double gZOOM_SCL;
 extern double gPT_SIZE;
 extern double gND_SIZE;

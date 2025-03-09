@@ -413,6 +413,7 @@ ON_COMMAND(ID_LOADSBC_CREATEGRAV, &CM3daDoc::OnLoadsbcCreategrav)
 ON_COMMAND(ID_EXPORT_CURRENT_STL, &CM3daDoc::OnExportCurrentStl)
 ON_COMMAND(ID_IMPORT_STLTOTRIMESH, &CM3daDoc::OnImportStltotrimesh)
 ON_COMMAND(ID_IMPORT_IMPORTDXF, &CM3daDoc::OnImportImportdxf)
+ON_COMMAND(ID_VIEW_TOGGLEON33455, &CM3daDoc::OnViewToggleon33455)
 END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CM3daDoc, CDocument)
@@ -6882,4 +6883,12 @@ void CM3daDoc::OnImportImportdxf()
 	{
 		cDBase->ImportDXF(sPath);
 	}
+}
+
+
+void CM3daDoc::OnViewToggleon33455()
+{
+	// TODO: Add your command handler code here
+	cDBase->ToggleDoubleBuffering();
+
 }

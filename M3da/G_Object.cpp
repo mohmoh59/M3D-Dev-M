@@ -13,6 +13,7 @@ int iNoSymbols = 0;
 double dAveW = 1;
 double dAveH = 1;
 //*********************************************************
+bool gDOUBLEBUFF = true;
 double gDIM_SCALE = 1.0;
 double gZOOM_SCL = 1.0;
 double gPT_SIZE = 10;

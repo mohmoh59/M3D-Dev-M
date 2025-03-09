@@ -566,6 +566,7 @@ protected:
     void SendCommand(LPCTSTR sCmd);
 public:
     afx_msg void OnImportImportdxf();
+    afx_msg void OnViewToggleon33455();
 };
 
 

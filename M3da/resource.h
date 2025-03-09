@@ -826,6 +826,7 @@
 #define ID_EDIT_GLOBALPREFERENCES2      33454
 #define ID_IMPORT_IMPORTDXF             33454
 #define ID_LOADSBC_CREATETEMPD2         33455
+#define ID_VIEW_TOGGLEON33455           33455
 #define ID_LOADSBC_CREATEGRAV2          33456
 
 // Next default values for new objects
@@ -833,7 +834,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        369
-#define _APS_NEXT_COMMAND_VALUE         33455
+#define _APS_NEXT_COMMAND_VALUE         33456
 #define _APS_NEXT_CONTROL_VALUE         1068
 #define _APS_NEXT_SYMED_VALUE           314
 #endif
