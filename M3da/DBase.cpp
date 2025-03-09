@@ -1219,6 +1219,7 @@ void DBase::Serialize(CArchive& ar)
 		ar << pModelMat.m_33;
 		//global vars
 		ar << WPSize;
+		ar << gDOUBLEBUFF;
 		ar << gZOOM_SCL;
 		ar << gPT_SIZE;
 		ar << gND_SIZE;
@@ -1304,7 +1305,10 @@ void DBase::Serialize(CArchive& ar)
 		{
 			ar >> WPSize;
 			if (iVER <= -78)
-			  ar >> gZOOM_SCL;
+			{
+				ar >> gDOUBLEBUFF;
+				ar >> gZOOM_SCL;
+			}
 			ar >> gPT_SIZE;
 			ar >> gND_SIZE;
 			ar >> gLM_SIZE;
@@ -1916,6 +1920,32 @@ void DBase::Ortho()
 	}
 }
 
+
+void DBase::ToggleDoubleBuffering()
+{
+	// Destroy current context
+	wglMakeCurrent(NULL, NULL);
+	wglDeleteContext(hrc);
+	if (m_pDC!=nullptr)
+		pTheView->ReleaseDC(m_pDC);
+	CDC* pDC = pTheView->GetDC();
+	if (pDC != nullptr)
+	{
+		if (gDOUBLEBUFF)
+		{
+			gDOUBLEBUFF = false;
+			InitOGL(pDC);
+			outtext1("Double Buffering OFF.");
+		}
+		else
+		{
+			gDOUBLEBUFF = true;
+			InitOGL(pDC);
+			outtext1("Double Buffering ON.");
+		}
+		InvalidateOGL();
+	}
+}
 
 void DBase::CreateWP(double dWPSize)
 {
@@ -15015,7 +15045,7 @@ void DBase::InitOGL(CDC* pDC)
 
 	m_pDC = pDC;
 	ASSERT(m_pDC != NULL);
-	if (!bSetupPixelFormat())
+	if (!bSetupPixelFormat(gDOUBLEBUFF))
 		return;
 	//n = ::GetPixelFormat(m_pDC->GetSafeHdc());
 	 //   ::DescribePixelFormat(m_pDC->GetSafeHdc(), n, sizeof(pfd), &pfd);
@@ -15100,15 +15130,15 @@ int DBase::GetFastView()
 }
 
 
-BOOL DBase::bSetupPixelFormat()
+BOOL DBase::bSetupPixelFormat(bool bDBLEBUFF)
 {
 	static PIXELFORMATDESCRIPTOR pfd =
 	{
 		sizeof(PIXELFORMATDESCRIPTOR),  // size of this pfd
 		1,                              // version number
 		PFD_DRAW_TO_WINDOW |            // support window
-		  PFD_SUPPORT_OPENGL |          // support OpenGL
-		  //PFD_DOUBLEBUFFER,             // double buffered
+		PFD_SUPPORT_OPENGL |          // support OpenGL
+		(bDBLEBUFF ? PFD_DOUBLEBUFFER : 0), // Toggle Double Buffering
 		PFD_TYPE_RGBA,                  // RGBA type
 		24,                             // 24-bit color depth
 		0, 0, 0, 0, 0, 0,               // color bits ignored

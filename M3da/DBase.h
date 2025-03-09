@@ -27,6 +27,7 @@ public:
 	void ModIncludeNo(int iF);
 	void ModLayerNo(int iF);
 	void Ortho();
+	void ToggleDoubleBuffering();
 	void LabGaps(int iGap);
 	HGLRC		hrc;
 	//Dynamic draging object 
@@ -636,7 +637,7 @@ public:
 	CDC* m_pDC;
 	CPalette     m_cPalette;
 	CPalette* m_pOldPalette;
-	BOOL bSetupPixelFormat();
+	BOOL bSetupPixelFormat(bool bDBLEBUFF);
 	void CreateRGBPalette();
 	unsigned char ComponentFromIndex(int i, UINT nbits, UINT shift);
 	SecTable* pSecs;
