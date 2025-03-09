@@ -3241,7 +3241,7 @@ if (pMnu->isNULL())
   //outtextMSG2("MMAT1");
   //sLastcmd="MMAT1";
   int iNLab = MatT->NextID();
-  cDBase->CreateMat1("Al Material", iNLab, 70.0e9, 0.33, 2750.0, 23.0e-6, 150.0);
+  cDBase->CreateMat1("Al Material", iNLab, gDEF_E, gDEF_V, gDEF_DEN, gDEF_CTE, gDEF_COND);
   cDBase->EditMat(iNLab,FALSE);
 
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+extern double gZOOM_SCL;
 extern double gPT_SIZE;
 extern double gND_SIZE;
 extern double gLM_SIZE;
@@ -32,6 +33,8 @@ extern double gRIGID_MULTIPLIER;  //multiplier to factor psuedo rigid elemenys K
 extern double gVSTIFF_KS;
 extern double gDEF_E;
 extern double gDEF_V;
+extern double gDEF_DEN;
+extern double gDEF_COND;
 extern double gSTIFF_BDIA;
 extern double gDEF_CTE;
 extern double gDEF_THERM_LNK;
