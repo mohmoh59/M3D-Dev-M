@@ -1219,6 +1219,7 @@ void DBase::Serialize(CArchive& ar)
 		ar << pModelMat.m_33;
 		//global vars
 		ar << WPSize;
+		ar << gZOOM_SCL;
 		ar << gPT_SIZE;
 		ar << gND_SIZE;
 		ar << gLM_SIZE;
@@ -1240,6 +1241,8 @@ void DBase::Serialize(CArchive& ar)
 		ar << gVSTIFF_KS;
 		ar << gDEF_E;
 		ar << gDEF_V;
+		ar << gDEF_DEN;
+		ar << gDEF_COND;
 		ar << gSTIFF_BDIA;
 		ar << gDEF_CTE;
 		ar << gDEF_THERM_LNK;
@@ -1300,6 +1303,8 @@ void DBase::Serialize(CArchive& ar)
 		if (iVER <= -65)
 		{
 			ar >> WPSize;
+			if (iVER <= -78)
+			  ar >> gZOOM_SCL;
 			ar >> gPT_SIZE;
 			ar >> gND_SIZE;
 			ar >> gLM_SIZE;
@@ -1334,6 +1339,11 @@ void DBase::Serialize(CArchive& ar)
 			ar >> gVSTIFF_KS;
 			ar >> gDEF_E;
 			ar >> gDEF_V;
+			if (iVER <= -78)
+			{
+				ar >> gDEF_DEN;
+				ar >> gDEF_COND;
+			}
 			ar >> gSTIFF_BDIA;
 			ar >> gDEF_CTE;
 			ar >> gDEF_THERM_LNK;

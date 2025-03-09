@@ -14,6 +14,7 @@ double dAveW = 1;
 double dAveH = 1;
 //*********************************************************
 double gDIM_SCALE = 1.0;
+double gZOOM_SCL = 1.0;
 double gPT_SIZE = 10;
 double gND_SIZE = 10;
 double gLM_SIZE = 20;
@@ -30,6 +31,8 @@ double gRIGID_MULTIPLIER = 10000.0;
 double gVSTIFF_KS = 1.0e10;        //Big K value for restraints
 double gDEF_E = 70.0e9;            //defualt material youngs mod
 double gDEF_V = 0.33;              //Poisson ratio
+double gDEF_DEN = 2750.0;
+double gDEF_COND = 237.0;
 double gSTIFF_BDIA = 0.1;          //stiff beam dia used for out psuedo RBE2
 double gDEF_CTE = 23.0e-6;
 double gDEF_THERM_LNK = 1.0e9;
@@ -60029,30 +60032,33 @@ CString G_ObjectDUM::GetName()
 int G_ObjectDUM::GetVarHeaders(CString sVar[])
 {
 	int iNo = 0;
-	sVar[iNo++] = "gPT_SIZE";
-	sVar[iNo++] = "gND_SIZE";
-	sVar[iNo++] = "gLM_SIZE";
-	sVar[iNo++] = "gEL_SIZE";
-	sVar[iNo++] = "gED_SIZE";
-	sVar[iNo++] = "gFC_SIZE";
-	sVar[iNo++] = "gWP_SIZE";
-	sVar[iNo++] = "gBM_SIZE";
-	sVar[iNo++] = "gTXT_SIZE";
-	sVar[iNo++] = "gDIM_SCALE";
-	sVar[iNo++] = "gDIM_FILSZ";
-	sVar[iNo++] = "gDIM_OFFSZ";
-	sVar[iNo++] = "gTXT_HEIGHT";
-	sVar[iNo++] = "gDIM_RADSZ";
-	sVar[iNo++] = "gDIM_CVORD";
+	sVar[iNo++] = "gZOOM_SCL Zoom Scale Factor";
+	sVar[iNo++] = "gPT_SIZE Defualt Point Size";
+	sVar[iNo++] = "gND_SIZE Defualt Node Size";
+	sVar[iNo++] = "gLM_SIZE Defualt Lump Mass Size";
+	sVar[iNo++] = "gEL_SIZE Defualt Element Edge Size";
+	sVar[iNo++] = "gED_SIZE Defualt Free Edge Size";
+	sVar[iNo++] = "gFC_SIZE Defualt Free Face Size";
+	sVar[iNo++] = "gWP_SIZE Defualt Workplane Size";
+	sVar[iNo++] = "gBM_SIZE Defualt Beam Section Size";
+	sVar[iNo++] = "gTXT_SIZE Defualt TEXT Size";
+	sVar[iNo++] = "gDIM_SCALE Drawing Scale for DIMS (ie 0.5 is 2:1)";
+	sVar[iNo++] = "gDIM_FILSZ Defualt Fillet Size" ;
+	sVar[iNo++] = "gDIM_OFFSZ Defualt Line Offset";
+	sVar[iNo++] = "gTXT_HEIGHT Defualt TEXT Height";
+	sVar[iNo++] = "gDIM_RADSZ Defualt Circle Radius for CIRCR";
+	sVar[iNo++] = "gDIM_CVORD Defualt Spline Order";
 	sVar[iNo++] = "gDIM_PREC Dimension Precision";
-	sVar[iNo++] = "gDIM_SIZE";
-	sVar[iNo++] = "gCUR_RES trim curve on surface resolution";
-	sVar[iNo++] = "gDRILL_KS";
-	sVar[iNo++] = "gRIGID_MULTIPLIER";
-	sVar[iNo++] = "gVSTIFF_KS, K for Restraints";
+	sVar[iNo++] = "gDIM_SIZE Defualt Dimension Size";
+	sVar[iNo++] = "gCUR_RES Trim Curve on Surface Resolution";
+	sVar[iNo++] = "gDRILL_KS Defualt Shell Drilling K Value";
+	sVar[iNo++] = "gRIGID_MULTIPLIER Stiffness Multplier for M3D Dummy Rigid";
+	sVar[iNo++] = "gVSTIFF_KS K for Restraints";
 	sVar[iNo++] = "gDEF_E Defualt Material E";
 	sVar[iNo++] = "gDEF_V Defualt Material v";
-	sVar[iNo++] = "gSTIFF_BDIA Stiff Beam Dia";
+	sVar[iNo++] = "gDEF_DEN Defualt Material Density";
+	sVar[iNo++] = "gDEF_COND Defualt Material Thermal Condutivity";
+	sVar[iNo++] = "gSTIFF_BDIA Defualt Stiff Beam Diameter";
 	sVar[iNo++] = "gDEF_CTE Defualt Material CTE";
 	sVar[iNo++] = "gDEF_THERM_LNK Defualt Thermal Link Coef";
 	sVar[iNo++] = "gDEF_SOL_TOL Defualt Iterative Solver Tolerence";
@@ -60064,7 +60070,9 @@ int G_ObjectDUM::GetVarValues(CString sVar[])
 {
 	int iNo = 0;
 	char S1[80] = "";
-
+	
+	sprintf_s(S1, "%g", gZOOM_SCL);
+	sVar[iNo++] = S1;
 	sprintf_s(S1, "%g", gPT_SIZE);
 	sVar[iNo++] = S1;
 	sprintf_s(S1, "%g", gND_SIZE);
@@ -60111,6 +60119,10 @@ int G_ObjectDUM::GetVarValues(CString sVar[])
 	sVar[iNo++] = S1;
 	sprintf_s(S1, "%g", gDEF_V);
 	sVar[iNo++] = S1;
+	sprintf_s(S1, "%g", gDEF_DEN);
+	sVar[iNo++] = S1;
+	sprintf_s(S1, "%g", gDEF_COND);
+	sVar[iNo++] = S1;
 	sprintf_s(S1, "%g", gSTIFF_BDIA);
 	sVar[iNo++] = S1;
 	sprintf_s(S1, "%g", gDEF_CTE);
@@ -60126,6 +60138,7 @@ int G_ObjectDUM::GetVarValues(CString sVar[])
 void G_ObjectDUM::PutVarValues(PropTable* PT, int iNo, CString sVar[])
 {
 	int iC = 0;
+	gZOOM_SCL = atof(sVar[iC++]);
 	gPT_SIZE = atof(sVar[iC++]);
 	gND_SIZE = atof(sVar[iC++]);
 	gLM_SIZE = atof(sVar[iC++]);
@@ -60149,6 +60162,8 @@ void G_ObjectDUM::PutVarValues(PropTable* PT, int iNo, CString sVar[])
 	gVSTIFF_KS = atof(sVar[iC++]);
 	gDEF_E = atof(sVar[iC++]);
 	gDEF_V = atof(sVar[iC++]);
+	gDEF_DEN = atof(sVar[iC++]);
+	gDEF_COND = atof(sVar[iC++]);
 	gSTIFF_BDIA = atof(sVar[iC++]);
 	gDEF_CTE = atof(sVar[iC++]);
 	gDEF_THERM_LNK = atof(sVar[iC++]);
