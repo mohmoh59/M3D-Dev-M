@@ -13,7 +13,7 @@ After selecting the C++ desktop option, select the tab at the top menu called â€
    
    - Search for "ATL" and select anything related to v142 and x86/x64
    
-   - Beyond this, it is not currently known what other components may be needed, but this images shows a set that has been proven to build M3D.
+   - Beyond this, it is not currently known what other components may be needed, but this image shows a set that has been proven to build M3D.
 
    https://github.com/MYSTRANsolver/M3D/blob/main/BUILD_COMPONENTS.jpg
 
