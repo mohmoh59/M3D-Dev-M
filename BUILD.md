@@ -25,7 +25,7 @@ After selecting the C++ desktop option, select the tab at the top menu called â€
 NOTE: Visual Studio Community does not support an Installer. However, the version in this repo is set up for use with Visual Studio 2019 (Professional) and will attempt to use an Installer.
 This is acceptable if you just want to make the EXE, but there will be some pop-up menus to be aware of. See the following video for reference.
 
-   https://github.com/MYSTRANsolver/M3D/blob/main/BUILD_VIDOEO.mp4
+   https://github.com/MYSTRANsolver/M3D/blob/main/BUILD_VIDEO.mp4
 
 5. Next, to the right of the undo/redo buttons, select "Release" and "x64". "Debug" is also acceptable. However, "Win32" may give warnings so it is recommended to only consider x64.
 6. On the left pane, select "Solution Explorer" at the bottom. Then right click on "M3D" and select build. See the following image for reference.
