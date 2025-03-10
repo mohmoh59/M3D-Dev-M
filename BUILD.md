@@ -26,7 +26,7 @@ After selecting the C++ desktop option, select the tab at the top menu called â€
 
    https://github.com/MYSTRANsolver/M3D/blob/main/BUILD_SETUP.jpg
 
-6. NOTE: "M3D.exe" will be located in the "x64/Debug" folder (the Debug folder will be created even if you selected Release). Do not use the M3D.exe from the Debug folder that is not under x64. 
+6. NOTE: correct EXE will be located in the "x64" folder. Do not use the EXE from the folder that is not under x64. 
 
 > [!TIP]
 > If you get an error that says "MFC libraries are required for this project. Install them from the 
