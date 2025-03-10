@@ -27,6 +27,8 @@ After selecting the C++ desktop option, select the tab at the top menu called â€
    https://github.com/MYSTRANsolver/M3D/blob/main/BUILD_SETUP.jpg
 
 6. NOTE: The correct EXE will be located in the "x64" folder.
+7. NOTE: It should build without any warnings. If there are warnings, the build may not be valid.
+
 
 > [!TIP]
 > If you get an error that says "MFC libraries are required for this project. Install them from the 

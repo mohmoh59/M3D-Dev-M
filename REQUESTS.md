@@ -41,4 +41,8 @@ For the displacement post-processing, can an auto scale be done (wich also shows
 
 Is it possible to break out the right status window from the command input window? In general the command windows is probably better as being wide, while the right status window is probably better being tall.
 
+### 11. All Done Option
+
+Create an "all done" option to go along with Cancel and Done.
+
 
