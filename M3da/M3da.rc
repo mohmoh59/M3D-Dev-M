@@ -399,7 +399,6 @@ BEGIN
         BEGIN
             MENUITEM "<placeholder>",               ID_VIEW_TOOLBAR
         END
-        MENUITEM "Toggle On/Off Double Buffering", ID_VIEW_TOGGLEON33455
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "HighLight Limit",             ID_VIEW_HIGHLIGHTLIMIT
         POPUP "VIEW"
