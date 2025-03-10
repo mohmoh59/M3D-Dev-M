@@ -9,6 +9,7 @@ M3D is a finite element pre/post processor for NASTRAN/MYSTRAN  (www.m3dfea.com)
 [Build Instructions](#Build-Instructions) |
 [Introduction](#Introduction) |
 [Features](#Features) |
+[Feature Requests](#Feature-Requests) |
 [Get EXE](#Get-EXE) |
 [Tutorials](#Tutorials) |
 [Modifications](#Modifications) |
@@ -37,6 +38,11 @@ M3D Overview:
 - All menu classes begin with a z. Find the menu class for a particular command and you can trace it back through the code to see how it works.
 - The main class that embodies everything is the dBASE class. This holds all the objects, the next important object is the mesh object which  can hold every thing to do with a fem.
 - The dBASE object can have many fem objects, you activate the current mesh to work on it or merge them. The base object also holds the geometry.
+
+# Feature Requests
+
+See [REQUESTS.md](REQUESTS.md) for Feature Requests.
+
 
 # Get EXE
 
