@@ -1,4 +1,5 @@
 #pragma once
+extern int gBACKGRD_COL;
 extern bool gDOUBLEBUFF;
 extern double gZOOM_SCL;
 extern double gPT_SIZE;

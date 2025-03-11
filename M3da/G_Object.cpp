@@ -60033,6 +60033,7 @@ CString G_ObjectDUM::GetName()
 int G_ObjectDUM::GetVarHeaders(CString sVar[])
 {
 	int iNo = 0;
+	sVar[iNo++] = "gBACKGRD_COL Background Colour Index";
 	sVar[iNo++] = "gZOOM_SCL Zoom Scale Factor";
 	sVar[iNo++] = "gPT_SIZE Defualt Point Size";
 	sVar[iNo++] = "gND_SIZE Defualt Node Size";
@@ -60071,7 +60072,8 @@ int G_ObjectDUM::GetVarValues(CString sVar[])
 {
 	int iNo = 0;
 	char S1[80] = "";
-	
+	sprintf_s(S1, "%i", gBACKGRD_COL);
+	sVar[iNo++] = S1;
 	sprintf_s(S1, "%g", gZOOM_SCL);
 	sVar[iNo++] = S1;
 	sprintf_s(S1, "%g", gPT_SIZE);
@@ -60139,6 +60141,9 @@ int G_ObjectDUM::GetVarValues(CString sVar[])
 void G_ObjectDUM::PutVarValues(PropTable* PT, int iNo, CString sVar[])
 {
 	int iC = 0;
+	gBACKGRD_COL = atoi(sVar[iC++]);
+	if ((gBACKGRD_COL < 0) || (gBACKGRD_COL > 166))
+		gBACKGRD_COL = 0;
 	gZOOM_SCL = atof(sVar[iC++]);
 	gPT_SIZE = atof(sVar[iC++]);
 	gND_SIZE = atof(sVar[iC++]);
