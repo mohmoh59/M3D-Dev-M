@@ -2417,6 +2417,7 @@ void CM3daDoc::OnVisabilityAllvisable()
 {
 	// TODO: Add your command handler code here
 	cDBase->DspFlags = DSP_ALL;
+	cDBase->DspFlags = (cDBase->DspFlags ^ DSP_GRAD);
 	cDBase->InvalidateOGL();
     cDBase->ReDraw();
 }
