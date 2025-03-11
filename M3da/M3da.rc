@@ -1369,7 +1369,7 @@ BEGIN
     ID_GROUP_ADDTOGROUP2    "Add selected objects to the current group."
     ID_GROUP_REMOVEFROMGROUP2 "Remove selected objects to the current group."
     ID_GROUP_ADDGROUP2      "Add a group to the current group."
-    ID_VIEW_NODESOFF        "Disable display of nodes\n[Draw] Nodes Off"
+    ID_VIEW_NODESOFF        "Nodes On/Off, at the Assembly Level. Double click a node to activate an assembly.\n[Draw] Nodes On/Off, at the Assembly Level"
     ID_GROUP_REMOVEGROUP2   "Remove a group to the current group."
     ID_GROUP_SETCURRENT2    "Set the current group."
     ID_CREATE_POINT         "Create Points\n[Create] Points"
@@ -1384,7 +1384,7 @@ END
 STRINGTABLE
 BEGIN
     ID_EDIT_DES             "De-select all objects."
-    ID_VIEW_DISPLAYALL      "Display all\n[Draw] Display All\n"
+    ID_VIEW_DISPLAYALL      "Display all objects\n[Draw] Display All\n"
     ID_EDIT_INFORMATION     "Infomation\n[Edit] Infomation"
     ID_VIEW_DISPLAYALL2     "Display all objects."
     ID_EDIT_INFORMATION2    "Show information for selected objects."
@@ -1401,8 +1401,8 @@ STRINGTABLE
 BEGIN
     ID_VIEW_SHADED          "Use shaded rendering mode\n[Draw] Draw Shaded"
     ID_VIEW_LINE            "Use wireframe rendering mode\n[Draw] Draw Wireframe"
-    ID_VIEW_LOCATEEYE       "[Draw] Set Eye\n[Draw] Set Eye"
-    ID_VIEW_RESETVIEW       "Reset view\n[Draw] Reset View"
+    ID_VIEW_LOCATEEYE       "Set the Spin Center. First, select a node.\n[Draw] Set Eye"
+    ID_VIEW_RESETVIEW       "Reset view to the X-Y Plane\n[Draw] Reset View"
     ID_EDIT_CANCEL2         "Cancels a command."
     ID_EDIT_DONE2           "Finishes a command."
     ID_GROUP_DISPLAYGROUP   "Display Current Group"
@@ -1542,7 +1542,7 @@ BEGIN
     ID_VISABILITY_ELEMENTON2 "Toggle Element Visability"
     ID_VISABILITY_ALLVISABLE "Make all objects visible\n[Draw] All Visible"
     ID_VIEW_NODESASK2       "Displat the nodes as *"
-    ID_VIEW_LABELENTITIES   "Label selected entities\n[Draw] Label Selected Entities"
+    ID_VIEW_LABELENTITIES   "Label selected entities with ID Label\n[Draw] Label Selected Entities"
     ID_QWANTA_IMPORTCATALOGUE "Import Parts Catalogue"
     ID_QWANTA_IMPORTSECTIONTABLE "Import Sections Table"
     ID_QWANTA_IMPORTWAVEGUIDE "Import Waveguide Report"
@@ -2066,7 +2066,7 @@ BEGIN
     ID_POST_DELETEALLRESULTSSETS "Delete all result sets\n[POST] Delete All"
     ID_OPTIONS_REVERSECOLOURBAR 
                             "Reverse the colour bar\n[POST] Reverse Colours"
-    ID_VIEW_ZOOMALL         "Fit everything on viewport\n[Draw] Fit All on View"
+    ID_VIEW_ZOOMALL         "Fit everything on viewport, using the model's max Y-dimension size to fit\n[Draw] Fit All on View"
     ID_VIEW_ZOOMALL2        "Zoom to fit all F.E. objects."
     ID_SELECTION_INVERTSELECTION "Invert the Current Selection"
 END
