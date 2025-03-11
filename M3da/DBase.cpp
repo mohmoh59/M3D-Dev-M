@@ -11,6 +11,7 @@
 
 #pragma warning(disable:4477)
 BOOL gORTHO;
+int gBACKGRD_COL = 0;
 BOOL gDSP_CPTS = FALSE;
 BOOL gDSP_CIRS = TRUE;
 BOOL gDSP_BACK = TRUE;
@@ -1220,6 +1221,7 @@ void DBase::Serialize(CArchive& ar)
 		//global vars
 		ar << WPSize;
 		ar << gDOUBLEBUFF;
+		ar << gBACKGRD_COL;
 		ar << gZOOM_SCL;
 		ar << gPT_SIZE;
 		ar << gND_SIZE;
@@ -1307,6 +1309,7 @@ void DBase::Serialize(CArchive& ar)
 			if (iVER <= -78)
 			{
 				ar >> gDOUBLEBUFF;
+				ar >> gBACKGRD_COL;
 				ar >> gZOOM_SCL;
 			}
 			ar >> gPT_SIZE;
@@ -11709,9 +11712,12 @@ void DBase::OglDrawW(int iDspFlgs)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
+	float R = cols[gBACKGRD_COL][0];
+	float G = cols[gBACKGRD_COL][1];
+	float B = cols[gBACKGRD_COL][2];
 	if (iDspFlgs & DSP_BLACK)
 	{
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(R, G, B, 1.0f);
 	}
 	else
 	{
@@ -11825,9 +11831,12 @@ void DBase::OglDraw(int iDspFlgs)
 
 	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
 
-	if (DspFlags & DSP_BLACK)
+	float R = cols[gBACKGRD_COL][0];
+	float G = cols[gBACKGRD_COL][1];
+	float B = cols[gBACKGRD_COL][2];
+	if (iDspFlgs & DSP_BLACK)
 	{
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(R, G, B, 1.0f);
 	}
 	else
 	{
