@@ -60033,37 +60033,98 @@ CString G_ObjectDUM::GetName()
 int G_ObjectDUM::GetVarHeaders(CString sVar[])
 {
 	int iNo = 0;
-	sVar[iNo++] = "gBACKGRD_COL Background Colour Index";
-	sVar[iNo++] = "gZOOM_SCL Zoom Scale Factor";
-	sVar[iNo++] = "gPT_SIZE Defualt Point Size";
-	sVar[iNo++] = "gND_SIZE Defualt Node Size";
-	sVar[iNo++] = "gLM_SIZE Defualt Lump Mass Size";
-	sVar[iNo++] = "gEL_SIZE Defualt Element Edge Size";
-	sVar[iNo++] = "gED_SIZE Defualt Free Edge Size";
-	sVar[iNo++] = "gFC_SIZE Defualt Free Face Size";
-	sVar[iNo++] = "gWP_SIZE Defualt Workplane Size";
-	sVar[iNo++] = "gBM_SIZE Defualt Beam Section Size";
-	sVar[iNo++] = "gTXT_SIZE Defualt TEXT Size";
-	sVar[iNo++] = "gDIM_SCALE Drawing Scale for DIMS (ie 0.5 is 2:1)";
-	sVar[iNo++] = "gDIM_FILSZ Defualt Fillet Size" ;
-	sVar[iNo++] = "gDIM_OFFSZ Defualt Line Offset";
-	sVar[iNo++] = "gTXT_HEIGHT Defualt TEXT Height";
-	sVar[iNo++] = "gDIM_RADSZ Defualt Circle Radius for CIRCR";
-	sVar[iNo++] = "gDIM_CVORD Defualt Spline Order";
-	sVar[iNo++] = "gDIM_PREC Dimension Precision";
-	sVar[iNo++] = "gDIM_SIZE Defualt Dimension Size";
-	sVar[iNo++] = "gCUR_RES Trim Curve on Surface Resolution";
-	sVar[iNo++] = "gDRILL_KS Defualt Shell Drilling K Value";
-	sVar[iNo++] = "gRIGID_MULTIPLIER Stiffness Multplier for M3D Dummy Rigid";
-	sVar[iNo++] = "gVSTIFF_KS K for Restraints";
-	sVar[iNo++] = "gDEF_E Defualt Material E";
-	sVar[iNo++] = "gDEF_V Defualt Material v";
-	sVar[iNo++] = "gDEF_DEN Defualt Material Density";
-	sVar[iNo++] = "gDEF_COND Defualt Material Thermal Condutivity";
-	sVar[iNo++] = "gSTIFF_BDIA Defualt Stiff Beam Diameter";
-	sVar[iNo++] = "gDEF_CTE Defualt Material CTE";
-	sVar[iNo++] = "gDEF_THERM_LNK Defualt Thermal Link Coef";
-	sVar[iNo++] = "gDEF_SOL_TOL Defualt Iterative Solver Tolerence";
+	//gBACKGRD_COL
+	sVar[iNo++] = "Background Colour - Tools/Colour To Find Value";
+
+	//gZOOM_SCL
+	sVar[iNo++] = "Zoom Scale Factor";
+
+	//gPT_SIZE
+	sVar[iNo++] = "Point Size";
+
+	//gND_SIZE
+	sVar[iNo++] = "Node Size";
+
+	//gLM_SIZE
+	sVar[iNo++] = "Lump Mass Size";
+
+	//gEL_SIZE
+	sVar[iNo++] = "Element Edge Size";
+
+	//gED_SIZE
+	sVar[iNo++] = "Free Edge Size";
+
+	//gFC_SIZE
+	sVar[iNo++] = "Free Face Size";
+
+	//gWP_SIZE
+	sVar[iNo++] = "Workplane Line Weight";
+
+	//gBM_SIZE
+	sVar[iNo++] = "Beam Section Size";
+
+	//gTXT_SIZE
+	sVar[iNo++] = "Text Size";
+
+	//gDIM_SCALE
+	sVar[iNo++] = "Drawing Scale for DIMS (ie 0.5 is 2:1)";
+
+	//gDIM_FILSZ
+	sVar[iNo++] = "Fillet Size" ;
+
+	//gDIM_OFFSZ
+	sVar[iNo++] = "Line Offset";
+
+	//gTXT_HEIGHT
+	sVar[iNo++] = "Text Height";
+
+	//gDIM_RADSZ
+	sVar[iNo++] = "Circle Radius for CIRCR";
+
+	//gDIM_CVORD
+	sVar[iNo++] = "Spline Order";
+
+	//gDIM_PREC
+	sVar[iNo++] = "Dimension Precision";
+
+	//gDIM_SIZE
+	sVar[iNo++] = "Dimension Size";
+
+	//gCUR_RES
+	sVar[iNo++] = "Trim Curve on Surface Resolution";
+
+	//gDRILL_KS
+	sVar[iNo++] = "Shell Drilling K Value";
+
+	//gRIGID_MULTIPLIER
+	sVar[iNo++] = "Stiffness Multplier for M3D Dummy Rigid";
+
+	//gVSTIFF_KS
+	sVar[iNo++] = "K for Restraints";
+
+	//gDEF_E
+	sVar[iNo++] = "Defualt Material E";
+
+	//gDEF_V
+	sVar[iNo++] = "Defualt Material v";
+
+	//gDEF_DEN
+	sVar[iNo++] = "Defualt Material Density";
+
+	//gDEF_COND
+	sVar[iNo++] = "Defualt Material Thermal Condutivity";
+
+	//gSTIFF_BDIA
+	sVar[iNo++] = "Defualt Stiff Beam Diameter";
+
+	//gDEF_CTE
+	sVar[iNo++] = "Defualt Material CTE";
+
+	//gDEF_THERM_LNK
+	sVar[iNo++] = "Defualt Thermal Link Coef";
+
+	//gDEF_SOL_TOL
+	sVar[iNo++] = "Defualt Iterative Solver Tolerence";
 	return (iNo);
 }
 
