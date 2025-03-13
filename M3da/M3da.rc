@@ -111,6 +111,8 @@ BEGIN
     BUTTON      ID_VIEW_LOCATEEYE
     BUTTON      ID_VIEW_LABELENTITIES
     BUTTON      ID_VISABILITY_WORKPLANE
+    SEPARATOR
+    BUTTON      ID_VISABILITY_POINTSON
     BUTTON      ID_VIEW_TOGGLECONTROLPOINTVISABILITY
     BUTTON      ID_VISABILITY_CURVESON
     BUTTON      ID_SURFACES_SURFACESON
@@ -1609,7 +1611,7 @@ BEGIN
     ID_SOLVER_CREATERESTRAINT "Create a nodal restraint\n[BC] Nodal Restraint"
     ID_SURFACESON_SURFACECURVES "Display curves on surfaces"
     ID_SURFACES_SURFACESON  "Toggle display of surfaces\n[Draw] Display Surfaces"
-    ID_SURFACES_SURFACESON2 "Toggle Surface Visability"
+    ID_SURFACES_SURFACESON2 "Toggle display of points\n[Draw] Toggle Point Visibility"
     ID_CIRCLE_CIRCLECENRERADIUS 
                             "Create circle by selecting a centre point and radius\n[Create] Circle centre and radius"
     ID_CIRCLE_CIRCLE3POINTS "Create circle through three points\n[Create] Circle through 3 points"
@@ -2243,7 +2245,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_LOADSBC_CREATEGRAV2  "Create Nastran GRAV card."
+    ID_LOADSBC_CREATEGRAV2  "Toggle On/Off Points Display"
 END
 
 STRINGTABLE

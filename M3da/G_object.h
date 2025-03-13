@@ -251,6 +251,8 @@ const int DSP_SURFU = 0x00400000;
 const int DSP_ANIMATION = 0x00800000;
 const int DSP_ANIMPOSNEG = 0x01000000;
 const int DSP_VEC = 0x20000000;
+
+
 //DOF FLAGS
 const int DOF_ALL = 0xFFFFFFFF;
 const int DOF_1 = 0x00000001;
