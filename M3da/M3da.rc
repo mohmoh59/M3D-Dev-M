@@ -426,7 +426,7 @@ BEGIN
         MENUITEM "Label Entities",              ID_VIEW_LABELENTITIES
         MENUITEM "Nodes On/Off",                ID_VIEW_NODESOFF
         MENUITEM "Nodes ASK/DOT",               ID_VIEW_NODESASK
-        MENUITEM "Shaded Edges On/Off",         ID_VIEW_SHADEDEDGES
+        MENUITEM "Shaded Edges On/Off",         ID_VIEW_SHADEDEDGES2
         MENUITEM "Display Shell Thickness",     ID_VIEW_DISPLAYSHELLTHICKNESS
         MENUITEM "Display Element Offsets",     ID_VIEW_DISPLAYELEMENTOFFSETS
         MENUITEM "Display Element Coord Sys",   ID_VIEW_DISPLAYELEMENTCOORDSYS
