@@ -12268,6 +12268,7 @@ int DBase::S_BuffAdd(G_Object* cAddObj)
 	{
 		SetPen(pDC, 6);
 		cAddObj->HighLight(pDC);
+		Sleep(200);
 		RestorePen(pDC);
 		S_Buff[S_Count] = cAddObj;
 		S_Count++;
@@ -12330,7 +12331,7 @@ G_Object* DBase::S_Single(CPoint InPT)
 		}
 	}
 
-	if ((cSel != NULL) && (SDist < 400))
+	if ((cSel != NULL) && (SDist < 600))
 	{
 		int i;
 		i = S_BuffAdd(cSel);
