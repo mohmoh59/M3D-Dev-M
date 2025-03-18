@@ -537,7 +537,6 @@ BEGIN
             END
             MENUITEM "Beam Mesh on Curves",         ID_FEMTOOLS_MESHSIZEONCURVES
             MENUITEM "Mapped TRI Mesh",             ID_MESH_MAPPEDTRIMESH
-            MENUITEM "Free TRI Mesh",               ID_MESH_FREETRIMESH
             MENUITEM "Mapped QUAD Mesh",            ID_MESH_MAPPEDSURFACEMESH
             MENUITEM "Sweep Elements",              ID_MESH_SWEEPELEMENTS
             MENUITEM "Sweep Edges Outward",         ID_FEMTOOLS_SWEEPEDGESOUTWARD
@@ -1349,9 +1348,9 @@ BEGIN
     ID_CREATE_NODESONCURVE  "Create FEA nodes on curve\n[FE] Node On Curve"
     ID_TOOLS_MOVE           "Move selection\n[Edit] Move"
     ID_TOOLS_COPY           "Copy selection\n[Edit] Copy"
-    ID_LINE_LINEY2          "Create a line in workplain Y direction."
-    ID_LINE_LINEZ2          "Create a line in workplain Z direction."
-    ID_CREATE_CURVE2        "Create a curve by specifying control points."
+    ID_LINE_LINEY2          "Toggle workplane between cartesian and cylindrical modes."
+    ID_LINE_LINEZ2          "Align workplane to 3 points."
+    ID_CREATE_CURVE2        "Set workplane back to global."
     ID_SURFACE_LOFT2        "Loft a surface between curves."
     ID_SURFACE_PLANAR2      "Select all on screen entities."
     ID_CREATE_NODE2         "Create nodes."
@@ -1378,7 +1377,7 @@ BEGIN
     ID_LINE_LINE            "Create line\n[Create] Line"
     ID_LINE_LINEX           "Create line along the X axis\n[Create] Line in X"
     ID_LINE_LINEY           "Create line along the Y axis\n[Create] Line in Y"
-    ID_CREATE_POINT2        "Create a geometric point."
+    ID_CREATE_POINT2        "Create line along the Z axis."
     ID_CREATE_CIRCLE        "Create Circle"
 END
 
@@ -1505,6 +1504,7 @@ END
 STRINGTABLE
 BEGIN
     ID_SELECTION_NODESBYCOLOUR "Select nodes with a specific colour."
+    ID_SELECTION_SELECTALL  "Select all on screen entities."
     ID_SELECTION_RELATEDTO  "select objects related to other objects."
     ID_SELECTION_ELEMENTSBYTYPE "Select elements with a specific type."
     ID_CREATE_COORDSYSLINE  "Create a line of FEA coordinate systems\n[FE] Coord Systems Line"
@@ -1566,7 +1566,7 @@ BEGIN
     ID_GROUP_DELETEALLGROUPS "Delete all groups\n[Group] Delete All"
     ID_VIEW_WHITE           "Set the background colour to white."
     ID_TOOLS_ALIGN          "Align selection\n[Edit] Align Objects"
-    ID_TOOLS_ALIGN2         "Align a object in 3d."
+    ID_TOOLS_ALIGN2         "Set the size (extents) of the workplane."
     ID_TOOLS_WPSIZE2        "Set the size of the workplain."
 END
 
@@ -1598,7 +1598,7 @@ BEGIN
     ID_EXPORT_GROUPSTOTXT   "Export M3D groups to text file."
     ID_QWANTA_MERGEBOUNDARIES "Merge the sweep boundaries"
     ID_CHECKS_MERGENODES    "Merge coincident nodes\n[Utils] Merge Coincident Nodes"
-    ID_CHECKS_MERGENODES2   "Merge coincident nodes (1 pair at a time)."
+    ID_CHECKS_MERGENODES2   "Build assemble FEM from selected component FEMs"
     ID_SURFACE_SWEEP        "Sweep curves into surfaces\n[Create] Sweep curves into surfaces"
     ID_MESH_BUILDASSEMBLYMESH2 
                             "Build a mesh from an assembly of other meshes."
@@ -1618,14 +1618,13 @@ BEGIN
     ID_CIRCLE_ARC3POINT     "Create arc passing through three points\n[Create] Arc through 3 points"
     ID_VISABILITY_POINTSON2 "Toggle Point Visability"
     ID_CIRCLE_CIRCLECENRERADIUS2 "Create a circle by centre and radius."
-    ID_CIRCLE_CIRCLE3POINTS2 "Create a circle throu 3 points."
-    ID_CIRCLE_ARC3POINT2    "Create an arc throu 3 points."
-    ID_SELECTION_SURFACESBYCOLOUR2 "Select surfaces with a specific colour."
+    ID_CIRCLE_CIRCLE3POINTS2 "Select surfaces by colour."
+    ID_CIRCLE_ARC3POINT2    "Select curves by colour."
+    ID_SELECTION_SURFACESBYCOLOUR2 "Select points by colour."
     ID_SELECTION_CURVESBYCOLOUR2 "Select curves with a specific colour."
-    ID_SELECTION_POINTSBYCOLOUR2 "Select points with a specific colour."
-    ID_WORKPLAIN_WPALIGNTOCURVE2 "Align the workplain to a specified curve."
-    ID_WORKPLAIN_WPALIGNTOSURFACE2 
-                            "Align the workplain to a specified surface."
+    ID_SELECTION_POINTSBYCOLOUR2 "Align workplane to curve."
+    ID_WORKPLAIN_WPALIGNTOCURVE2 "Align workplane to a surface."
+    ID_WORKPLAIN_WPALIGNTOSURFACE2 "Set workplane centre."
 END
 
 STRINGTABLE
@@ -1639,18 +1638,17 @@ BEGIN
     ID_VISABILITY_BOUNDARYCONDITIONS 
                             "Toggle display of boundary conditions\n[Draw] Toggle Boundary Condition Visibility"
     ID_OPTIONS_DEFORMATIONSCALE2 "Export results to .CSV file."
-    ID_ELEMENTTYPE_ROD2     "Rod Element."
-    ID_VIEW_DISPLAYELEMENTCOORDSYS2 "Display element coordinate systems."
-    ID_VISABILITY_BOUNDARYCONDITIONS2 "Toggle Boundary Condition Visability"
-    ID_POST_EXPORTRESULTSTOTEXTFILE2 "Export the results to a .csv file."
+    ID_ELEMENTTYPE_ROD2     "Increase node label by fixed increment."
+    ID_VIEW_DISPLAYELEMENTCOORDSYS2 "Increase node label by fixed increment."
+    ID_VISABILITY_BOUNDARYCONDITIONS2 "Renumber nodes from this start ID."
+    ID_POST_EXPORTRESULTSTOTEXTFILE2 "Renumber elements from this start ID."
     ID_NODEMODIFY_LABEL2    "Change the seleted node labels by a fixed increment."
     ID_POST_LISTELEMENTRESULT 
                             "List results for selected elements\n[POST] Selected Element Results"
     ID_ELEMENTMODIFIY_LABELBYINC2 "Show gradient filled background."
     ID_NODEMODIFY_LABELBYSTART2 
                             "Export selected FE entities to Nastran txt file."
-    ID_ELEMENTMODIFIY_LABELBYSTART2 
-                            "Change the selected element labels by specifing the start ID."
+    ID_ELEMENTMODIFIY_LABELBYSTART2 "Reverse element definition."
     ID_MESHQND              "Create array of QUADs between nodes\n[FE] QUADs Between Nodes"
 END
 
@@ -1679,7 +1677,7 @@ BEGIN
     ID_TOOLS_MOVETO         "Move selection to\n[Edit] Move To"
     ID_BUTTON33130          "Move objects by selecting locations"
     ID_TOOLS_COPYTO2        "Copy objects by picking locations"
-    ID_TOOLS_MOVETO2        "Move objects by selecting locations"
+    ID_TOOLS_MOVETO2        "Un-trim surface."
     ID_MESH_TETFROMSHELLBOUNDARY 
                             "Create TET from shell boundary\n[FE] TET from Shell Boundary"
     ID_MESH_TETFROMSHELLBOUNDARY2 "Create tet mesh from shell boundary."
@@ -1725,9 +1723,10 @@ BEGIN
                             "Toggle display of shell thicknesses\n[Draw] Display Shell Thickness"
     ID_VIEW_DISPLAYSHELLTHICKNESS2 "Toggle display of element offsets."
     ID_ELEMENTTYPE_BEAM     "Set default element type to BEAM\n[Element] BEAM"
-    ID_VIEW_DISPLAYELEMENTOFFSETS2 "Display offsets on elements."
-    ID_ELEMENTTYPE_BEAM2    "Beam Element."
-    ID_ELEMENTMODIFIY_BEAMUPVECTORS2 "Set the beam orientation vector."
+    ID_VIEW_DISPLAYELEMENTOFFSETS2 
+                            "Set the beam up vector (beam Y direction)."
+    ID_ELEMENTTYPE_BEAM2    "Set beam offset by vector."
+    ID_ELEMENTMODIFIY_BEAMUPVECTORS2 "Set shell element offset."
     ID_ELEMENTMODIFIY_BEAMOFFSET2 "Set beam offset vector."
     ID_ELEMENTMODIFIY_SHELLOFFSET2 "Set shell element offset."
     ID_PROPERTY_BEAM2       "Craete Beam Rod Section (NASTRAN ROD)"
@@ -1750,7 +1749,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_CHECKS_CHECKTETCOLLAPSE "Check TET Collapse"
+    ID_CHECKS_CHECKTETCOLLAPSE "Check TET collapse."
     ID_VIEW_TOP             "Top View"
     ID_VIEW_FRONT           "Front view XY"
     ID_VIEW_LEFTXY          "Left View ZY"
@@ -1803,6 +1802,11 @@ BEGIN
                             "Create a rotational acceleration load\n[BC] Rotational Acceleration"
     ID_LOADSBC_CREATEROTATIONALBODYLOAD2 "Create rotational body load."
     ID_IMPORT_LOADBMP       "Import 24-bit bitmap image to background."
+    ID_TOOLS_ELEMENTMASSSUMMATION 
+                            "Generate mass properties for selected elements."
+    ID_ELEMENTMODIFIY_SHELLMATCORRDSYSTEM 
+                            "Assign material coordinate system to shell elements."
+    ID_CHECKS_COINCIDENTELEMENTS "Check current mesh for coincident elements."
     ID_NODEMODIFY_CHANGEXORDINATE 
                             "Change node X ordinate\n[Utils] Node X Ordinate"
     ID_NODEMODIFY_CHANGEZORDINATE 
@@ -1825,20 +1829,20 @@ BEGIN
                             "Toggle display of surface direction markers\n[Draw] Surface Direction Markers"
     ID_POST_LISTNODALRESULTS 
                             "List result values for nodes\n[POST] Nodal Results"
-    ID_PROPERTY_BEAM33274   "Basic Beam "
+    ID_PROPERTY_BEAM33274   "Insert a knot into the knot vector."
     ID_PROPERTY_BEAM_BASIC2 "Create a General Beam Section by Entering All Properties"
     ID_POST_LISTNODALRESULTS2 "List Nodal Results Values"
 END
 
 STRINGTABLE
 BEGIN
-    ID_CHECKS_FREEFACEDSP   "Element free face check"
-    ID_MESH_SHELLCOATSOLIDELEMENTS "Shell Coat Solid Elements"
+    ID_CHECKS_FREEFACEDSP   "Element free face check."
+    ID_MESH_SHELLCOATSOLIDELEMENTS "Shell coat solid elements."
     ID_CHECKS_FREEEDGEDISPLAY 
                             "Display the free edges of selected elements\n[Utils] Display Free Edges of Selected Elements"
     ID_MESH_SHELLCOATSOLIDELEMENTS2 "Shell coat solid element free faces."
     ID_MESH_QUADTOTRI       "Split QUADs into TRIs\n[FE] QUAD to TRI"
-    ID_CHECKS_FREEEDGEDISPLAY2 "Display the free edges of selected elements."
+    ID_CHECKS_FREEEDGEDISPLAY2 "Orient shell normals to be consistent."
     ID_ANALYSIS_LOADSETS    "Create a load set\n[BC] Load Set"
     ID_MESH_QUADTOTRI2      "TODO\nTODO"
     ID_LOADSBC_BCSETS2      "TODO\nTODO"
@@ -1877,8 +1881,8 @@ BEGIN
     ID_POST_ANIMATE2        "Animate Display"
     ID_POST_FRAMEDELAY      "Animation frame delay\n[POST] Animation Frame Delay"
     ID_POST_ANIMATIONFRAMES "Number of animation frames\n[POST] No of Animation Frames"
-    ID_POST_ANIMATENEG2     "Animate Positive and Negative Toggle"
-    ID_POST_FRAMEDELAY2     "Animation Frame Delay"
+    ID_POST_ANIMATENEG2     "Set beam end A dof release."
+    ID_POST_FRAMEDELAY2     "Set beam end B dof release."
     ID_POST_ANIMATIONFRAMES2 "No of Animation Frames"
     ID_ELEMENTMODIFIY_BEAMENDARELEASE2 "Release end A degrees of Freedom"
     ID_TOOLS_EDITOBJECT     "Edit object values\n[Edit] Object Values"
@@ -1964,15 +1968,18 @@ BEGIN
     ID_CHECKS_COUNTF        "Count No Off Selected Nodes and Elements etc"
     ID_CURVEMODIFY_SPLITATPOINT 
                             "Split a curve at a point\n[Edit] Split Curve at Point"
-    ID_CURVEMODIFY_SPLITATPOINT2 "Split a Curve at a Point"
+    ID_CURVEMODIFY_SPLITATPOINT2 
+                            "Experimental intersect two groups of tri elements."
     ID_ELEMENTMODIFIY_INTERSECTTRIELEMENTS2 
-                            "Experimental, Intersect TRI elements."
-    ID_NODEMODIFY_EQUIVALENCELAB2 "Equivalence node labels between meshes"
+                            "Equivalenece node IDs between 2 seperate FEMs."
+    ID_NODEMODIFY_EQUIVALENCELAB2 "Colour element by property ID (PID)."
     ID_ELEMENTMODIFIY_COLOURBYPID2 
                             "Export Nastran include file by file number."
+    ID_GROUP_GROUPFROMINCLUDEFILE "Create groups by include file ID."
     ID_MESHMANAGEMENT_SETINCLUDEFILENO 
                             "Set the include file no for selected items."
-    ID_ELEMENTMODIFIY_COLOURBYINCLUDEFILE "Colour Elements by Include File"
+    ID_ELEMENTMODIFIY_COLOURBYINCLUDEFILE 
+                            "Colour elements by include file number."
     ID_CURVETOOLS_ORTHOSNAP "Toggle Orthogonal Line Drawing Mode.\n[Create] Orthogonal Lines"
     ID_CURVEMODIFY_TRIM     "Trim curves to other curves\n[Edit] Trim Curves to Other Curves"
 END
@@ -1986,6 +1993,7 @@ BEGIN
     ID_CURVETOOLS_LINETHROUPTANDTANGENTTOCIRCLE2 
                             "Line Throu Pt and Tangent to Circle"
     ID_CURVETOOLS_LINETANGENTTO2CIRCLES2 "Create a Line Tangent to 2 Circles"
+    ID_CURVETOOLS_POINTSONCIRCLE "Create points around a circle."
     ID_ORTHO                "Ortgogonal Line Drawing Mode"
     ID_VIEW_TOGGLECONTROLPOINTVISABILITY 
                             "Toggle display of control points\n[Draw] Toggle Control Point Visibility"
@@ -2089,8 +2097,9 @@ BEGIN
     ID_ELEMENTTYPE_ROTATIONALSPRING2 "Rotational Spring."
     ID_ELEMENTMODIFIY_SPRINGCOORDSYSTEM 
                             "Assign a coordinate system to selected spring elements."
+    ID_CHECKS_NEGATIVEVOLUMEELEMENTS "Check for negative element jacobian."
     ID_CHECKS_CHECKSHELLELEMENTASPECTRATION 
-                            "Check Shell Element Aspect Ration"
+                            "Check shell element aspect ration."
 END
 
 STRINGTABLE
@@ -2238,11 +2247,12 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_CURVETOOLS_ORTHOSNAP2 "Toggle Orthogonal Line Drawing Mode."
-    ID_CURVEMODIFY_TRIM2    "Trim a curve to another curve."
-    ID_LIST_GAPSBETWEENLABELS2 "List gaps between node and element labelling"
-    ID_LIST_GAPSBETWEENMATSANDPROPSLABELS2 
-                            "Find gaps between materials and property labels"
+    ID_CURVETOOLS_ORTHOSNAP2 
+                            "List gaps in node and element numbering greater than a specified value."
+    ID_CURVEMODIFY_TRIM2    "List gaps in materials and property numbering greater than a specified value."
+    ID_LIST_GAPSBETWEENLABELS2 
+                            "Insert a BUSH element between rigid and other element."
+    ID_LIST_GAPSBETWEENMATSANDPROPSLABELS2 "Sweep free edges outwards."
     ID_ELEMENTMODIFIY_INSERTSPRINGONRIGID2 
                             "Insert a spring element between rigid elements"
     ID_FEMTOOLS_SWEEPEDGESOUTWARD2 "Set node size."
