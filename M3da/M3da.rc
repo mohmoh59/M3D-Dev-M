@@ -1353,9 +1353,8 @@ BEGIN
     ID_LINE_LINEZ2          "Create a line in workplain Z direction."
     ID_CREATE_CURVE2        "Create a curve by specifying control points."
     ID_SURFACE_LOFT2        "Loft a surface between curves."
-    ID_SURFACE_PLANAR2      "Create a planar surface by boundary curves."
+    ID_SURFACE_PLANAR2      "Select all on screen entities."
     ID_CREATE_NODE2         "Create nodes."
-    ID_CREATE_ELEMENT2      "Create elements."
     ID_PointCR              "Create Point"
     ID_ELEMENTTYPE_TRI2     "Triangular Shell Element."
     ID_ELEMENTTYPE_QUAD2    "Quadrilateral Shell Element."
@@ -1367,9 +1366,9 @@ STRINGTABLE
 BEGIN
     ID_GROUP_LISTGROUPS     "List groups\n[Group] List"
     ID_VIEW_LOCATEEYE2      "Locate the centre of rotation for dynamic viewing."
-    ID_VIEW_RESETVIEW2      "Reset the view to global."
-    ID_GROUP_ADDTOGROUP2    "Add selected objects to the current group."
-    ID_GROUP_REMOVEFROMGROUP2 "Remove selected objects to the current group."
+    ID_VIEW_RESETVIEW2      "Import Ideas universal file."
+    ID_GROUP_ADDTOGROUP2    "Import Nastran DECK."
+    ID_GROUP_REMOVEFROMGROUP2 "Import IGES geometry file."
     ID_GROUP_ADDGROUP2      "Add a group to the current group."
     ID_VIEW_NODESOFF        "Nodes On/Off, at the Assembly Level. Double click a node to activate an assembly.\n[Draw] Nodes On/Off, at the Assembly Level"
     ID_GROUP_REMOVEGROUP2   "Remove a group to the current group."
@@ -1460,7 +1459,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_EXPORT_CURRENTMESHTO "Export Current Mesh\n[FE] Export Mesh"
+    ID_EXPORT_CURRENTMESHTO "Export Current Mesh to Ideas universal file\n[FE] Export Mesh"
     ID_GROUP_CREATEGROUP    "Create a new group\n[Group] New"
     ID_GROUP_CREATEGROUP2   "Create a new group."
     ID_TOOLS_DELETE         "Delete\n[Edit] Delete"
@@ -1583,7 +1582,7 @@ BEGIN
     ID_TOOLS_SCALE2         "Scale selected objects."
     ID_TOOLS_REFLECT2       "Reflect selected objects."
     ID_TOOLS_LISTALLPROPERTIES "List all properties in current mesh"
-    ID_EXPORT_CURRENTMESTTONAS "Export current mesh to Nastran"
+    ID_EXPORT_CURRENTMESTTONAS "Export current mesh to Nastran."
     ID_NODEMODIFY_DEFINITIONCOORDSYS 
                             "Change the nodal definition coordinate system."
     ID_ELEMENTTYPE_RIGID    "Set default element type to RIGID SPIDER\n[Element] RIGID SPIDER"
@@ -1596,6 +1595,7 @@ BEGIN
     ID_MATERIAL_ORTHOTROPIC "Create Orthotropic Material (MAT8) not available in M3d solves"
     ID_PROPERTYMODIFY_CHANGEMATERIAL 
                             "Change the material assigned to a property."
+    ID_EXPORT_GROUPSTOTXT   "Export M3D groups to text file."
     ID_QWANTA_MERGEBOUNDARIES "Merge the sweep boundaries"
     ID_CHECKS_MERGENODES    "Merge coincident nodes\n[Utils] Merge Coincident Nodes"
     ID_CHECKS_MERGENODES2   "Merge coincident nodes (1 pair at a time)."
@@ -1638,7 +1638,7 @@ BEGIN
                             "Create a pressure on shell element\n[BC] Pressure"
     ID_VISABILITY_BOUNDARYCONDITIONS 
                             "Toggle display of boundary conditions\n[Draw] Toggle Boundary Condition Visibility"
-    ID_OPTIONS_DEFORMATIONSCALE2 "Change the deformation scale."
+    ID_OPTIONS_DEFORMATIONSCALE2 "Export results to .CSV file."
     ID_ELEMENTTYPE_ROD2     "Rod Element."
     ID_VIEW_DISPLAYELEMENTCOORDSYS2 "Display element coordinate systems."
     ID_VISABILITY_BOUNDARYCONDITIONS2 "Toggle Boundary Condition Visability"
@@ -1646,10 +1646,9 @@ BEGIN
     ID_NODEMODIFY_LABEL2    "Change the seleted node labels by a fixed increment."
     ID_POST_LISTELEMENTRESULT 
                             "List results for selected elements\n[POST] Selected Element Results"
-    ID_ELEMENTMODIFIY_LABELBYINC2 
-                            "Change the seleted element labels by a fixed increment."
+    ID_ELEMENTMODIFIY_LABELBYINC2 "Show gradient filled background."
     ID_NODEMODIFY_LABELBYSTART2 
-                            "Change the selected node labels by specifing the start ID."
+                            "Export selected FE entities to Nastran txt file."
     ID_ELEMENTMODIFIY_LABELBYSTART2 
                             "Change the selected element labels by specifing the start ID."
     ID_MESHQND              "Create array of QUADs between nodes\n[FE] QUADs Between Nodes"
@@ -1697,6 +1696,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WORKPLAIN_WPCENTRE2  "Centre the workplain at a specified point."
+    ID_IMPORT_OP2           "Import Nastran results OP2 file."
     ID_POST_SELECTRESULTS   "Select contour results\n[POST] Select Contour Results"
     ID_POST_SELECTRESULTS2  "Select contour results."
     ID_POST_LISTRESSET2     "List all results sets."
@@ -1723,7 +1723,7 @@ BEGIN
     ID_LIST_MATERIAL        "List a specific material."
     ID_VIEW_DISPLAYSHELLTHICKNESS 
                             "Toggle display of shell thicknesses\n[Draw] Display Shell Thickness"
-    ID_VIEW_DISPLAYSHELLTHICKNESS2 "Display shell element thickness."
+    ID_VIEW_DISPLAYSHELLTHICKNESS2 "Toggle display of element offsets."
     ID_ELEMENTTYPE_BEAM     "Set default element type to BEAM\n[Element] BEAM"
     ID_VIEW_DISPLAYELEMENTOFFSETS2 "Display offsets on elements."
     ID_ELEMENTTYPE_BEAM2    "Beam Element."
@@ -1802,6 +1802,7 @@ BEGIN
     ID_LOADSBC_CREATEROTATIONALBODYLOAD 
                             "Create a rotational acceleration load\n[BC] Rotational Acceleration"
     ID_LOADSBC_CREATEROTATIONALBODYLOAD2 "Create rotational body load."
+    ID_IMPORT_LOADBMP       "Import 24-bit bitmap image to background."
     ID_NODEMODIFY_CHANGEXORDINATE 
                             "Change node X ordinate\n[Utils] Node X Ordinate"
     ID_NODEMODIFY_CHANGEZORDINATE 
@@ -1854,8 +1855,9 @@ END
 STRINGTABLE
 BEGIN
     ID_POST_LISTELEMENTRESULT2 "List selected element results."
-    ID_VIEW_GFRADIENTFILLEDBACKGROUND2 "Display a gradient filled background."
-    ID_ELEMENTMODIFIY_REVERSE2 "Reverse element definition."
+    ID_VIEW_GFRADIENTFILLEDBACKGROUND2 "Import M3D groups file."
+    ID_ELEMENTMODIFIY_REVERSE2 
+                            "Toggle display of element material directions."
     ID_OPTIONS_SETCOLOURBAR "Set colour bar scale\n[POST] Set Colour Bar Scale"
     ID_VISABILITY_COORDSON  "Toggle display of coordinate systems\n[Draw] Display Coordinate Systems"
     ID_MESHQND2             "Set next group active\n[Group] Next"
@@ -1916,8 +1918,8 @@ BEGIN
     ID_MESHMANAGEMENT_TOGGLEMESHVISABILITY "Toggle mesh visability"
     ID_MESHMANAGEMENT_CREATENEWMESH "Create a new Finite Element mesh."
     ID_MESHMANAGEMENT_DELETEMESH "Delete Finite Element mesh."
-    ID_VIEW_HIDEENTITIES    "Hide selected enties."
-    ID_VIEW_SHOWALLHIDDEN   "Shoe all hidden entities."
+    ID_VIEW_HIDEENTITIES    "Hide selected entities."
+    ID_VIEW_SHOWALLHIDDEN   "Show all hidden entities."
     ID_POST_LISTRESPONSEDATA "List Frequency Response Data"
     ID_MESH_MESHSIZEONSURFACE 
                             "Define mesh size on surface for auto-mesher\n[FE] Auto Element Size"
@@ -1949,6 +1951,7 @@ BEGIN
     ID_MANIPULATION_SCALE   "Scale a results set variable"
     ID_MANIPULATION_DIVIDEINTO 
                             "Divide a results set variable into a number used for RF calculations"
+    ID_EDIT_TOGGLEON        "Toggle on/off undo. Turn off if M3d becomes sluggish for large models."
 END
 
 STRINGTABLE
@@ -1965,7 +1968,8 @@ BEGIN
     ID_ELEMENTMODIFIY_INTERSECTTRIELEMENTS2 
                             "Experimental, Intersect TRI elements."
     ID_NODEMODIFY_EQUIVALENCELAB2 "Equivalence node labels between meshes"
-    ID_ELEMENTMODIFIY_COLOURBYPID2 "Colour elements according to PID"
+    ID_ELEMENTMODIFIY_COLOURBYPID2 
+                            "Export Nastran include file by file number."
     ID_MESHMANAGEMENT_SETINCLUDEFILENO 
                             "Set the include file no for selected items."
     ID_ELEMENTMODIFIY_COLOURBYINCLUDEFILE "Colour Elements by Include File"
@@ -1988,6 +1992,7 @@ BEGIN
     ID_BUTTON33403          "Toggle Control Point Visability"
     ID_VIEW_TOGGLECONTROLPOINTVISABILITY2 
                             "Toggle On and Off All Objects Control Points"
+    ID_EXPORT_EXPORTDXF     "Export 2d geometry to Autocad DXF file."
     ID_CURVEMODIFY_LAYERNUMBER "Set the Curve / Point Layer Number"
     ID_SELECTION_SELECTCURVE "Select Curves/Points by Layer ID"
 END
@@ -2045,14 +2050,15 @@ BEGIN
                             "Create circle centre markers\n[Dimension] Circle Centre Marker"
     ID_DIMENSIONTOOLS_DRAGDIM2 "Drag dimension to re-position."
     ID_ELEMENTTYPE_BUSH     "Set default element type to BUSH\n[Element] BUSH"
-    ID_DIMENSIONTOOLS_CIRCLECENTREMARKER2 "Create circle centre marker."
+    ID_DIMENSIONTOOLS_CIRCLECENTREMARKER2 
+                            "Global properties - stored with model file."
     ID_QFILTER_ELEMENTS2    "Pick Elements Only"
     ID_QFILTER_POINTS2      "Pick Points Only"
     ID_QFILTER_CURVES2      "Pick Curves Only"
     ID_QFILTER_SURFACE2     "Pick Surfaces Only"
-    ID_QFILTER_ALL2         "Pick All"
-    ID_ELEMENTTYPE_BUSH2    "BUSH 6 DOF Spring Element"
-    ID_EDIT_GLOBALPREFERENCES2 "Edit global stored parameters"
+    ID_QFILTER_ALL2         "Export Tri mesh to STL file."
+    ID_ELEMENTTYPE_BUSH2    "Import text STL file to tri mesh."
+    ID_EDIT_GLOBALPREFERENCES2 "Import Autocad 2d geometry DXF file."
     ID_LOADSBC_CREATETEMPD2 "Toggle On/Off Double Buffering"
 END
 
@@ -2239,8 +2245,17 @@ BEGIN
                             "Find gaps between materials and property labels"
     ID_ELEMENTMODIFIY_INSERTSPRINGONRIGID2 
                             "Insert a spring element between rigid elements"
-    ID_FEMTOOLS_SWEEPEDGESOUTWARD2 
-                            "Sweep shell edges outwards to create new rows of elements."
+    ID_FEMTOOLS_SWEEPEDGESOUTWARD2 "Set node size."
+    ID_OBJECTSIZE_POINT     "Set point size."
+    ID_OBJECTSIZE_LUMPMASS  "Set lumped mass sixe."
+    ID_OBJECTSIZE_ELEMENTEDGE "Set element edge thickness."
+    ID_OBJECTSIZE_ELEMENTFREEEDGE "Set element free edge thickness."
+    ID_OBJECTSIZE_ELEMENTFREEFACE "Set element free face thickness."
+    ID_OBJECTSIZE_WORKPLANELINES "Set workplane line thickness."
+    ID_OBJECTSIZE_BEAMS     "Set beam section line thickness."
+    ID_OBJECTSIZE_TEXT      "Set text thickness."
+    ID_EXPORT_EXPORTVIEWMATRIX "Export current view matrix for latter use."
+    ID_IMPORT_IMPORTVIEWMATRIX "Import M3D save view matrix."
 END
 
 STRINGTABLE
