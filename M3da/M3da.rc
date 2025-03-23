@@ -758,7 +758,6 @@ BEGIN
         MENUITEM "BEAM-L",                      ID_PROPERTY_BEAM_L
         MENUITEM "Shell",                       ID_PROPERTY_SHELL
         MENUITEM "Solid",                       ID_PROPERTY_SOLID
-        MENUITEM "2D Plain Stress",             ID_PROPERTY_2DPLAINSTRESS
         MENUITEM "PCOMP",                       ID_PROPERTY_PCOMP
         MENUITEM "PBUSH",                       ID_PROPERTY_PBUSH
         MENUITEM SEPARATOR
@@ -1591,7 +1590,9 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_PROPERTY_BEAMBOX     "Create Beams Box Section (NASTRAN BOX)"
+    ID_PROPERTY_BEAMBOX     "Create BOX beam element property (PBARL see Nastran doc for DIM definitions)."
+    ID_PROPERTY_SHELL       "Create a thin shell element property."
+    ID_MATERIAL_ISENTROPIC  "Create an Isentropic material (MAT1)."
     ID_MATERIAL_ORTHOTROPIC "Create Orthotropic Material (MAT8) not available in M3d solves"
     ID_PROPERTYMODIFY_CHANGEMATERIAL 
                             "Change the material assigned to a property."
@@ -1629,7 +1630,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_POST_SELECTDEFORMEDRESULTS2 "Select deformed results."
+    ID_POST_SELECTDEFORMEDRESULTS2 "Create a rod element property."
     ID_VIEW_DISPLAYELEMENTCOORDSYS 
                             "Toggle display of elements' coordinate systems\n[Draw] Display Element Coord Sys"
     ID_ANALYSIS_CREATEMOMENT "Create a moment on node\n[BC] Moment"
@@ -1705,11 +1706,11 @@ BEGIN
     ID_POST_DEFORMEDDISPLAY "Display deformed results\n[POST] Display Deformed Results"
     ID_POST_SELECTDEFORMEDRESULTS 
                             "Select deformed results\n[POST] Select Deformed Results"
-    ID_POST_CONTOURRAWDATA2 "Contour plot."
+    ID_POST_CONTOURRAWDATA2 "Create a solid element property."
     ID_POST_TOGRESULTSLABELS2 "Turn on or off results labels."
     ID_OPTIONS_DEFORMATIONSCALE 
                             "Set deformation scale\n[POST] Deformation Scale"
-    ID_POST_DEFORMEDDISPLAY2 "Deformed display."
+    ID_POST_DEFORMEDDISPLAY2 "Not used"
     ID_ELEMENTTYPE_ROD      "Set default element type to ROD\n[Element] ROD"
 END
 
@@ -1728,10 +1729,11 @@ BEGIN
     ID_ELEMENTTYPE_BEAM2    "Set beam offset by vector."
     ID_ELEMENTMODIFIY_BEAMUPVECTORS2 "Set shell element offset."
     ID_ELEMENTMODIFIY_BEAMOFFSET2 "Set beam offset vector."
-    ID_ELEMENTMODIFIY_SHELLOFFSET2 "Set shell element offset."
+    ID_ELEMENTMODIFIY_SHELLOFFSET2 
+                            "Create ROD beam element property (PBARL see Nastran doc for DIM definitions)."
     ID_PROPERTY_BEAM2       "Craete Beam Rod Section (NASTRAN ROD)"
-    ID_PROPERTY_BEAMBAR     "Create Beam Bar Section (NASTRAN BAR)"
-    ID_PROPERTY_BEAMTUBE    "Create Beam Tube Section (NASTRAN TUBE)"
+    ID_PROPERTY_BEAMBAR     "Create BAR beam element property (PBARL see Nastran doc for DIM definitions)."
+    ID_PROPERTY_BEAMTUBE    "Create TUBE beam element property (PBARL see Nastran doc for DIM definitions)."
 END
 
 STRINGTABLE
@@ -1794,6 +1796,7 @@ STRINGTABLE
 BEGIN
     ID_PROPISO2             "Change to alternative isometric viewpoint\n[View] Alt Isometric"
     ID_ELEMENTTYPE_MASS     "Set default element type to LUMPED MASS\n[Element] LUMPED MASS"
+    ID_PROPERTY_LUMPEDMASS  "Create a lumped mass property."
     ID_VISABILITY_WORKPLANE "Toggle display of work plane\n[Draw] Display Work Plane"
     ID_VISABILITY_WORKPLANE2 "Toggle workplane visability"
     ID_TOOLS_MEASUREANGLE   "Measure angle between three points\n[Edit] Measure Angle"
@@ -1824,7 +1827,7 @@ BEGIN
     ID_PROPERTY_EDITMATERIALVALUES 
                             "Edit material values\n[Edit] Material Values"
     ID_PROPERTYMODIFY_EDITPROPERTYVALUES2 "Edit Properties Values"
-    ID_PROPERTY_EDITMATERIALVALUES2 "Edit Material Values"
+    ID_PROPERTY_EDITMATERIALVALUES2 "Create a basic beam element property."
     ID_VIEW_SURFACEDIRECTIONMARKERS 
                             "Toggle display of surface direction markers\n[Draw] Surface Direction Markers"
     ID_POST_LISTNODALRESULTS 
@@ -1945,9 +1948,9 @@ BEGIN
     ID_EDIT_REDO33332       "Redo Last"
     ID_CURVETOOLS_TEXT      "Add Text\n[Create] Text"
     ID_CURVETOOLS_TEXT2     "Add Text"
-    ID_PROPERTY_PCOMP       "Create PCOMP Laminate Property"
+    ID_PROPERTY_PCOMP       "Create PCOMP laminate property."
     ID_PROPERTY_DISPLAYLAMINATESTACK "Display Laminate Stack Sequence"
-    ID_PROPERTY_PBUSH       "Create a Nastran PBUSH spring property"
+    ID_PROPERTY_PBUSH       "Create a Nastran PBUSH spring property."
     ID_MANIPULATION_ENVELOPEMAXIMUM 
                             "Create an enveloped results set of maximum value"
     ID_MANIPULATION_ENVELOPEMINIMUM 
@@ -2097,6 +2100,8 @@ BEGIN
     ID_ELEMENTTYPE_ROTATIONALSPRING2 "Rotational Spring."
     ID_ELEMENTMODIFIY_SPRINGCOORDSYSTEM 
                             "Assign a coordinate system to selected spring elements."
+    ID_PROPERTY_TRANSLATIONALSPRING "Create a translational spring property."
+    ID_PROPERTY_ROTATIONALSPRING "Create a rotational spring property."
     ID_CHECKS_NEGATIVEVOLUMEELEMENTS "Check for negative element jacobian."
     ID_CHECKS_CHECKSHELLELEMENTASPECTRATION 
                             "Check shell element aspect ration."
@@ -2228,12 +2233,12 @@ STRINGTABLE
 BEGIN
     ID_PROPERTY_BEAM33344   "Create Beam T2 Section"
     ID_PROPERTY_BEAM33345   "Create Beam Channel 2 Section"
-    ID_PROPERTY_BEAM_T2     "Create Beam T Sections (NASTRAN T2)"
-    ID_PROPERTY_BEAM_CHAN2  "Create Beam Channel Section (NASTRAN CHAN2)"
-    ID_PROPERTY_BEAM_I2     "Create Beam I Section (NASTRAN I2)"
+    ID_PROPERTY_BEAM_T2     "Create T2 beam element property (PBARL see Nastran doc for DIM definitions)."
+    ID_PROPERTY_BEAM_CHAN2  "Create CHAN2 beam element property (PBARL see Nastran doc for DIM definitions)."
+    ID_PROPERTY_BEAM_I2     "Create I2 beam element property (PBARL see Nastran doc for DIM definitions)."
     ID_PROPERTY_BEAM33350   "Create Beam L Section (NOT IN NASTRAN)"
     ID_PROPERTY_BEAM33351   "Create Beam I Section (NASTRAN I2)"
-    ID_PROPERTY_BEAM_L      "Create Beam L Section (NASTRAN I2)"
+    ID_PROPERTY_BEAM_L      "Create L beam element property (PBARL see Nastran doc for DIM definitions)."
     ID_ELEMENTMODIFIY_BEAMOFFSETINBEAMY 
                             "Offset Beam Elements in Element Y direction"
     ID_ELEMENTMODIFIY_BEAMOFFSETINBEAMZ 
