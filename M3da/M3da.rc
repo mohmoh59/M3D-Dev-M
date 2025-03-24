@@ -1603,7 +1603,7 @@ BEGIN
     ID_SURFACE_SWEEP        "Sweep curves into surfaces\n[Create] Sweep curves into surfaces"
     ID_MESH_BUILDASSEMBLYMESH2 
                             "Build a mesh from an assembly of other meshes."
-    ID_SOLVER_SOLVE         "Solve current model - linear static."
+    ID_SOLVER_SOLVE         "Solve current model."
     ID_SOLVER_CREATEFORCE   "Create a force on node\n[BC] Force"
 END
 
@@ -1697,8 +1697,8 @@ BEGIN
     ID_WORKPLAIN_WPCENTRE2  "Centre the workplain at a specified point."
     ID_IMPORT_OP2           "Import Nastran results OP2 file."
     ID_POST_SELECTRESULTS   "Select contour results\n[POST] Select Contour Results"
-    ID_POST_SELECTRESULTS2  "Select contour results."
-    ID_POST_LISTRESSET2     "List all results sets."
+    ID_POST_SELECTRESULTS2  "List results set."
+    ID_POST_LISTRESSET2     "List current results set."
     ID_POST_CONTOURRAWDATA  "Display raw contour results\n[POST] Display Contour Raw Results"
     ID_POST_LISTSELECTEDRESSET2 "List the selected results set."
     ID_POST_TOGRESULTSLABELS 
@@ -1847,13 +1847,14 @@ BEGIN
     ID_MESH_QUADTOTRI       "Split QUADs into TRIs\n[FE] QUAD to TRI"
     ID_CHECKS_FREEEDGEDISPLAY2 "Orient shell normals to be consistent."
     ID_ANALYSIS_LOADSETS    "Create a load set\n[BC] Load Set"
-    ID_MESH_QUADTOTRI2      "TODO\nTODO"
-    ID_LOADSBC_BCSETS2      "TODO\nTODO"
+    ID_MESH_QUADTOTRI2      "Create a boundary set\n[BC] Boundary Set"
+    ID_LOADSBC_BCSETS2      "Create a temperature set\n[BC] Temperature Set"
     ID_LOADSBC_TEMPERATURESETS2 "Create a temperature set."
     ID_LOADSBC_CREATESTRUCTURALTEMP 
                             "Create a structural temperature load on element\n[BC] Temperature"
-    ID_LOADSBC_CREATETHERMALTEMPBC "N/A yet"
-    ID_LOADSBC_CREATETHERMALNETTFLUXLOAD "N/A yet."
+    ID_LOADSBC_CREATETHERMALTEMPBC 
+                            "Create thermal temperature boundary condition."
+    ID_LOADSBC_CREATETHERMALNETTFLUXLOAD "Create thermal heat flux load."
     ID_SOLUTION_LISTSOLUTIONSEQUENCES "List the current solutions."
     ID_SOLUTION_CREATESOLUTIONSEQUENCE "Create a solution."
     ID_SOLUTION_CREATE      "Create a solution step."
@@ -1887,7 +1888,7 @@ BEGIN
     ID_POST_ANIMATENEG2     "Set beam end A dof release."
     ID_POST_FRAMEDELAY2     "Set beam end B dof release."
     ID_POST_ANIMATIONFRAMES2 "No of Animation Frames"
-    ID_ELEMENTMODIFIY_BEAMENDARELEASE2 "Release end A degrees of Freedom"
+    ID_ELEMENTMODIFIY_BEAMENDARELEASE2 "List available results vectors."
     ID_TOOLS_EDITOBJECT     "Edit object values\n[Edit] Object Values"
     ID_ELEMENTMODIFIY_BEAMENDBRELEASE2 "Release end B degrees of Freedom"
     ID_OPTIONS_DEFORMATIONOFFSET2 "Relative Deformation Offset"
@@ -2063,8 +2064,8 @@ BEGIN
     ID_ELEMENTTYPE_BUSH     "Set default element type to BUSH\n[Element] BUSH"
     ID_DIMENSIONTOOLS_CIRCLECENTREMARKER2 
                             "Global properties - stored with model file."
-    ID_QFILTER_ELEMENTS2    "Pick Elements Only"
-    ID_QFILTER_POINTS2      "Pick Points Only"
+    ID_QFILTER_ELEMENTS2    "Create Nastran TEMPD card."
+    ID_QFILTER_POINTS2      "Create Nastran GRAV card."
     ID_QFILTER_CURVES2      "Pick Curves Only"
     ID_QFILTER_SURFACE2     "Pick Surfaces Only"
     ID_QFILTER_ALL2         "Export Tri mesh to STL file."
