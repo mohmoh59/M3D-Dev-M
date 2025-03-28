@@ -25,10 +25,11 @@ See [BUILD.md](BUILD.md) for Windows build (compiling) instructions.
 # Introduction
 
 M3D Overview:
- - Can be compiled with Visual Studio Community. Originally started this in C++4 many years ago, before vector classes were added.
+ - Can be compiled with Visual Studio Community. Originally started this in C++4 many years ago, before vector classes were added. Uses MFC with ginle document interface.
  - Written with no add-ins or external modules so it can be deployed with no problems. The original author would like it to stay this way. 
  - Used in many commercial aerospace projects and this has driven the development.
  - Most of the structures are shell and beam models built by hand and with abstracted geometry.
+
 
 # Features
 
