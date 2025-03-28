@@ -34,6 +34,11 @@ public:
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
 	afx_msg void OnFileRunscriptfile();
+	
+	//Esp_Config_File_Mod_Start//
+	private:
+	void LoadConfiguration();
+	//Esp_Config_File_Mod_End//
 };
 void outtext1(CString AAA);
 void outtext2(CString AAA);

@@ -1058,7 +1058,7 @@ CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     PUSHBUTTON      "Apply Changes",IDOK,41,223,53,14
-    DEFPUSHBUTTON   "Cancel",IDCANCEL,97,223,27,14
+    DEFPUSHBUTTON   "Exit",IDCANCEL,97,223,27,14
     EDITTEXT        IDC_EDIT_FLOAT,7,166,51,12,ES_AUTOHSCROLL | NOT WS_VISIBLE
     EDITTEXT        IDC_PTITLE,40,13,253,12,ES_AUTOHSCROLL
     LTEXT           "Title:",IDC_STATIC,17,15,23,11
@@ -1384,7 +1384,7 @@ END
 STRINGTABLE
 BEGIN
     ID_EDIT_DES             "De-select all objects."
-    ID_VIEW_DISPLAYALL      "Display all objects\n[Draw] Display All\n"
+    ID_VIEW_DISPLAYALL      "Display all objects that are SET TO VISIBLE. \n[Draw] Display All (If Set to Visible)\n"
     ID_EDIT_INFORMATION     "Infomation\n[Edit] Infomation"
     ID_VIEW_DISPLAYALL2     "Display all objects."
     ID_EDIT_INFORMATION2    "Show information for selected objects."
@@ -1393,7 +1393,7 @@ BEGIN
     ID_EDIT_BETWEEN2        "returns a location between two other locations."
     ID_EDIT_TRANSLATEDFROM2 "returns a location translated from another location."
     ID_EDIT_FILTERNONE2     "Set the object filter."
-    ID_VIEW_DISPLAYSELECTED "Display only selected objects.From the main window, each subsquent selection ADDS to the selection buffer. A filter can be used to select different types of objects.\n[Draw] Display Selected"
+    ID_VIEW_DISPLAYSELECTED "Display only selected objects.From the main window, each subsquent selection ADDS to the selection buffer. A filter can be used to select different types of objects.\n[Draw] Display Selected (If Set to Visible)"
     ID_VIEW_DISPLAYGROUP    "Display active group\n[Group] Display Active"
 END
 

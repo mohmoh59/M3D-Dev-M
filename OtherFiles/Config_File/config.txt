@@ -1,0 +1,72 @@
+***  M3D Configuration File - For Edit/Global Preferences in the Program
+*----------------------------------------------------------------------------
+***  Place this file in same directory as the M3D executable.
+***  If this file is not present, M3D will use defaults or model settings. This file does not need to be present.
+***  If you change the Global Preferences within the program, they will not be incorporated in this file (there is no feedback loop).
+*
+*----------------------------------------------------------------------------
+*
+*For colors values, use "Tool/Colour" within M3D to determine the appropriate value.
+background_color, 127
+*
+zoom_scale_factor, 1
+*
+point_size, 12
+*
+node_size, 10
+*
+lump_mass_size, 20
+*
+element_edge_size, 2
+*
+free_edge_size, 5
+*
+free_face_size, 3
+*
+*The thickness of the line on the workplane with the X, Y, and large arrows
+workplane_line_weight, 2
+*
+beam_section_size, 2
+*
+text_size, 2
+*
+drawing_scale_for_dims, 1
+*
+fillet_size, 0.1
+*
+line_offset, 0.1
+*
+text_height, 0.5
+*
+circle_radius_for_circr, 0.5
+*
+spline_order, 2
+*
+dimesion_precision, 2
+*
+dimension_size, 0.5
+*
+trim_curve_on_surface_resolution, 36
+*
+shell_drilling_k_value, 1
+*
+stiffness_multiplier_for_m3d_dummy_rigid, 10000
+*
+k_for_restraints, 1e+10
+*
+default_material_E, 7e+10
+*
+default_material_v, 0.33
+*
+default_material_density, 2750
+*
+default_material_thermal_conductivity, 237
+*
+default_siff_beam_diameter, 0.1
+*
+default_material_cte, 2.3e-05
+*
+default_thermal_link_coeff, 1e+09
+*
+default_iterative_solver_toleranace, 1e-09
+*

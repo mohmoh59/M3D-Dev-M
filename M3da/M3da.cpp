@@ -10,6 +10,10 @@
 #include "M3daDoc.h"
 #include "M3daView.h"
 
+//Esp_Config_File_Mod_Start
+#include "GLOBAL_VARS.h"
+//Esp_Config_File_Mod_End
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -54,6 +58,170 @@ const GUID CDECL BASED_CODE _tlid =
 const WORD _wVerMajor = 1;
 const WORD _wVerMinor = 0;
 
+//Esp_Config_File_Mod_Start
+
+// Global variables for configuration settings
+void CM3daApp::LoadConfiguration()
+{
+    CStdioFile file;
+    if (file.Open(_T("config.txt"), CFile::modeRead | CFile::shareDenyWrite))
+    {
+        CString strLine;
+        while (file.ReadString(strLine))
+        {
+            strLine.Trim(); // Remove leading/trailing whitespace
+
+            // Skip empty lines or comment lines that start with '*'
+            if (strLine.IsEmpty() || strLine.Left(1) == _T("*"))
+                continue;
+
+            // Expecting "key, value" format
+            int commaPos = strLine.Find(_T(","));
+            if (commaPos != -1)
+            {
+                CString key = strLine.Left(commaPos);
+                CString value = strLine.Mid(commaPos + 1);
+                key.Trim();
+                value.Trim();
+
+                // Update settings based on key
+                if (key.CompareNoCase(_T("background_color")) == 0)
+                {
+                	gBACKGRD_COL = _ttoi(value);
+                }
+                else if (key.CompareNoCase(_T("zoom_scale_factor")) == 0)
+                {
+	                gZOOM_SCL = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("point_size")) == 0)
+                {
+	                gPT_SIZE = _ttoi(value);
+                }
+                else if (key.CompareNoCase(_T("node_size")) == 0)
+                {
+	                gND_SIZE = _ttoi(value);
+                }
+                else if (key.CompareNoCase(_T("lump_mass_size")) == 0)
+                {
+	                gLM_SIZE = _ttoi(value);
+                }
+                else if (key.CompareNoCase(_T("element_edge_size")) == 0)
+                {
+	                gEL_SIZE = _ttoi(value);
+                }
+                else if (key.CompareNoCase(_T("free_edge_size")) == 0)
+                {
+	                gED_SIZE = _ttoi(value);
+                }
+                else if (key.CompareNoCase(_T("free_face_size")) == 0)
+                {
+	                gFC_SIZE = _ttoi(value);
+                }
+                else if (key.CompareNoCase(_T("workplane_line_weight")) == 0)
+                {
+	                gWP_SIZE = _ttoi(value);
+                }
+                else if (key.CompareNoCase(_T("beam_section_size")) == 0)
+                {
+	                gBM_SIZE = _ttoi(value);
+                }
+                else if (key.CompareNoCase(_T("text_size")) == 0)
+                {
+	                gTXT_SIZE = _ttoi(value);
+                }
+                else if (key.CompareNoCase(_T("drawing_scale_for_dims")) == 0)
+                {
+	                gDIM_SCALE = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("fillet_size")) == 0)
+                {
+	                gDIM_FILSZ = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("line_offset")) == 0)
+                {
+	                gDIM_OFFSZ = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("text_height")) == 0)
+                {
+	                gTXT_HEIGHT = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("circle_radius_for_circr")) == 0)
+                {
+	                gDIM_RADSZ = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("spline_order")) == 0)
+                {
+	                gDIM_CVORD = _ttoi(value);
+                }
+                else if (key.CompareNoCase(_T("dimesion_precision")) == 0)
+                {
+	                gDIM_PREC = _ttoi(value);
+                }
+                else if (key.CompareNoCase(_T("dimension_size")) == 0)
+                {
+	                gDIM_SIZE = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("trim_curve_on_surface_resolution")) == 0)
+                {
+	                gCUR_RES = _ttoi(value);
+                }
+                else if (key.CompareNoCase(_T("shell_drilling_k_value")) == 0)
+                {
+	                gDRILL_KS = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("stiffness_multiplier_for_m3d_dummy_rigid")) == 0)
+                {
+	                gRIGID_MULTIPLIER = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("k_for_restraints")) == 0)
+                {
+	                gVSTIFF_KS = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("default_material_E")) == 0)
+                {
+	                gDEF_E = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("default_material_v")) == 0)
+                {
+	                gDEF_V = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("default_material_density")) == 0)
+                {
+	                gDEF_DEN = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("default_material_thermal_conductivity")) == 0)
+                {
+	                gDEF_COND = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("default_siff_beam_diameter")) == 0)
+                {
+	                gSTIFF_BDIA = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("default_material_cte")) == 0)
+                {
+	                gDEF_CTE = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("default_thermal_link_coeff")) == 0)
+                {
+	                gDEF_THERM_LNK = _ttof(value);
+                }
+                else if (key.CompareNoCase(_T("default_iterative_solver_toleranace")) == 0)
+                {
+	                gDEF_SOL_TOL = _ttof(value);
+                }
+            }
+        }
+    	file.Close();
+    }
+    else
+    {
+	    AfxMessageBox(_T("Failed to open config.txt."));
+    }
+}
+//Esp_Config_File_Mod_End
+
+
+
 
 // CM3daApp initialization
 
@@ -97,6 +265,21 @@ BOOL CM3daApp::InitInstance()
 	ttParams.m_bVislManagerTheme = TRUE;
 	theApp.GetTooltipManager()->SetTooltipParams(AFX_TOOLTIP_TYPE_ALL,
 		RUNTIME_CLASS(CMFCToolTipCtrl), &ttParams);
+
+	////Esp_Config_File_Mod_Start//
+	// Check if "config.txt" exists in the working directory
+	CFileFind finder;
+	if (finder.FindFile(_T("config.txt")))
+	{
+		LoadConfiguration();
+	}
+	else
+	{
+		// TODO: If file no found, for example, set default values and make config.txt based on it
+	}
+	////Esp_Config_File_Mod_End//
+
+
 
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views
