@@ -1393,7 +1393,7 @@ BEGIN
     ID_EDIT_BETWEEN2        "returns a location between two other locations."
     ID_EDIT_TRANSLATEDFROM2 "returns a location translated from another location."
     ID_EDIT_FILTERNONE2     "Set the object filter."
-    ID_VIEW_DISPLAYSELECTED "Display only selected objects. From the main window, each subsquent selection ADDS to the selection buffer. A filter to used to select different types of objects. To deselect objects, right click on the main window and select 'Deselect All'.\n[Draw] Display Selected"
+    ID_VIEW_DISPLAYSELECTED "Display only selected objects.From the main window, each subsquent selection ADDS to the selection buffer. A filter can be used to select different types of objects.\n[Draw] Display Selected"
     ID_VIEW_DISPLAYGROUP    "Display active group\n[Group] Display Active"
 END
 
