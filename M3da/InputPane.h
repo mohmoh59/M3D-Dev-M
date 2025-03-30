@@ -2,6 +2,20 @@
 
 #include "MyEdit.h"
 #include "EditBasic.h"
+
+// Esp_Mod_Remove_Buttons_Start: Added A custom CMFCTabCtrl class than hides the scroll bar.
+class CMyTabCtrl : public CMFCTabCtrl
+{
+public:
+	// Override AdjustTabs to clear the scroll area
+	virtual void AdjustTabs()
+	{
+		m_bScroll = FALSE;
+		CMFCTabCtrl::AdjustTabs();
+	}
+};
+// Esp_Mod_Remove_Buttons_End
+
 // CInputPane
 
 class CInputPane : public CDockablePane
@@ -11,7 +25,13 @@ class CInputPane : public CDockablePane
 public:
 	CInputPane();
 	virtual ~CInputPane();
-	CMFCTabCtrl	m_wndTabs;
+	// Esp_Mod_Remove_Buttons_Start: Added A custom CMFCTabCtrl class than hides the scroll bar.
+	CMyTabCtrl	m_wndTabs;
+	// Esp_Mod_Remove_Buttons_End
+	
+	// Esp_Mod_Font_Start: Added CFont object for the font
+	CFont m_Font;
+	// Esp_Mod_Font_End
 	CEditBasic Edit1;
 	CEditBasic Edit2;
 	CMyEdit Edit3;
@@ -23,5 +43,4 @@ public:
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	//  afx_msg void OnClose();
 };
-
 
