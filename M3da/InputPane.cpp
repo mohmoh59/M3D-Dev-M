@@ -53,8 +53,8 @@ int CInputPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
   Edit2.Create(ES_AUTOVSCROLL |WS_VSCROLL|WS_BORDER|WS_CHILD | WS_VISIBLE|ES_MULTILINE|ES_WANTRETURN ,AAA,&m_wndTabs,IDS_EDIT2);
   Edit3.Create(ES_AUTOVSCROLL | WS_BORDER|WS_CHILD | WS_VISIBLE|ES_MULTILINE|ES_WANTRETURN ,AAA,&m_wndTabs,IDS_EDIT3);
   
-	// Esp_Mod_Font_Start: Initialized font and assigned to windows
-  m_Font.CreatePointFont(100, _T("Arial")); // Change "Arial" to any font installed on your system. there are many installed already by windows. you can search Fonts in window settings. Personalization > Fonts. Also could change the size by tweeking first argument.
+	// Esp_Mod_Font_Start: Initialized font and assigned to windows. The number in the next line sets the font size, where 100 is about 12pt (normal).
+  m_Font.CreatePointFont(150, _T("Arial")); // Change "Arial" to any font installed on your system. there are many installed already by windows. you can search Fonts in window settings. Personalization > Fonts. Also could change the size by tweeking first argument.
   Edit1.SetFont(&m_Font);
   Edit2.SetFont(&m_Font);
   Edit3.SetFont(&m_Font);
