@@ -468,7 +468,10 @@ void outtext1(CString AAA)
 
 	CString strText, strNewText;
 	Edit2->GetWindowText(strText);
-	strNewText.Format("%s\r\n", AAA);
+	// Esp_Mod_ExtraLine_Start: Added a new line before the text
+	strNewText.Format("%s\r\n", AAA); // revert to original
+	//strNewText.Format("%s\r\n\r\n", AAA); // with separate line, but its not "intelligent"
+	// Esp_Mod_ExtraLine_End
 	strText += strNewText;
 	Edit2->SetWindowText(strText);
 	int NoOff = Edit2->GetLineCount();
