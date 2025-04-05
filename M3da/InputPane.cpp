@@ -41,7 +41,7 @@ int CInputPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//m_Font.CreateStockObject(DEFAULT_GUI_FONT);
 	CRect rectDummy(10,10,50,500);
 	rectDummy.SetRectEmpty();
-  
+
 	// Create tabs window:
 	if (!m_wndTabs.Create(CMFCTabCtrl::STYLE_FLAT, rectDummy, this, 1))
 	{
@@ -51,19 +51,22 @@ int CInputPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
   CRect AAA(10,10,500,150);
   Edit1.Create(ES_AUTOVSCROLL |WS_VSCROLL|WS_BORDER|WS_CHILD | WS_VISIBLE|ES_MULTILINE|ES_WANTRETURN ,AAA,&m_wndTabs,IDS_EDIT1);
   Edit2.Create(ES_AUTOVSCROLL |WS_VSCROLL|WS_BORDER|WS_CHILD | WS_VISIBLE|ES_MULTILINE|ES_WANTRETURN ,AAA,&m_wndTabs,IDS_EDIT2);
-  Edit3.Create(ES_AUTOVSCROLL | WS_BORDER|WS_CHILD | WS_VISIBLE|ES_MULTILINE|ES_WANTRETURN ,AAA,&m_wndTabs,IDS_EDIT3);
-  
+  // Edit3.Create(ES_AUTOVSCROLL |WS_BORDER|WS_CHILD | WS_VISIBLE|ES_MULTILINE|ES_WANTRETURN ,AAA,&m_wndTabs,IDS_EDIT3);
+	// Esp_Mod_Scrollbar_Start: Added Scrollbars to the third edit box
+  Edit3.Create(ES_AUTOVSCROLL |WS_VSCROLL|WS_BORDER|WS_CHILD | WS_VISIBLE|ES_MULTILINE|ES_WANTRETURN ,AAA,&m_wndTabs,IDS_EDIT3);
+	// Esp_Mod_Scrollbar_End
+
 	// Esp_Mod_Font_Start: Initialized font and assigned to windows. The number in the next line sets the font size, where 100 is about 12pt (normal).
   m_Font.CreatePointFont(150, _T("Arial")); // Change "Arial" to any font installed on your system. there are many installed already by windows. you can search Fonts in window settings. Personalization > Fonts. Also could change the size by tweeking first argument.
   Edit1.SetFont(&m_Font);
   Edit2.SetFont(&m_Font);
   Edit3.SetFont(&m_Font);
 	// Esp_Mod_Font_End
-  
-  
-  
+
+
+
   return 0;
-  
+
 }
 
 

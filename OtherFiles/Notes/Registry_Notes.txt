@@ -1,0 +1,5 @@
+The following items are stored in the registry:
+
+1. Recent File List.
+2. Settings. In M3D, this is empty.
+3. Workspace. It saves stats of all UI items (toolbars that are present and their placement, window placement, etc.)
