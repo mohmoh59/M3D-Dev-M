@@ -414,6 +414,13 @@ ON_COMMAND(ID_EXPORT_CURRENT_STL, &CM3daDoc::OnExportCurrentStl)
 ON_COMMAND(ID_IMPORT_STLTOTRIMESH, &CM3daDoc::OnImportStltotrimesh)
 ON_COMMAND(ID_IMPORT_IMPORTDXF, &CM3daDoc::OnImportImportdxf)
 ON_COMMAND(ID_VIEW_TOGGLEON33455, &CM3daDoc::OnViewToggleon33455)
+// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: Added functions for new menu items
+ON_COMMAND(ID_EXP01, &CM3daDoc::OnEXP01)
+ON_COMMAND(ID_EXP02, &CM3daDoc::OnEXP02)
+ON_COMMAND(ID_EXP03, &CM3daDoc::OnEXP03)
+ON_COMMAND(ID_EXP04, &CM3daDoc::OnEXP04)
+ON_COMMAND(ID_EXP05, &CM3daDoc::OnEXP05)
+// Esp_Mod_Experimental_Toolbar_4_10_2025_End
 END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CM3daDoc, CDocument)
@@ -6893,3 +6900,30 @@ void CM3daDoc::OnViewToggleon33455()
 	cDBase->ToggleDoubleBuffering();
 
 }
+
+// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: Added to handle export commands
+void CM3daDoc::OnEXP01()
+{
+  // TODO: Add your command handler code here
+}
+
+void CM3daDoc::OnEXP02()
+{
+  // TODO: Add your command handler code here
+}
+
+void CM3daDoc::OnEXP03()
+{
+  // TODO: Add your command handler code here
+}
+
+void CM3daDoc::OnEXP04()
+{
+  // TODO: Add your command handler code here
+}
+
+void CM3daDoc::OnEXP05()
+{
+  // TODO: Add your command handler code here
+}
+// Esp_Mod_Experimental_Toolbar_4_10_2025_End

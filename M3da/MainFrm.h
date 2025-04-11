@@ -39,6 +39,11 @@ protected:  // control bar embedded members
 	CMFCToolBar       m_Utils;
 	CMFCToolBar       m_QFilter;
 	CMFCToolBar       m_DIMS;
+	
+	//Esp_Mod_Experimental_Toolbar_4_10_2025_Start: experimental toolbar field
+	CMFCToolBar       m_EXP;
+	//Esp_Mod_Experimental_Toolbar_4_10_2025_End
+	
 	// Generated message map functions
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);

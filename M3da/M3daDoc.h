@@ -567,6 +567,13 @@ protected:
 public:
     afx_msg void OnImportImportdxf();
     afx_msg void OnViewToggleon33455();
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: Added experimental menu items
+    afx_msg void OnEXP01();
+    afx_msg void OnEXP02();
+    afx_msg void OnEXP03();
+    afx_msg void OnEXP04();
+    afx_msg void OnEXP05();
+    // Esp_Mod_Experimental_Toolbar_4_10_2025_End
 };
 
 

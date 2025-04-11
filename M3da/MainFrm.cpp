@@ -79,6 +79,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	iIDR = IDR_PROJ;
 	iIDR = IDR_UTILITIES;
 	iIDR = IDR_QFILTER;
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: experimental toolbar
+	iIDR = IDR_EXPERIMENTAL;
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_End
 	if (CFrameWndEx::OnCreate(lpCreateStruct) == -1)
 		return -1;
 	BOOL bNameValid;
@@ -120,6 +123,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
+
+	
 	if (!m_Edit.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC, CRect(1, 1, 1, 1), AFX_IDW_MENUBAR + 3) ||
 		!m_Edit.LoadToolBar(IDR_EDIT))
 	{
@@ -182,7 +187,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 
-
+	
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: create experimental toolbar
+	if (!m_EXP.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC, CRect(1, 1, 1, 1), AFX_IDW_MENUBAR + 13) ||
+		!m_EXP.LoadToolBar(IDR_EXPERIMENTAL))
+	{
+		TRACE0("Failed to create toolbar\n");
+		return -1;      // fail to create
+	}
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_Start_End
 
 	CString strToolBarName;
 	bNameValid = strToolBarName.LoadString(IDS_TOOLBAR_STANDARD);
@@ -231,6 +244,13 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//ASSERT(bNameValid);
 	m_POST.SetWindowText("Post Processing");
 
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: added experimental toolbar
+	CString  strToolBarName10;
+	bNameValid = strToolBarName10.LoadString(IDS_POST);
+	//ASSERT(bNameValid);
+	m_EXP.SetWindowText("Experimental");
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: END
+
 	m_Projection.SetWindowText("Project");
 	m_Utils.SetWindowText("Utils");
 	m_QFilter.SetWindowText("Quick Filter");
@@ -252,6 +272,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_Utils.EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
 	m_QFilter.EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
 	m_DIMS.EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
+	
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: Added experimental toolbar
+	m_EXP.EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_End
+	
 	//m_Qwanta.EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
 	  // Allow user-defined toolbars operations:
 	InitUserToolbars(NULL, uiFirstUserToolBarId, uiLastUserToolBarId);
@@ -293,6 +318,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_Utils.EnableDocking(CBRS_ALIGN_ANY);
 	m_QFilter.EnableDocking(CBRS_ALIGN_ANY);
 	m_DIMS.EnableDocking(CBRS_ALIGN_ANY);
+	
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: dock experimental toolbar
+	m_EXP.EnableDocking(CBRS_ALIGN_ANY);
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_End
+	
 	//m_Qwanta.EnableDocking(CBRS_ALIGN_ANY);
 	EnableDocking(CBRS_ALIGN_ANY);
 	//AA.EnableDocking(CBRS_BOTTOM);
@@ -310,6 +340,12 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	DockPane(&m_Utils);
 	DockPane(&m_QFilter);
 	DockPane(&m_DIMS);
+	
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: added experimental toolbar to docking
+	DockPane(&m_EXP);
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_End
+	
+	
 	//DockPane(&m_Qwanta);
 	   // enable Visual Studio 2005 style docking window behavior
    //	CDockingManager::SetDockingMode(DT_SMART);

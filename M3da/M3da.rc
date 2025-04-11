@@ -41,7 +41,9 @@ IDR_M3daTYPE            ICON                    "res\\M3daDoc.ico"
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
 
-IDR_MAINFRAME_256       BITMAP                  "res\\Toolbar256.bmp"
+IDR_MAINFRAME_256       BITMAP                  "res\\Toolbar.bmp"
+//Esp_Mod_Toolbar256_4_2025: "Toolbar256.bmp" is not a sharp image
+//IDR_MAINFRAME_256       BITMAP                  "res\\Toolbar256.bmp"
 
 IDR_DRAW                BITMAP                  "res\\toolbar1.bmp"
 
@@ -67,6 +69,9 @@ IDR_QFILTER             BITMAP                  "res\\bmp00010.bmp"
 
 IDR_DIMS                BITMAP                  "res\\bmp00011.bmp"
 
+// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: Added experimental bitmap
+IDR_EXPERIMENTAL        BITMAP                  "res\\experimental.bmp"
+// Esp_Mod_Experimental_Toolbar_4_10_2025_End
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -334,6 +339,16 @@ BEGIN
     BUTTON      ID_DIMENSIONTOOLS_CIRCLECENTREMARKER
 END
 
+// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: Added experimental toolbar
+IDR_EXPERIMENTAL TOOLBAR 24, 24
+BEGIN
+    BUTTON      ID_EXP01
+    BUTTON      ID_EXP02
+    BUTTON      ID_EXP03
+    BUTTON      ID_EXP04
+    BUTTON      ID_EXP05
+END
+// Esp_Mod_Experimental_Toolbar_4_10_2025_End
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1746,6 +1761,13 @@ BEGIN
     ID_INDC_BC2             "BC              "
     ID_INDICATOR_TS2        "TS               "
 END
+
+// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: Added for experimental features
+STRINGTABLE
+BEGIN
+    IDR_EXPERIMENTAL        "Experimental"
+END
+// Esp_Mod_Experimental_Toolbar_4_10_2025_End
 
 STRINGTABLE
 BEGIN
