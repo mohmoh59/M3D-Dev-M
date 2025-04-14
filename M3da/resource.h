@@ -76,8 +76,9 @@
 #define IDD_PCOMPEDIT                   356
 #define IDD_GRAPH                       361
 #define IDR_QFILTER                     363
-// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: defined experimental toolbar
+// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: added experimental definations
 #define IDR_EXPERIMENTAL                374
+#define IDS_EXPERIMENTAL                375
 // Esp_Mod_Experimental_Toolbar_4_10_2025_End
 #define IDC_EDIT1                       1000
 #define IDC_EDIT2                       1001
@@ -832,12 +833,18 @@
 #define ID_VIEW_TOGGLEON33455           33455
 #define ID_LOADSBC_CREATEGRAV2          33456
 #define ID_BUTTON33456                  33456
-// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: Added for the new experimental features
+// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: Added Experimental menu items definitions
 #define ID_EXP01                        33457
 #define ID_EXP02                        33458
 #define ID_EXP03                        33459
 #define ID_EXP04                        33460
 #define ID_EXP05                        33461
+#define ID_EXPERIMENTAL_EXP1            33462
+#define ID_EXPERIMENTAL_EXP3            33463
+#define ID_EXPERIMENTAL_EXP4            33464
+#define ID_EXPERIMENTAL_EXP5            33465
+#define ID_EXPERIMENTAL_EXP6            33466
+#define ID_EXPERIMENTAL_EXP2            33467
 // Esp_Mod_Experimental_Toolbar_4_10_2025_End
 
 // Next default values for new objects

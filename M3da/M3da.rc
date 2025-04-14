@@ -849,6 +849,18 @@ BEGIN
         MENUITEM "Graph Response Data",         ID_POST_GRAPHRESPONSEDATA
         MENUITEM "Delete All Results Sets",     ID_POST_DELETEALLRESULTSSETS
     END
+	
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_Start
+	POPUP "Experimental"
+    BEGIN
+        MENUITEM "EXP 1",                       ID_EXPERIMENTAL_EXP1
+        MENUITEM "EXP 2",                       ID_EXPERIMENTAL_EXP2
+        MENUITEM "EXP 3",                       ID_EXPERIMENTAL_EXP3
+        MENUITEM "EXP 4",                       ID_EXPERIMENTAL_EXP4
+        MENUITEM "EXP 5",                       ID_EXPERIMENTAL_EXP5
+    END
+	// Esp_Mod_Experimental_Toolbar_4_10_2025_End
+	
     POPUP "&Help"
     BEGIN
         MENUITEM "&About M3D",                  ID_APP_ABOUT
@@ -1766,6 +1778,7 @@ END
 STRINGTABLE
 BEGIN
     IDR_EXPERIMENTAL        "Experimental"
+	IDS_EXPERIMENTAL        "Experimental"
 END
 // Esp_Mod_Experimental_Toolbar_4_10_2025_End
 

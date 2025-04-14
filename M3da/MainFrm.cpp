@@ -246,7 +246,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: added experimental toolbar
 	CString  strToolBarName10;
-	bNameValid = strToolBarName10.LoadString(IDS_POST);
+	bNameValid = strToolBarName10.LoadString(IDS_EXPERIMENTAL);
 	//ASSERT(bNameValid);
 	m_EXP.SetWindowText("Experimental");
 	// Esp_Mod_Experimental_Toolbar_4_10_2025_Start: END
