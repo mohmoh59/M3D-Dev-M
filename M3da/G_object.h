@@ -1436,7 +1436,7 @@ public:
 	CEdit Ed_Title;
 	CEdit Ed_ID;
 	CEdit* eEdit = NULL;
-	int m_iItemBeingEdited;
+	int m_iItemBeingEdited = -1;
 	int iNo = 0;
 	int iNo2 = 0;
 	BOOL bDel = FALSE;
