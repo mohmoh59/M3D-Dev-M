@@ -10,9 +10,9 @@
 #include "M3daDoc.h"
 #include "M3daView.h"
 
-//Esp_Config_File_Mod_Start
+//Esp_Mod_Config_File_Mod_Start
 #include "GLOBAL_VARS.h"
-//Esp_Config_File_Mod_End
+//Esp_Mod_Config_File_Mod_End
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -58,7 +58,7 @@ const GUID CDECL BASED_CODE _tlid =
 const WORD _wVerMajor = 1;
 const WORD _wVerMinor = 0;
 
-//Esp_Config_File_Mod_Start
+//Esp_Mod_Config_File_Mod_Start
 
 // Global variables for configuration settings
 void CM3daApp::LoadConfiguration()
@@ -218,7 +218,7 @@ void CM3daApp::LoadConfiguration()
 	    AfxMessageBox(_T("Failed to open config.txt."));
     }
 }
-//Esp_Config_File_Mod_End
+//Esp_Mod_Config_File_Mod_End
 
 
 
@@ -266,7 +266,7 @@ BOOL CM3daApp::InitInstance()
 	theApp.GetTooltipManager()->SetTooltipParams(AFX_TOOLTIP_TYPE_ALL,
 		RUNTIME_CLASS(CMFCToolTipCtrl), &ttParams);
 
-	////Esp_Config_File_Mod_Start//
+	////Esp_Mod_Config_File_Mod_Start//
 	// Check if "config.txt" exists in the working directory
 	CFileFind finder;
 	if (finder.FindFile(_T("config.txt")))
@@ -277,7 +277,7 @@ BOOL CM3daApp::InitInstance()
 	{
 		// TODO: If file no found, for example, set default values and make config.txt based on it
 	}
-	////Esp_Config_File_Mod_End//
+	////Esp_Mod_Config_File_Mod_End//
 
 
 
