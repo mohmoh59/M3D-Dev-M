@@ -755,6 +755,11 @@ BEGIN
     BEGIN
         MENUITEM "Isotropic",                   ID_MATERIAL_ISENTROPIC
         MENUITEM "2D Orthotropic",              ID_MATERIAL_ORTHOTROPIC
+        //Esp_Mod_Menu_Start: 4/18/2025
+        MENUITEM SEPARATOR
+        MENUITEM "List a Material by ID",       ID_LIST_MATERIAL
+        MENUITEM "List All Material IDs",       ID_LIST_ALLMATERIALS
+        //Esp_Mod_Menu_End
     END
     POPUP "Properties"
     BEGIN
@@ -778,6 +783,13 @@ BEGIN
         MENUITEM "PBUSH",                       ID_PROPERTY_PBUSH
         MENUITEM SEPARATOR
         MENUITEM "Change Element Prop ID",      ID_ELEMENTMODIFIY_PID
+
+        //Esp_Mod_Menu_Start: 4/18/2025
+        MENUITEM SEPARATOR
+        MENUITEM "List a Property by ID", ID_LIST_PROPERTY
+        MENUITEM "List All Property IDs", ID_LIST_ALLPROPERTIES
+        //Esp_Mod_Menu_End
+
     END
     POPUP "LoadsBC"
     BEGIN
