@@ -58257,7 +58257,7 @@ CEntEditDialog::CEntEditDialog()
 	pEnt = NULL;
 	pO = NULL;
 	PT = NULL;
-	m_iItemBeingEdited = 1;
+	m_iItemBeingEdited = -1;
 	eEdit = NULL;
 	iNoLayers = 0;
 	hdcOld = wglGetCurrentDC();
