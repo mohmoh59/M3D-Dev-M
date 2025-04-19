@@ -7847,7 +7847,8 @@ if (iStat == 1)
 }
 if (iStat == 2)
 {
-  outtext2("// ENTER NO IN U and V directions (eg 3,4)");
+	//Esp_Mod: Prior example showed a comma, but a space is expected
+	outtext2("// ENTER NO IN U and V directions (Example '3 4')");
   SetFocus();
   iResumePos=3;
   iCancelPos=100;
@@ -7957,7 +7958,8 @@ if (iStat == 1)
 }
 if (iStat == 2)
 {
-  outtext2("// ENTER NO IN U and V directions (eg 3,4)");
+  //Esp_Mod: Prior example showed a comma, but a space is expected
+	outtext2("// ENTER NO IN U and V directions  (Example '3 4')");
   SetFocus();
   iResumePos=3;
   iCancelPos=100;
@@ -14190,7 +14192,7 @@ int zMMAT1_Mnu::DoMenu(CString CInMsg, CPoint Pt)
       if (dV<0)
       {
         iStat = 6;
-        outtext1("ERROR: Invalid Poison's Ratio.");
+        outtext1("ERROR: Invalid Poisson's Ratio.");
         DoMenu(CInMsg, Pt);
       }
       else
