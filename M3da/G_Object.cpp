@@ -40252,7 +40252,7 @@ int MAT1::GetVarHeaders(CString sVar[])
 	sVar[0] = "File No";
 	sVar[1] = "Young Modulus (E)";
 	sVar[2] = "Shear Modulus (G)";
-	sVar[3] = "Poisions Ratio )NU)";
+	sVar[3] = "Poisson's Ratio (NU)";
 	sVar[4] = "Density (RHO)";
 	sVar[5] = "Coeff Thermal Expansion (CTE)";
 	sVar[6] = "Reference Temperatue (TREF)";
@@ -40633,7 +40633,7 @@ int MAT8::GetVarHeaders(CString sVar[])
 	sVar[0] = "File No";
 	sVar[1] = "Young Modulus longitudinal (E1)";
 	sVar[2] = "Young Modulus lateral (E2)";
-	sVar[3] = "Poisions ratio (NU12)";
+	sVar[3] = "Poisson's ratio (NU12)";
 	sVar[4] = "In-plane shear modulus(G12)";
 	sVar[5] = "Transverse shear modulus 1-Z plane.(G1Z)";
 	sVar[6] = "Transverse shear modulus 2-Z plane.(G2Z)";
