@@ -8336,7 +8336,8 @@ if (iStat == 1)
 }
 if (iStat == 2)
 {
-  outtext2("// PICK CURVES");
+  //Esp_Mod: Added limititation in description
+  outtext2("// PICK CURVES - ONE INTERNAL CURVE ALLOWED PER OPERATION");
   cDBase->FILTER.Clear();
   cDBase->FILTER.SetFilter(7);
   iStat = 3;

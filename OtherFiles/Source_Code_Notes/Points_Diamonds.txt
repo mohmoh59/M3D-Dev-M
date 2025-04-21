@@ -1,0 +1,62 @@
+There was an attempt to make point show as circles and nodes as diamonds. However, this was unsuccessful.
+
+NOTES:I tracked the problem of point and node and found that application regenerations the display in several cases where it bakes the objects on viewport.
+For the issue related to label rendering back of the node, the list of objects that refered depends on their creation time, it seams there is no priority of rendering.
+Every modification we do could lead to more issues.
+
+-----------DIAMOND ATTEMPT----------
+
+			Selectable = 1;
+			glColor3fv(cols[GetCol()]);
+			glPointSize(gND_SIZE);
+			if ((iDspFlgs & DSP_NODES_ASK) > 0) {
+				// MODIFICATION: Draw diamond, fixed the size issue
+				float rad = (gND_SIZE/100);
+				C3dMatrix matrix = tOrient.RetrieveMat();
+				float xt = matrix.m_00 * x + matrix.m_01 * y + matrix.m_02 * z;
+				float yt = matrix.m_10 * x + matrix.m_11 * y + matrix.m_12 * z;
+
+				glPushMatrix();
+				glLoadIdentity();
+				glBegin(GL_POLYGON);
+				glVertex2f((float)xt, (float)yt + rad);
+				glVertex2f((float)xt + rad, (float)yt);
+				glVertex2f((float)xt, (float)yt - rad);
+				glVertex2f((float)xt - rad, (float)yt);
+				glEnd();
+				glPopMatrix();
+				// MODIFICATION: END
+
+
+-----------POINT ATTEMPT-------------
+
+void CvPt_Object::OglDrawW(int iDspFlgs, double dS1, double dS2)
+{
+    char sLab[20];
+    if ((iDspFlgs & DSP_POINTS) > 0)
+    {
+        Selectable = 1;
+        glColor3fv(cols[GetCol()]);
+
+    	// MODIFICATION: Draw circle, fixed size issue
+        float radius = gPT_SIZE / 100;
+		C3dMatrix matrix = tOrient.RetrieveMat();
+		float xt = matrix.m_00 * Pt_Point->x + matrix.m_01 * Pt_Point->y + matrix.m_02 * Pt_Point->z;
+		float yt = matrix.m_10 * Pt_Point->x + matrix.m_11 * Pt_Point->y + matrix.m_12 * Pt_Point->z;
+
+        int numSegments = 20;
+
+		glPushMatrix();
+		glLoadIdentity();
+        glBegin(GL_TRIANGLE_FAN);
+        glVertex2f(xt, yt);
+        for (int i = 0; i <= numSegments; i++)
+        {
+            float theta = 2.0f * 3.1415926f * float(i) / float(numSegments);
+            float dx = radius * cosf(theta);
+            float dy = radius * sinf(theta);
+            glVertex2f(xt + dx, yt + dy);
+        }
+		glEnd();
+		glPopMatrix();
+    	// MODIFICATION: END

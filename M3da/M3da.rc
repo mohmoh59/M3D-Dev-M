@@ -1438,7 +1438,7 @@ STRINGTABLE
 BEGIN
     ID_EDIT_DES             "De-select all objects."
     ID_VIEW_DISPLAYALL      "Display all objects that are SET TO VISIBLE. \n[Draw] Display All (If Set to Visible)\n"
-    ID_EDIT_INFORMATION     "Infomation\n[Edit] Infomation"
+    ID_EDIT_INFORMATION     "Information\n[Edit] Information"
     ID_VIEW_DISPLAYALL2     "Display all objects."
     ID_EDIT_INFORMATION2    "Show information for selected objects."
     ID_EDIT_KEYIN2          "Type in a translation for a command."
@@ -1577,9 +1577,9 @@ BEGIN
                             "Select elements with a specific material ID."
     MappedMesh              "Mapped Mesh"
     ID_MESH_MAPPEDSURFACEMESH 
-                            "Create mesh of QUADs on surface\n[FE] QUAD Mesh on Surface"
+                            "Mapped Mesh of QUADs on a LOFTED surface (not appropriate for a trimmed surface). Surface must have 4 curves and no internal loops.\n[FE] QUAD Mesh - Mapped"
     ID_MESH_MAPPEDSURFACEMESH2 "Create a mapped quad mesh on surface."
-    ID_MESH_MAPPEDTRIMESH   "Create mesh of TRIs on surface\n[FE] TRI Mesh on Surface"
+    ID_MESH_MAPPEDTRIMESH   "Mapped Mesh of TRIs on a LOFTED surface (not appropriate for a trimmed surface). Surface must have 4 curves and no internal loops.\n[FE] TRI Mesh - Mapped"
     ID_MESH_MAPPEDTRIMESH2  "Create a mapped tri mesh on surface."
     ID_CHECKS_COINCIDENTNODES "Check current mesh for coincident nodes."
     ID_MESH_SWEEPELEMENTS   "Sweep elements\n[FE] Sweep Elements"
@@ -1966,7 +1966,7 @@ BEGIN
     ID_BUTTON33307          "List Nodal Results Values"
     ID_POST_CLEARRESULTSVECTORS2 "Remove Results Vectors from Display"
     ID_MESH_ADVANCINGFRONTSURFACEMESHTRI 
-                            "Create a TRI mesh from selected surfaces, uses the advancing front method\n[FE] Triangulate Surface"
+                            "Create a TRI mesh using the advancing front method. For more general surfaces (may be trimmed and have internal cutouts).\n[FE] TRI Mesh - Advancing Front"
     ID_MESH_ADVANCINGFRONTSURFACEMESHTRI2 
                             "Advancing Front Surface Mesh on Surface"
 END
