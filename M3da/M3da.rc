@@ -1661,7 +1661,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_SOLVER_CREATERESTRAINT "Create a nodal restraint\n[BC] Nodal Restraint"
+    ID_SOLVER_CREATERESTRAINT "A '1' indicates the DOF is restrained. A space skips the DOF. For example ' 1 1' sets DOF 2 and 3 to zero for TRANS. Does not support enforced displacements. Manually modify deck for enforced displacements. \n[BC] Nodal Restraint"
     ID_SURFACESON_SURFACECURVES "Display curves on surfaces"
     ID_SURFACES_SURFACESON  "Toggle display of surfaces\n[Draw] Display Surfaces"
     ID_SURFACES_SURFACESON2 "Toggle display of points\n[Draw] Toggle Point Visibility"
@@ -1904,9 +1904,9 @@ BEGIN
     ID_MESH_SHELLCOATSOLIDELEMENTS2 "Shell coat solid element free faces."
     ID_MESH_QUADTOTRI       "Split QUADs into TRIs\n[FE] QUAD to TRI"
     ID_CHECKS_FREEEDGEDISPLAY2 "Orient shell normals to be consistent."
-    ID_ANALYSIS_LOADSETS    "Create a load set\n[BC] Load Set"
-    ID_MESH_QUADTOTRI2      "TODO\nTODO"
-    ID_LOADSBC_BCSETS2      "TODO\nTODO"
+    ID_ANALYSIS_LOADSETS    "Create a Load Set\n[BC] Load Set"
+    ID_MESH_QUADTOTRI2      "Create a BC Set\n[BC] BC Sets"
+    ID_LOADSBC_BCSETS2      "Create a Temperature Set\n[BC] Temperature Sets"
     ID_LOADSBC_TEMPERATURESETS2 "Create a temperature set."
     ID_LOADSBC_CREATESTRUCTURALTEMP 
                             "Create a structural temperature load on element\n[BC] Temperature"
