@@ -13799,6 +13799,15 @@ void E_Object2R::OglDraw(int iDspFlgs, double dS1, double dS2)
 					glDisable(GL_BLEND);
 				}
 			}
+			else
+			{
+				glLineWidth(gEL_SIZE);
+				glColor3fv(cols[iColour]);
+				glBegin(GL_LINES);
+					glVertex3f((float)(pVertex[0]->Pt_Point->x + OffA.x + d[0].x), (float)(pVertex[0]->Pt_Point->y + OffA.y + d[0].y), (float)(pVertex[0]->Pt_Point->z + OffA.z + d[0].z));
+					glVertex3f((float)(pVertex[1]->Pt_Point->x + OffB.x + d[1].x), (float)(pVertex[1]->Pt_Point->y + OffB.y + d[1].y), (float)(pVertex[1]->Pt_Point->z + OffB.z + d[1].z));
+				glEnd();
+			}
 		}
 		else
 		{
