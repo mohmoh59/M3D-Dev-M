@@ -23,6 +23,35 @@ const double Pi = 3.1415926535;
 PropTable* PropsT = new PropTable();
 MatTable* MatT = new MatTable();
 
+////Esp_Mod_Labels_4_27_2025_Start: Defined New Font System
+GLuint g_arialBase = 0;
+const GLuint g_firstChar = 32;
+const GLuint g_charCount = 96;
+
+void InitFont(HDC hdc)
+{
+	HFONT hFont = CreateFont(
+		-16,    // height = 16px <------------------- Font Size
+		0,0,0,  // width, escapement, orientation
+		FW_NORMAL,
+		FALSE,FALSE,FALSE, // italic, underline, strikeout
+		ANSI_CHARSET,
+		OUT_TT_PRECIS,
+		CLIP_DEFAULT_PRECIS,
+		ANTIALIASED_QUALITY,
+		FF_DONTCARE|DEFAULT_PITCH,
+		LPCSTR("Arial") // <----------------- Font
+	);
+	HFONT hOld = (HFONT)SelectObject(hdc, hFont);
+
+	g_arialBase = glGenLists(g_charCount);
+	wglUseFontBitmaps(hdc, g_firstChar, g_charCount, g_arialBase);
+
+	SelectObject(hdc, hOld);
+	DeleteObject(hFont);
+}
+////Esp_Mod_Labels_4_27_2025_End
+
 
 float CPal[12][3] = { {0.00f, 0.00f, 1.00f},    //151 Blue
 {0.00f, 0.33f, 1.00f},    //152 Grey Blue
@@ -1267,13 +1296,13 @@ void DBase::Serialize(CArchive& ar)
 			ar << pCurrentPart->iLabel;
 		else
 			ar << -1;
-		//Workplane 
+		//Workplane
 		DB_Obj[0]->Serialize(ar, iVER);
 		for (i = 1; i < DB_ObjectCount; i++)
 		{
 			ar << DB_Obj[i]->iObjType;
 			ar << DB_Obj[i]->iType;
-			DB_Obj[i]->Serialize(ar, iVER);       //all 
+			DB_Obj[i]->Serialize(ar, iVER);       //all
 		}
 		SaveGps(ar);
 	}
@@ -1381,7 +1410,7 @@ void DBase::Serialize(CArchive& ar)
 			ar >> iCurMesh;
 			ar >> iCurPart;
 		}
-		//Workplane 
+		//Workplane
 		if (iVER <= -65)
 		{
 			WP_Object* pWP = (WP_Object*)DB_Obj[0];
@@ -1571,7 +1600,7 @@ void DBase::Serialize(CArchive& ar)
 		//iPtLabCnt=GetMaxPtLabCnt();
 		sprintf_s(S1, "%s%i", "Maximum Point Label  : ", iPtLabCnt);
 		outtext1(S1);
-		//iCVLabCnt=GetMaxCVLabCnt();	
+		//iCVLabCnt=GetMaxCVLabCnt();
 		sprintf_s(S1, "%s%i", "Maximum Curve Label  : ", iCVLabCnt);
 		outtext1(S1);
 		//iSFLabCnt=GetMaxSFLabCnt();
@@ -2031,7 +2060,7 @@ C3dVector DBase::CartToCyl(C3dVector InPt)
 void DBase::AddNode(C3dVector InPt, int iLab, int i2, int i3, int iC, int iDef, int iOut)
 {
 
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	Node* cAddedNode;
 	if (iLab == -1)
 	{
@@ -3110,7 +3139,7 @@ void DBase::AdvancingTet(cLinkedList* fEls, cLinkedList* fNodes, double dG)
 		//NO EASY NEARBY NODE SO LETS CREATE A NEW ONE
 		if (!bIsTet)
 		{
-			//outtext1("Failed to find existing node creating new one"); 
+			//outtext1("Failed to find existing node creating new one");
 			nNode = pCurrentMesh->AddNode(vC, pCurrentMesh->iNodeLab, 0, 0, 50, 0, 0);
 			pCurrentMesh->iNodeLab++;
 			//Dsp_Add(nNode);
@@ -3285,7 +3314,7 @@ BOOL DBase::IsBaseIntersect(C3dVector vIntPt, C3dVector vFN1, C3dVector vFN2, C3
 
 
 // **********************************************************************
-//TET PENTRATION TEST 
+//TET PENTRATION TEST
 //Check all faces of tet with all faces in pCandidateFaces
 // **********************************************************************
 BOOL DBase::DoesTETPenetrateFace(E_Object34* pTET, E_Object3* pFace, double dTol)
@@ -3602,7 +3631,7 @@ E_Object3* DBase::DoesFaceOverLap(E_Object3* pF1, ObjList* pCandidateFaces, doub
 #ifdef _DEBUG
 	CMemoryState oldMemState, newMemState, diffMemState;
 	oldMemState.Checkpoint();
-#endif 
+#endif
 	double dTD = 10;
 	double dAng;
 	C3dVector vBll;
@@ -3824,7 +3853,7 @@ int DBase::intersect2DUV_2Segments(C2dVector S1a, C2dVector S1b,
 	double tI = u.Cross(w) / D;
 	if (tI < 0 - SMALL_NUM || tI > 1 + SMALL_NUM)                // no intersect with S2
 		return 0;
-	// compute S1 intersect point         
+	// compute S1 intersect point
 	I0->x = S1a.x + sI * u.x;
 	I0->y = S1a.y + sI * u.y;
 	return 1;
@@ -3864,7 +3893,7 @@ int DBase::intersect2D_2Segments(C3dVector S1a, C3dVector S1b,
 	double tI = perp2D(u, w) / D;
 	if (tI < 0 + SMALL_NUM || tI > 1 - SMALL_NUM)                // no intersect with S2
 		return 0;
-	// compute S1 intersect point         
+	// compute S1 intersect point
 	I0->x = S1a.x + sI * u.x;
 	I0->y = S1a.y + sI * u.y;
 	I0->z = S1a.z + sI * u.z;
@@ -4504,7 +4533,7 @@ Node* DBase::GetBestNode(ObjList* pFrom, E_Object3* pFace)
 	//Report diagnostics
 	//char S1[200]="";
 	//sprintf_s(S1,"No off conflicting nodes: %i %i",pCand->iNo,pFace->iLabel);
-	//outtext1(S1); 
+	//outtext1(S1);
 
 	delete (pCand);
 	return(pRet);
@@ -5260,7 +5289,7 @@ void DBase::CpNodes(ObjList* Nodes, C3dVector vTrVect, int iNoOfTimes)
 	int i;
 	int j;
 
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	C3dVector vTrans;
 	C3dVector vCart;
 	WP_Object* pWPlane = (WP_Object*)DB_Obj[iWP];
@@ -5476,7 +5505,7 @@ void DBase::Reflect(ObjList* Objs, C3dVector p1, C3dVector p2, C3dVector p3)
 			tForm *= ZRef;
 			tForm *= Back;
 			//for (i=0;i<Objs->iNo;i++)
-			//{     
+			//{
 			//  Objs->Objs[i]->Translate(-p1);
 			//  Objs->Objs[i]->Transform(tForm);
 		   //   Objs->Objs[i]->Translate(p1);
@@ -5792,7 +5821,7 @@ void DBase::BetNodes(ObjList* Nodes, ObjList* Nodes2, int iNoOfTimes)
 	int i;
 	int j;
 
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	C3dVector vTrans;
 	C3dVector vCart;
 	WP_Object* pWPlane = (WP_Object*)DB_Obj[iWP];
@@ -6102,7 +6131,7 @@ void DBase::ElsBetNodes(ObjList* Nodes, ObjList* Nodes2, int iNoOfTimes)
 	int i;
 	int j;
 
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	C3dVector vTrans;
 	C3dVector vCart;
 	WP_Object* pWPlane = (WP_Object*)DB_Obj[iWP];
@@ -6199,7 +6228,7 @@ NLine* DBase::AddLNbyXYZ(double x1, double y1, double z1, double x2, double y2, 
 void DBase::AddDragLN(C3dVector v1)
 {
 	NLine* LnIn = new NLine();
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	if (pDragObj != nullptr)
 		delete(pDragObj);
 	LnIn->Create(v1, v1, -1, NULL);
@@ -6219,7 +6248,7 @@ void DBase::AddDragDIMA(C3dVector v1, C3dVector v2)
 	vDir -= vO;
 
 	DIM* pDIM = new DIMA(v1, v2, v2, vO, vN, vDir, gDIM_SCALE, gDIM_SIZE, -1);
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	if (pDragObj != nullptr)
 		delete(pDragObj);
 	pDragObj = (DIM*)pDIM;
@@ -6238,7 +6267,7 @@ void DBase::AddDragDIMANG(C3dVector vVert, C3dVector v1, C3dVector v2)
 	vDir -= vO;
 
 	DIM* pDIM = new DIMANG(vVert, v1, v2, v2, vO, vN, vDir, gDIM_SIZE, -1);
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	if (pDragObj != nullptr)
 		delete(pDragObj);
 	pDragObj = (DIM*)pDIM;
@@ -6257,7 +6286,7 @@ void DBase::AddDragDIMH(C3dVector v1, C3dVector v2)
 	vDir -= vO;
 
 	DIM* pDIM = new DIMH(v1, v2, v2, vO, vN, vDir, gDIM_SCALE, gDIM_SIZE, -1);
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	if (pDragObj != nullptr)
 		delete(pDragObj);
 	pDragObj = (DIM*)pDIM;
@@ -6276,7 +6305,7 @@ void DBase::AddDragDIMV(C3dVector v1, C3dVector v2)
 	vDir -= vO;
 
 	DIM* pDIM = new DIMV(v1, v2, v2, vO, vN, vDir, gDIM_SCALE, gDIM_SIZE, -1);
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	if (pDragObj != nullptr)
 		delete(pDragObj);
 	pDragObj = (DIM*)pDIM;
@@ -6296,7 +6325,7 @@ void DBase::AddDragDIML(CString sText, C3dVector v1)
 	vDir -= vO;
 
 	DIM* pDIM = new DIML(sText, v1, v1, v1, vO, vN, vDir, gDIM_SIZE, -1);
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	if (pDragObj != nullptr)
 		delete(pDragObj);
 	pDragObj = (DIM*)pDIM;
@@ -6316,7 +6345,7 @@ void DBase::AddDragDIMR(NCircle* pC, C3dVector v1)
 	C3dVector vC;
 	vC = pC->Get_Centroid();
 	DIM* pDIM = new DIMR(pC->dRadius, vC, vC, vC, vO, vN, vDir, gDIM_SCALE, gDIM_SIZE, -1);
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	if (pDragObj != nullptr)
 		delete(pDragObj);
 	pDragObj = (DIM*)pDIM;
@@ -6355,7 +6384,7 @@ void DBase::AddCirCL(NCircle* pC)
 	pCL->iLnThk = 2;
 	AddObj(pCL);
 
-	//X 
+	//X
 	p1X = vDirX;
 	p2X = vDirX;
 	p1X *= 0.5 * dR;
@@ -6412,7 +6441,7 @@ void DBase::AddDragDIMD(NCircle* pC, C3dVector v1)
 	C3dVector vC;
 	vC = pC->Get_Centroid();
 	DIM* pDIM = new DIMD(pC->dRadius, vC, vC, vC, vO, vN, vDir, gDIM_SCALE, gDIM_SIZE, -1);
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	if (pDragObj != nullptr)
 		delete(pDragObj);
 	pDragObj = (DIM*)pDIM;
@@ -6422,7 +6451,7 @@ void DBase::AddDragDIMD(NCircle* pC, C3dVector v1)
 NLine* DBase::AddLNfromDrag(C3dVector v2)
 {
 
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	NLine* LnIn = nullptr;
 	C3dMatrix mTran;
 	C3dVector vn1, vn2;
@@ -6469,7 +6498,7 @@ DIM* DBase::AddDIMfromDrag(C3dVector v3)
 NLine* DBase::AddLN(C3dVector v1, C3dVector v2, int ilab, BOOL bRedraw)
 {
 
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 
 	NLine* LnIn = new NLine();
 
@@ -6547,7 +6576,7 @@ void DBase::AddRect(C3dVector v1, C3dVector v2, int ilab)
 NSurf* DBase::AddPlainSurf(C3dVector vC, C3dVector vN, C3dVector vR, int ilab, BOOL bRedraw)
 {
 
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	C3dVector v1, v2;
 	v1.Set(vC.x - 10, vC.y - 10, 0);
 	v2.Set(vC.x - 10, vC.y + 10, 0);
@@ -6605,7 +6634,7 @@ NSurf* DBase::AddPlainSurf(C3dVector vC, C3dVector vN, C3dVector vR, int ilab, B
 NSurf* DBase::AddPlainSurf2(C3dMatrix TMat, double XMax, double YMax, double XMin, double YMin, BOOL bRedraw)
 {
 
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	C3dVector v1, v2;
 	double dCX, dCY, dXSP, dYSP, dS;
 	dXSP = (XMax - XMin);
@@ -6659,7 +6688,7 @@ NSurf* DBase::AddPlainSurf2(C3dMatrix TMat, double XMax, double YMax, double XMi
 void DBase::TestSYS()
 {
 
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	C3dMatrix RMat;
 	C3dVector Org;
 	RMat.MakeUnit();
@@ -6687,7 +6716,7 @@ Line_Object* DBase::AddLN2(double x1, double y1, double z1, double x2, double y2
 {
 	CDC* pDC = pTheView->GetDC();
 	SetPen(pDC, 3);
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	C3dVector v1(x1, y1, z1);
 	C3dVector v2(x2, y2, z2);
 	Line_Object* LnIn = new Line_Object();
@@ -7217,7 +7246,7 @@ C3dVector DBase::LnInt2(Line_Object* L1, G_Object* L2)
 
 NCircle* DBase::AddCirCR(C3dVector vNorm, C3dVector vCent, double dR, int ilab)
 {
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	C3dVector vRDir, vX;
 	C3dMatrix mTran;
 	WP_Object* pWPlane = (WP_Object*)DB_Obj[iWP];
@@ -7236,7 +7265,7 @@ NCircle* DBase::AddCirCR(C3dVector vNorm, C3dVector vCent, double dR, int ilab)
 NCircle* DBase::AddArDXF2D(C3dVector vNorm, C3dVector vCent, double dR,
 	double dSA, double dEA, int ilab)
 {
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	C3dVector vC;
 	C3dVector vX;
 	C3dVector vEPt;
@@ -7264,7 +7293,7 @@ NCircle* DBase::AddArDXF2D(C3dVector vNorm, C3dVector vCent, double dR,
 void DBase::AddDragCIR(C3dVector vN, C3dVector v1)
 {
 	NCircle* pCir = new NCircle();
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	if (pDragObj != nullptr)
 		delete(pDragObj);
 	pCir->Create(vN, v1, 0, -1, NULL);
@@ -7564,13 +7593,13 @@ C3dVector DBase::PickPointToGlobal(CPoint Pt)
 }
 
 //***************************************************************************
-//Gets a point picked on the work plane 
+//Gets a point picked on the work plane
 //Noye as the Z ordinate is lost some
 //work hass to be done to get it back
 //***************************************************************************
 C3dVector DBase::PickPointToGlobal2(CPoint Pt)
 {
-	//REALLY DONT LIKE THIS CODE 
+	//REALLY DONT LIKE THIS CODE
 	// USE BI-LIN INTERPOLATION FOR BETTER SOLUTION
 	//JUST GLAD IT WORKS FOR NOW 09/04/2020
 	WP_Object* pWPlane = (WP_Object*)DB_Obj[iWP];
@@ -7646,7 +7675,7 @@ C3dVector DBase::PickPointToGlobal2(CPoint Pt)
 G_Object* DBase::AddRHDCyl(C3dVector vNorm, C3dVector vCent, C3dVector vRef, double dR, int ilab, BOOL bRedraw)
 {
 
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	NCircle* cCir = new NCircle();
 	cCir->Create2(vNorm, vCent, vRef, dR, iCVLabCnt, NULL);
 	iCVLabCnt++;
@@ -7674,7 +7703,7 @@ void DBase::AddCurveFit(int p)
 {
 	int iCnt;
 	C3dVector(pT);
-	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat(); 
+	//C3dMatrix cTransformMat = DB_pGrpWnd->Get3DMat();
 	if (DB_NoInBuff() > 2)
 	{
 		Vec<C4dVector> P;
@@ -7950,7 +7979,7 @@ BOOL DBase::isClockWise(ObjList* Curves)
 
 //**************************************************************
 //Pre: List of curves in chained order
-//Post: Calculate the chain normal return TRUE if an error 
+//Post: Calculate the chain normal return TRUE if an error
 //**************************************************************
 BOOL DBase::ChainNormal(ObjList* Curves, C3dVector& vN)
 {
@@ -8302,7 +8331,7 @@ BOOL DBase::ChainCurves(ObjList* Curves)
 		v1 = c1->GetStartPt();
 		c2->cPts[c2->iNoCPts - 1]->Pt_Point->Set(v1.x, v1.y, v1.z);
 	}
-	
+
 	return(bErr);
 }
 
@@ -8556,7 +8585,7 @@ void DBase::AddSurfBoundIGES(G_Object* pS, ObjList* pCur)
 // pCur ptr to the curves forminf the boundary
 // these can either be in model or paremtric coods were restrictic to model
 // Need to check it could be an External or Internal trim loop
-// Model coordinate curves need to be converted to curves on surface 
+// Model coordinate curves need to be converted to curves on surface
 //*******************************************************************************
 void DBase::AddSurfBoundIGES2(G_Object* pS, ObjList* pCur)
 {
@@ -8687,7 +8716,7 @@ void DBase::AddSurfBound()
 		}
 		else if ((S_Buff[i]->iObjType == 7) && (S_Buff[i]->iType == 3))
 		{
-			//Need to deal with incomplete circles until we have 
+			//Need to deal with incomplete circles until we have
 			//the arbitaru arc
 			NCircle* pC = (NCircle*)S_Buff[i];
 			if ((pC->we == 1.0) && (pC->ws == 0.0))
@@ -8828,7 +8857,7 @@ void DBase::SurfaceTrimLoop(ObjList* Sur, ObjList* Curves2)
 			}
 			else if ((pG->iObjType == 7) && (pG->iType == 3))
 			{
-				//Need to deal with incomplete circles until we have 
+				//Need to deal with incomplete circles until we have
 				//the arbitaru arc
 				NCircle* pC = (NCircle*)pG;
 				if ((pC->we == 1.0) && (pC->ws == 0.0))
@@ -10199,7 +10228,7 @@ void DBase::GenElements2(BOOL bL, ObjList* NF1, ObjList* NF2)
 
 //*********************************************************************************
 // Pre: Valid fronts and resulting element colour
-// Post: Elements generated 
+// Post: Elements generated
 //*********************************************************************************
 void DBase::GenBEamElements(cLinkedList* NDF, int iCOl)
 {
@@ -10604,7 +10633,7 @@ void DBase::SurfUnTrim()
 	{
 		if (S_Buff[iCO]->iObjType == 15)
 		{
-			//sprintf_s(buff, "%s%4i","Meshing Surface : ",S_Buff[iCO]->iLabel ); 
+			//sprintf_s(buff, "%s%4i","Meshing Surface : ",S_Buff[iCO]->iLabel );
 			//outtext1(buff);
 			pS = (NSurf*)S_Buff[iCO];
 			pS->DeleteExtTrimLoop();
@@ -10939,7 +10968,7 @@ void DBase::Solve()
 {
 	//#ifdef _DEBUG
 	//   oldMemState.Checkpoint();
-	//#endif 
+	//#endif
 	if (pCurrentMesh != NULL)
 	{
 		int iC = pCurrentMesh->pSOLS->iCur;
@@ -11400,7 +11429,7 @@ void DBase::Draw(C3dMatrix pM, CDC* pDC, int iDrawmode)
 		}
 	}
 	//Do the highlighting if its a full redraw
-	//or a user forced redraw 
+	//or a user forced redraw
 	if ((iDrawmode == 4) || (iDrawmode == 5))
 	{
 		SetPen(pDC, 6);
@@ -11951,7 +11980,7 @@ int DBase::GetCurEType()
 
 
 //***************************************************
-// Set buffer for incomming points 
+// Set buffer for incomming points
 //***************************************************
 
 int DBase::DB_ActiveBuffSet(int iWhichBuff)
@@ -12110,8 +12139,8 @@ int DBase::GetColourID()
 	}
 
 	//  for (i=0;i<iNoGPs;i++)
-	//  { 
-	//	  Dlg.AddGroup(Groups[i]->Title); 
+	//  {
+	//	  Dlg.AddGroup(Groups[i]->Title);
 	//  }
 	//  Dlg.iGp=iCurGp;
 	Dlg.DoModal();
@@ -12280,7 +12309,7 @@ int DBase::S_BuffAdd(G_Object* cAddObj)
 
 void DBase::SelWGName(CString inName)
 {
-	
+
 }
 
 void DBase::SelAllWGs()
@@ -12649,7 +12678,7 @@ void DBase::MapMesh(double dU, double dV)
 				for (j = 0; j <= iV; j++)
 				{
 					v = pS->GetPt(dU, dV);
-					//AddNode(v, -1,1,1,10,0,0); 
+					//AddNode(v, -1,1,1,10,0,0);
 					Nds(i, j) = pCurrentMesh->AddNode(v, iFNd, 1, 1, 10, 0, 0);
 					Dsp_Add(Nds(i, j));
 					iFNd++;
@@ -12743,7 +12772,7 @@ void DBase::MapMeshTri(double dU, double dV)
 				for (j = 0; j <= iV; j++)
 				{
 					v = pS->GetPt(dU, dV);
-					//AddNode(v, -1,1,1,10,0,0); 
+					//AddNode(v, -1,1,1,10,0,0);
 					Nds(i, j) = pCurrentMesh->AddNode(v, iFNd, 1, 1, 10, 0, 0);
 					Dsp_Add(Nds(i, j));
 					iFNd++;
@@ -13228,19 +13257,19 @@ void DBase::Readdb(FILE* pFile, int Vals[], int& iCnt, int& iKey, int& iRec, CSt
 					iWCnt++;
 				}
 			}
-			else if ((ELTYPE == 33) ||   //CQUAD4 
+			else if ((ELTYPE == 33) ||   //CQUAD4
 				(ELTYPE == 74) ||   //CTRIA3
 				(ELTYPE == 95) ||   //COMP STRESS CQUAD
 				(ELTYPE == 97) ||   //COMP STRESS CTRAI
-				(ELTYPE == 102) ||   //CBUSH 
-				(ELTYPE == 90) ||   //CTRIA3 
-				(ELTYPE == 88) ||   //CBUSH 
-				(ELTYPE == 34) ||   //CBAR 
+				(ELTYPE == 102) ||   //CBUSH
+				(ELTYPE == 90) ||   //CTRIA3
+				(ELTYPE == 88) ||   //CBUSH
+				(ELTYPE == 34) ||   //CBAR
 				(ELTYPE == 39) ||   //CTETRA LIN
 				(ELTYPE == 67) ||   //CHEXA LIN
 				(ELTYPE == 68) ||   //CPENTA LIN
 				(ELTYPE == 1) ||   //CROD
-				(ELTYPE == 2) ||   //CBEAM 
+				(ELTYPE == 2) ||   //CBEAM
 				(ELTYPE == 999))
 			{
 				while (iWCnt != iNoW)
@@ -13618,7 +13647,7 @@ void DBase::S_ImportOp2(FILE* pFile, CString inName, int iT)
 
 		fread(&sT, 8, 1, pFile);
 		//iWord = *(int*) &sWord;
-		//fWord = *(float*) &sWord; 
+		//fWord = *(float*) &sWord;
 	}
 	free(DataB);
 }
@@ -13689,7 +13718,7 @@ void DBase::S_ImportGroups(FILE* pFile)
 					pO->iColour = iCol;
 					Groups[iCurGp]->Add(pO);
 				}
-				//outtext1(s8); 
+				//outtext1(s8);
 
 			}
 			else if (sdl.Find("NODE") == 0)
@@ -13704,7 +13733,7 @@ void DBase::S_ImportGroups(FILE* pFile)
 					pO->iColour = iCol;
 					Groups[iCurGp]->Add(pO);
 				}
-				//outtext1(s8); 
+				//outtext1(s8);
 			}
 			if (feof(pFile))
 			{
@@ -13905,7 +13934,7 @@ G_Object* DBase::GetBasicIGESType(int iD, IgesD(&DirEnt)[100000], IgesP* PDat)
 		}
 		else if (DirEnt[iD].itype == 126)
 		{
-			//Iges BCurve Curve 
+			//Iges BCurve Curve
 			if (DirEnt[iD].iFrmNo == 0)
 			{
 				pRet = BCurveIges(DirEnt[iD], sParam);
@@ -13914,7 +13943,7 @@ G_Object* DBase::GetBasicIGESType(int iD, IgesD(&DirEnt)[100000], IgesP* PDat)
 		}
 		else if (DirEnt[iD].itype == 112)
 		{
-			//Iges paramtric spline Curve 
+			//Iges paramtric spline Curve
 			if (DirEnt[iD].iFrmNo == 0)
 			{
 				pRet = SplineCurveIges(DirEnt[iD], sParam);
@@ -14525,7 +14554,7 @@ BOOL DBase::CurvesToSurface508(int iS, IgesP* PDat, ObjList* Curves, ObjList* Pa
 		{
 			//IF the surface is closed in U we need to find a curve in U to start chain
 			//or we ay find a projection problem where a min point can be 0 or 1
-			//we can check the curve in the closed direction for the 0-1 problem buy 
+			//we can check the curve in the closed direction for the 0-1 problem buy
 			//looking at the value as say 0.1 or 0.99 to see if they agree
 			iSt = FindCurveInU(Curves, pSurf);
 		}
@@ -15047,7 +15076,7 @@ void DBase::ReGen()
 	pTheView->ReleaseDC(pDC);
 }
 //*****************************************************
-// INIT OLG 
+// INIT OLG
 //*****************************************************
 void DBase::InitOGL(CDC* pDC)
 {
@@ -15060,8 +15089,13 @@ void DBase::InitOGL(CDC* pDC)
 	//n = ::GetPixelFormat(m_pDC->GetSafeHdc());
 	 //   ::DescribePixelFormat(m_pDC->GetSafeHdc(), n, sizeof(pfd), &pfd);
 	//CreateRGBPalette();
-	hrc = wglCreateContext(m_pDC->GetSafeHdc());
-	wglMakeCurrent(m_pDC->GetSafeHdc(), hrc);
+	////Esp_Mod_Labels_4_27_2025_Start: Added initialization of new font system
+	HDC hdc = m_pDC->GetSafeHdc();
+	hrc = wglCreateContext(hdc);
+	wglMakeCurrent(hdc, hrc);
+
+	InitFont(hdc);
+	////Esp_Mod_Labels_4_27_2025_End
 
 	CreateTexture(bRevColBar);
 	//iOGLList=-1;
@@ -15069,18 +15103,20 @@ void DBase::InitOGL(CDC* pDC)
 
 void DBase::InvalidateOGL()
 {
-	GLenum aa;
-	if ((DspFlags & DSP_ANIMATION) > 0)
-	{
-		if (iOGLList != -1)
-		{
-			glDeleteLists(iOGL_Start, iOGL_NoOff);
-			aa = glGetError();
-		}
-		iOGLList = -1;
-		iOGL_Start = -1;
-		iOGL_NoOff = -1;
-	}
+	
+	 GLenum aa;
+	 if ((DspFlags & DSP_ANIMATION) > 0)
+	 {
+	 	if (iOGLList != -1)
+	 	{
+	 		glDeleteLists(iOGL_Start, iOGL_NoOff);
+	 		aa = glGetError();
+	 	}
+	 	iOGLList = -1;
+	 	iOGL_Start = -1;
+	 	iOGL_NoOff = -1;
+	 }
+	
 }
 
 void DBase::SetDrawType(int iType)
@@ -16445,7 +16481,7 @@ void DBase::Trim(CPoint PNear1, CPoint PNear2) {
 				InvalidateOGL();
 				ReDraw();
 			}
-			else 
+			else
 			{ // Two curves, possible multiple intersections
 				int iNoInts = 0;
 				C3dVector vInts[10];
@@ -17966,7 +18002,7 @@ E_Object* NASReadRBAR(NasCard& oC,
 	CMA = oC.GetField(5);
 	CMA = oC.GetField(6);
 	ALPHA = atofNAS(oC.GetField(7));
-	//sDof=L1->Mid(24,8); 
+	//sDof=L1->Mid(24,8);
 
 	//iNDID= atoi(L1->Mid(iFN*8,8));
 
@@ -19095,11 +19131,11 @@ BOOL DBase::isSupportedNASCYS(CString sKwrd)
 		brc = TRUE;
 	else if ((s8 == "MAT8    ") || (s8 == "MAT8*   "))
 		brc = TRUE;
-	//else if ((s8 == "CORD1R  ") || (s8 == "CORD1R* ")) 
+	//else if ((s8 == "CORD1R  ") || (s8 == "CORD1R* "))
 	//  brc = TRUE;
-	//else if ((s8 == "CORD1C  ") || (s8 == "CORD1C* ")) 
+	//else if ((s8 == "CORD1C  ") || (s8 == "CORD1C* "))
 	//  brc = TRUE;
-	//else if ((s8 == "CORD1S  ") || (s8 == "CORD1S* ")) 
+	//else if ((s8 == "CORD1S  ") || (s8 == "CORD1S* "))
 	//  brc = TRUE;
 
 	return (brc);
@@ -19343,7 +19379,7 @@ void DBase::ImportNASTRAN_SOL(CString inName, ME_Object* pME) {
 //			}
 //			sLine = datline;
 //			sKeyWrd = "BEGIN BULK";
-//			if ((sLine.Find(sKeyWrd) > -1) && 
+//			if ((sLine.Find(sKeyWrd) > -1) &&
 //				hasNoCharactersBeforeKeyword(sLine, sKeyWrd))
 //			{
 //				bDone = TRUE;
@@ -19387,7 +19423,7 @@ void DBase::ImportNASTRAN_SOL(CString inName, ME_Object* pME) {
 //						}
 //					}
 //				}
-//				else if ((sLine.Find("LOAD") > -1) && 
+//				else if ((sLine.Find("LOAD") > -1) &&
 //					      hasNoCharactersBeforeKeyword(sLine, "LOAD"))
 //				{
 //					iLC = ExtractIntegerFromCString(sLine);
@@ -20946,7 +20982,7 @@ void DBase::RelatedTo(int iType)
 		}
 		else if (S_Buff[j]->pParent != NULL)
 		{
-			S_Buff[j]->pParent->RelTo(S_Buff[j], pObj, iType);       //all 
+			S_Buff[j]->pParent->RelTo(S_Buff[j], pObj, iType);       //all
 		}
 		else
 		{
@@ -22942,7 +22978,7 @@ BEGIN_DISPATCH_MAP(DBase, CCmdTarget)
 END_DISPATCH_MAP()
 
 // Note: we add support for IID_IDBase to support typesafe binding
-//  from VBA.  This IID must match the GUID that is attached to the 
+//  from VBA.  This IID must match the GUID that is attached to the
 //  dispinterface in the .IDL file.
 
 // {45542F2E-3541-4330-9BE0-A4B59B3D392C}
@@ -23167,7 +23203,7 @@ void  DBase::SolveCFD2()
 
 	// initial condition
 
-	//p(1:nx,1:ny)=0; 
+	//p(1:nx,1:ny)=0;
 	Matrix <double> p(nx + 1, ny + 1);
 	//o(1:nx,1:ny)=0;
 	Matrix <double> o(nx + 1, ny + 1);
@@ -23196,7 +23232,7 @@ void  DBase::SolveCFD2()
 	u(25, 25) = 1.0;
 	for (k = 1; k < 500000; k++)
 	{
-		//disp(['iteration= ',int2str(iteration)]) 
+		//disp(['iteration= ',int2str(iteration)])
 		//stream function(internal nodes)
 		double f1;
 
@@ -23233,7 +23269,7 @@ void  DBase::SolveCFD2()
 			o(i, ny) = o(i, ny) + rexb * (fbc - o(i, ny));
 		}
 
-		//vorticity internal nodes 
+		//vorticity internal nodes
 		double f2;
 
 		for (i = 2; i < nx; i++)
@@ -25058,7 +25094,7 @@ void DBase::GetCandiatesNodes(cSeg* pNot, ObjList* pFrom, C2dVector vC, double d
 	}
 }
 
-//Scaled stretch paremetic coordinate version all points 
+//Scaled stretch paremetic coordinate version all points
 //scaled by dSX,dSY
 void DBase::GetCandiatesNodes2d(cSeg* pNot, ObjList* pFrom, C2dVector vC, double dCD, ObjList* pRes, double dSX, double dSY)
 {
@@ -25123,7 +25159,7 @@ void DBase::GetCandiatesNodes2d(cSeg* pNot, ObjList* pFrom, C2dVector vC, double
 	}
 }
 
-//Scaled stretch paremetic coordinate version all points 
+//Scaled stretch paremetic coordinate version all points
 //scaled by dSX,dSY
 void DBase::GetCandiatesSeg2d(cSeg* pNot, cLinkedList* pFrom, C2dVector vC, double dCD, ObjList* pRes, double dSX, double dSY)
 {
@@ -25393,8 +25429,8 @@ void DBase::LabGapsMP(int iGap)
 //X.Sort();
 //Y.Sort();
 //
-//iNJ = 2 * Y.iNo - 1      
-//iNI = 2 * X.iNo - 1 
+//iNJ = 2 * Y.iNo - 1
+//iNI = 2 * X.iNo - 1
 //
 //Matrix <int> A(X.iNo,Y.iNo);
 //for(i=0;i<A.m;i++){for(j=0;j<A.n;j++){A(i,j) = 0;}}
@@ -25422,10 +25458,10 @@ void DBase::LabGapsMP(int iGap)
 //int k;
 ////This is the cavity lid driven test case
 //
-//// 
+////
 //for (k=0;k<5000;k++)
 //{
-//  
+//
 //  BCCavLid2(Sol);
 //  BCCavLid(Sol);
 //  isUCalc=-1;
@@ -25440,7 +25476,7 @@ void DBase::LabGapsMP(int iGap)
 //        {
 //          CalcU2(Sol,i,j);
 //        }
-//        
+//
 //      }
 //      else
 //      {
@@ -25481,7 +25517,7 @@ void DBase::LabGapsMP(int iGap)
 //        {
 //          Diff.elem(i,j)=(Diff.elem(i,j+1)-Diff.elem(i,j-1))/(dX*dt);
 //        }
-//        
+//
 //      }
 //      else
 //      {

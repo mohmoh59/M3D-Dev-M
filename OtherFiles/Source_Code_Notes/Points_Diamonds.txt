@@ -60,3 +60,78 @@ void CvPt_Object::OglDrawW(int iDspFlgs, double dS1, double dS2)
 		glEnd();
 		glPopMatrix();
     	// MODIFICATION: END
+
+
+--------------SECOND ATTEMPT------------
+In DBase.cpp, this section was commented out. The circles (points) and diamonds (nodes) worked when moving/rotating,
+but introduced crashes and new models did not now, other issues too.
+
+void DBase::InvalidateOGL()
+{
+	// MODIFICATION: Disable Invalidation of view
+	// GLenum aa;
+	// if ((DspFlags & DSP_ANIMATION) > 0)
+	// {
+	// 	if (iOGLList != -1)
+	// 	{
+	// 		glDeleteLists(iOGL_Start, iOGL_NoOff);
+	// 		aa = glGetError();
+	// 	}
+	// 	iOGLList = -1;
+	// 	iOGL_Start = -1;
+	// 	iOGL_NoOff = -1;
+	// }
+	// MODIFICATION: END
+}
+
+
+In G_Object.cpp, this was present:
+
+        // MODIFICATION: Draw node, fixed size issue
+        float radius = gND_SIZE / 100;
+        if ((iDspFlgs & DSP_NODES_ASK) > 0)
+        {
+            float mat[16];
+            glGetFloatv(GL_MODELVIEW_MATRIX, mat);
+            float xt = mat[0] * Pt_Point->x + mat[4] * Pt_Point->y + mat[8] * Pt_Point->z + mat[12];
+            float yt = mat[1] * Pt_Point->x + mat[5] * Pt_Point->y + mat[9] * Pt_Point->z + mat[13];
+
+            glPushMatrix();
+            glLoadIdentity();
+            glBegin(GL_TRIANGLE_FAN);
+            glVertex2f(xt, yt);
+            for (int i = 0; i <= 4; i++)
+            {
+                float theta = 2.0f * 3.1415926f * float(i) / 4.0f;
+                float dx = radius * cosf(theta);
+                float dy = radius * sinf(theta);
+                glVertex2f(xt + dx, yt + dy);
+            }
+            glEnd();
+            glPopMatrix();
+            // MODIFICATION: END
+
+
+        // MODIFICATION: Draw circle, fixed size issue
+        float radius = gPT_SIZE / 100;
+        float mat[16];
+        glGetFloatv(GL_MODELVIEW_MATRIX, mat);
+        float xt = mat[0] * Pt_Point->x + mat[4] * Pt_Point->y + mat[8] * Pt_Point->z + mat[12];
+        float yt = mat[1] * Pt_Point->x + mat[5] * Pt_Point->y + mat[9] * Pt_Point->z + mat[13];
+
+        int numSegments = 20;
+
+        glPushMatrix();
+        glLoadIdentity();
+        glBegin(GL_TRIANGLE_FAN);
+        glVertex2f(xt, yt);
+        for (int i = 0; i <= numSegments; i++)
+        {
+            float theta = 2.0f * 3.1415926f * float(i) / float(numSegments);
+            float dx = radius * cosf(theta);
+            float dy = radius * sinf(theta);
+            glVertex2f(xt + dx, yt + dy);
+        }
+        glEnd();
+        glPopMatrix();
+        // MODIFICATION: END

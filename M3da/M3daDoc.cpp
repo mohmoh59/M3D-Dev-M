@@ -6909,7 +6909,13 @@ void CM3daDoc::OnViewToggleon33455()
 // Esp_Mod_Experimental_Toolbar_4_10_2025_Start: Added to handle export commands
 void CM3daDoc::OnEXP01()
 {
-  // TODO: Add your command handler code here
+    ////Esp_Mod_Labels_4_27_2025_Start: Toggle display labels
+  gLBL_DSP_TRG = true;
+  cDBase->DspFlags = (cDBase->DspFlags ^ DSP_RESLAB);
+  cDBase->InvalidateOGL();
+  cDBase->ReDraw();
+  gLBL_DSP_TRG = false;
+  ////Esp_Mod_Labels_4_27_2025_End
 }
 
 void CM3daDoc::OnEXP02()
