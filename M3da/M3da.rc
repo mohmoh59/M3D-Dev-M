@@ -1697,7 +1697,7 @@ BEGIN
     ID_POST_EXPORTRESULTSTOTEXTFILE2 "Renumber elements from this start ID."
     ID_NODEMODIFY_LABEL2    "Change the seleted node labels by a fixed increment."
     ID_POST_LISTELEMENTRESULT 
-                            "List results for selected elements\n[POST] Selected Element Results"
+                            "List results for selected elements, based on the current contour selection.\n[POST] Selected Element Results"
     ID_ELEMENTMODIFIY_LABELBYINC2 "Show gradient filled background."
     ID_NODEMODIFY_LABELBYSTART2 
                             "Export selected FE entities to Nastran txt file."
@@ -1889,7 +1889,7 @@ BEGIN
     ID_VIEW_SURFACEDIRECTIONMARKERS 
                             "Toggle display of surface direction markers\n[Draw] Surface Direction Markers"
     ID_POST_LISTNODALRESULTS 
-                            "List result values for nodes\n[POST] Nodal Results"
+                            "List result values for nodes, based on the current contour selection.\n[POST] Nodal Results"
     ID_PROPERTY_BEAM33274   "Insert a knot into the knot vector."
     ID_PROPERTY_BEAM_BASIC2 "Create a General Beam Section by Entering All Properties"
     ID_POST_LISTNODALRESULTS2 "List Nodal Results Values"
