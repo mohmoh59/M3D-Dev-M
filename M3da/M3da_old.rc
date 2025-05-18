@@ -1656,7 +1656,7 @@ BEGIN
     ID_MESH_BUILDASSEMBLYMESH2 
                             "Build a mesh from an assembly of other meshes."
     ID_SOLVER_SOLVE         "Solve current model - linear static."
-    ID_SOLVER_CREATEFORCE   "Create a force on node. Use a space as a separator. For example, '1.5 -200 0'\n[BC] Force"
+    ID_SOLVER_CREATEFORCE   "Create a force on node\n[BC] Force"
 END
 
 STRINGTABLE
@@ -1685,7 +1685,7 @@ BEGIN
     ID_POST_SELECTDEFORMEDRESULTS2 "Select deformed results."
     ID_VIEW_DISPLAYELEMENTCOORDSYS 
                             "Toggle display of elements' coordinate systems\n[Draw] Display Element Coord Sys"
-    ID_ANALYSIS_CREATEMOMENT "Create a moment on node. Use a space as a separator. For example, '1.5 -200 0'\n[BC] Moment"
+    ID_ANALYSIS_CREATEMOMENT "Create a moment on node\n[BC] Moment"
     ID_ANALYSIS_CREATEPRESSURE 
                             "Create a pressure on shell element\n[BC] Pressure"
     ID_VISABILITY_BOUNDARYCONDITIONS 
@@ -1987,8 +1987,8 @@ BEGIN
     ID_VIEW_SHOWALLHIDDEN   "Show all hidden entities."
     ID_POST_LISTRESPONSEDATA "List Frequency Response Data"
     ID_MESH_MESHSIZEONSURFACE 
-                            "Define mesh size on surface for Advancing Front Mesher. This will override the value KEYED IN for the Advancing Front Mesher.\n[FE] Auto Element Size"
-    ID_MESH_MESHSIZEONSURFACE2 "Define mesh size on surface for Advancing Front Mesher"
+                            "Define mesh size on surface for auto-mesher\n[FE] Auto Element Size"
+    ID_MESH_MESHSIZEONSURFACE2 "Define mesh size on surface for Auto-Mesher"
     ID_PARTMODIFY_EXTRACT   "Extract Surfaces, Curves , Points from PArt"
 END
 
