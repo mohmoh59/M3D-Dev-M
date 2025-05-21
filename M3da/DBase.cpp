@@ -11086,7 +11086,14 @@ void DBase::AddStep(CString sT, int iLC, int iBC, int iTC, BOOL bRS)
 
 void DBase::ListAllMats()
 {
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	/*
+	//Saeed_Material_SaveBugV1_05_20_2025_End
 	outtext1("MATERIAL LISTING:-");
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	*/
+	outtext1(_T("\r\nMATERIAL LISTING:"));
+	//Saeed_Material_SaveBugV1_05_20_2025_End
 	if (pCurrentMesh != NULL)
 	{
 		MatT->ListAll();
@@ -20678,7 +20685,14 @@ void DBase::SelCursbyLAY(int iLAY)
 	ReDraw();
 }
 
+//Saeed_Material_SaveBugV1_05_20_2025_Start
+/*
+//Saeed_Material_SaveBugV1_05_20_2025_End
 void DBase::EditMat(int MID, BOOL bPID)
+//Saeed_Material_SaveBugV1_05_20_2025_Start
+*/
+void DBase::EditMat(int MID, BOOL bPID, bool& materialIDFound)
+//Saeed_Material_SaveBugV1_05_20_2025_End
 {
 	Property* P = NULL;
 	Material* M = NULL;
@@ -20701,12 +20715,27 @@ void DBase::EditMat(int MID, BOOL bPID)
 		CEntEditDialog Dlg;
 		Dlg.pEnt = M;
 		Dlg.DoModal();
+		//Saeed_Material_SaveBugV1_05_20_2025_Start
+		/*
+		//Saeed_Material_SaveBugV1_05_20_2025_End
 		if (Dlg.bDel == TRUE)
 			MatT->Delete(M);
+		//Saeed_Material_SaveBugV1_05_20_2025_Start
+		*/
+		if (Dlg.bDel == TRUE || MatT->isTemp == true) {
+			MatT->Delete(M);
+			if (MatT->isTemp == false) {
+				outtextSprintf("\r\nMaterial ID %i Deleted!", iMID, 0.0, true, 1);
+			}
+		}
+		materialIDFound = true;
+		//Saeed_Material_SaveBugV1_05_20_2025_End
 	}
 	else
 	{
-
+		//Saeed_Material_SaveBugV1_05_20_2025_Start
+		materialIDFound = false;
+		//Saeed_Material_SaveBugV1_05_20_2025_End
 	}
 }
 
@@ -22559,7 +22588,16 @@ void DBase::CreateMat1(CString sT, int iMID, double dE, double dV, double dDen, 
 	pMat->dA = dAlpha;
 	pMat->dk = dkt;
 	MatT->AddItem(pMat);
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	/*
+	//Saeed_Material_SaveBugV1_05_20_2025_End
 	outtext1("New Material Created.");
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	*/
+	if (MatT->isTemp == false) {
+		outtextSprintf("\r\nMaterial ID %i Created.", MatT->pEnts[MatT->iNo - 1]->iID, 0.0, true, 1);
+	}
+	//Saeed_Material_SaveBugV1_05_20_2025_End
 }
 
 void DBase::CreateMat8(CString sInTit,

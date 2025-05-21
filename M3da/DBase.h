@@ -736,7 +736,14 @@ public:
 	//***************************************************************************
 	C3dVector PickPointToGlobal2(CPoint Pt);
 	void ListMat(int MID, BOOL bPID);
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	/*
+	//Saeed_Material_SaveBugV1_05_20_2025_End
 	void EditMat(int MID, BOOL bPID);
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	*/
+	void EditMat(int MID, BOOL bPID, bool& materialIDFound);
+	//Saeed_Material_SaveBugV1_05_20_2025_End
 	void EditProp(int PID);
 	void ListProp(int PID);
 	void EditObject();

@@ -748,7 +748,14 @@ public:
 		int inPid,
 		int inType);
 	virtual void List();
-	virtual void ListShort();
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	/*
+	//Saeed_Material_SaveBugV1_05_20_2025_End
+	void ListShort();
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	*/
+	void ListShort(int iRow);
+	//Saeed_Material_SaveBugV1_05_20_2025_End
 	virtual void ExportNAS(FILE* pFile);
 	virtual Entity* Copy();
 	virtual int GetVarHeaders(CString sVar[]);
@@ -2646,9 +2653,9 @@ class NSurf : public G_Object
 public:
 	// Added for Auto Meshing
 	double dSSize;            //Surface Mesh Size     
-   //Object type 7
-   //Nurbs curve to superceed ContolPoly
-   //Iges Knot Offsets of iges import Only
+	//Object type 7
+	//Nurbs curve to superceed ContolPoly
+	//Iges Knot Offsets of iges import Only
 	double dUs;
 	double dVs;
 	double dUspan;
@@ -2743,7 +2750,7 @@ public:
 	C3dVector vCent;
 	NSurfR();
 	virtual void Create(NCurve* pCIn, C3dVector vN, C3dVector vC, int iLab, G_Object* Parrent, double dS);
-	virtual void CreateRev(NCurve* pCIn, C3dVector vN, C3dVector vC, C3dVector vRef,int iLab, G_Object* Parrent);
+	virtual void CreateRev(NCurve* pCIn, C3dVector vN, C3dVector vC, C3dVector vRef, int iLab, G_Object* Parrent);
 	virtual BOOL Generate(int pInV, double dvs, double dve);
 	virtual void Serialize(CArchive& ar, int iV);
 	virtual G_Object* Copy(G_Object* Parrent);
@@ -3925,11 +3932,17 @@ public:
 	~Table();
 	Entity* pEnts[MAX_ENTS];
 	int iNo;
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	bool isTemp = FALSE;
+	//Saeed_Material_SaveBugV1_05_20_2025_End
 	virtual void DeleteAll();
 	void Delete(Entity* pO);
 	virtual void AddItem(Entity* pIn);
 	virtual Entity* GetItem(int iID);
 	virtual int NextID();
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	virtual int OfferedID(int idIn, bool findNew, int newIdMode);
+	//Saeed_Material_SaveBugV1_05_20_2025_End
 	virtual void ListAll();
 	virtual void Serialize(CArchive& ar, int iV);
 	virtual void ExportNAS(FILE* pF, int iFileNo);
@@ -4040,7 +4053,7 @@ public:
 	virtual IDispatch* __stdcall API_GetNodeByID(LONG iNID);
 	virtual IDispatch* __stdcall API_GetElementByInd(LONG iNo);
 	virtual IDispatch* __stdcall API_GetElementByID(LONG iEID);
-	virtual IDispatch* __stdcall API_CreateNode(LONG iLab, LONG iCOl,LONG iDef, LONG iOut, DOUBLE x, DOUBLE y, DOUBLE z);;
+	virtual IDispatch* __stdcall API_CreateNode(LONG iLab, LONG iCOl, LONG iDef, LONG iOut, DOUBLE x, DOUBLE y, DOUBLE z);;
 
 	ME_Object();
 	~ME_Object();

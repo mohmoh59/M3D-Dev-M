@@ -16968,19 +16968,39 @@ int zMATEDIT_Mnu::DoMenu(CString CInMsg, CPoint Pt)
     {
 		cDBase->FILTER.Clear();
 		cDBase->FILTER.SetFilter(3);
-		outtext2("// ENTER MID OR PICK ELEMENT");
+		//Saeed_Material_SaveBugV1_05_20_2025_Start
+		/*
+		//Saeed_Material_SaveBugV1_05_20_2025_End
+	   outtext2("// ENTER MID OR PICK ELEMENT");
+		//Saeed_Material_SaveBugV1_05_20_2025_Start
+		*/
+		outtext2("// ENTER Material ID OR PICK ELEMENT");
+		//Saeed_Material_SaveBugV1_05_20_2025_End
 		CInMsg = "NULL";
 		iStat = 1;
 		SetFocus();
     }
     if (iStat == 1)
-    {
+	 {
+		//Saeed_Material_SaveBugV1_05_20_2025_Start
+		bool materialIDFound;
+		//Saeed_Material_SaveBugV1_05_20_2025_End
       if ((CInMsg != "MouseInp") && (CInMsg != "D") && (CInMsg != "NULL"))
       {
         C3dVector GetPt;
         int iPt = ExtractPt(CInMsg, &GetPt);
-        cDBase->EditMat((int)GetPt.x, FALSE);
-        RetVal = 1;
+		  //Saeed_Material_SaveBugV1_05_20_2025_Start
+		  /*
+		  //Saeed_Material_SaveBugV1_05_20_2025_End
+	     cDBase->EditMat((int)GetPt.x, FALSE);
+  		  //Saeed_Material_SaveBugV1_05_20_2025_Start
+		  */
+		  cDBase->EditMat((int)GetPt.x, FALSE, materialIDFound);
+		  if (!materialIDFound) {
+			  outtextSprintf("\r\nERROR >>> Material ID %i Not found. [!!!]", (int)GetPt.x, 0.0, true, 2);
+		  }
+		  //Saeed_Material_SaveBugV1_05_20_2025_End
+		  RetVal = 1;
       }
       else if (CInMsg == "MouseInp")
       {
@@ -16989,8 +17009,15 @@ int zMATEDIT_Mnu::DoMenu(CString CInMsg, CPoint Pt)
           if (cDBase->S_Buff[cDBase->S_Count - 1]->iObjType == 3)
           {
             E_Object* pE = (E_Object*)cDBase->S_Buff[cDBase->S_Count - 1];
-            cDBase->EditMat(pE->PID, TRUE);
-          }
+				//Saeed_Material_SaveBugV1_05_20_2025_Start
+				/*
+				//Saeed_Material_SaveBugV1_05_20_2025_End
+				cDBase->EditMat(pE->PID, TRUE);
+				//Saeed_Material_SaveBugV1_05_20_2025_Start
+				*/
+				cDBase->EditMat(pE->PID, TRUE, materialIDFound);
+				//Saeed_Material_SaveBugV1_05_20_2025_End
+			 }
           RetVal = 1;
         }
       }

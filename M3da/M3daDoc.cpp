@@ -3252,12 +3252,28 @@ void CM3daDoc::OnMaterialIsentropic()
 if (pMnu->isNULL())
 {
   SetModifiedFlag(); CheckPoint();bFinalChkPt=FALSE;
-  //outtextMSG2("MMAT1");
-  //sLastcmd="MMAT1";
-  int iNLab = MatT->NextID();
-  cDBase->CreateMat1("Al Material", iNLab, gDEF_E, gDEF_V, gDEF_DEN, gDEF_CTE, gDEF_COND);
-  cDBase->EditMat(iNLab,FALSE);
-
+		//outtextMSG2("MMAT1");
+		//sLastcmd="MMAT1";
+		//Saeed_Material_SaveBugV1_05_20_2025_Start
+		/*
+		//Saeed_Material_SaveBugV1_05_20_2025_End
+		int iNLab = MatT->NextID();
+		//Saeed_Material_SaveBugV1_05_20_2025_Start
+		*/
+		int iNLab = MatT->OfferedID(0, true, 1); // newIdMode: 1>> Max of current list + 1 2>>Smallest empty room
+		bool materialIDFound;
+		MatT->isTemp = true;
+		//Saeed_Material_SaveBugV1_05_20_2025_End
+		cDBase->CreateMat1("Al Material", iNLab, gDEF_E, gDEF_V, gDEF_DEN, gDEF_CTE, gDEF_COND);
+		//Saeed_Material_SaveBugV1_05_20_2025_Start
+		/*
+		//Saeed_Material_SaveBugV1_05_20_2025_End
+		 cDBase->EditMat(iNLab,FALSE);
+		//Saeed_Material_SaveBugV1_05_20_2025_Start
+		*/
+		cDBase->EditMat(iNLab, FALSE, materialIDFound);
+		MatT->isTemp = false;
+		//Saeed_Material_SaveBugV1_05_20_2025_End
 }
 else
 {
@@ -5592,7 +5608,15 @@ void CM3daDoc::OnMaterialOrthotropic()
 		cDBase->CreateMat8("NASTRAN MAT8 Property", iNLab, 0, 0, 0,
 			0, 0, 0, 0,
 			0, 0, 0);
+		//Saeed_Material_SaveBugV1_05_20_2025_Start
+		bool materialIDFound;
+		/*
+		//Saeed_Material_SaveBugV1_05_20_2025_End
 		cDBase->EditMat(iNLab, FALSE);
+		//Saeed_Material_SaveBugV1_05_20_2025_Start
+		*/
+		cDBase->EditMat(iNLab, FALSE, materialIDFound);
+		//Saeed_Material_SaveBugV1_05_20_2025_End
 	}
 	else
 	{

@@ -38745,11 +38745,26 @@ void Entity::List()
     outtext1(OutT);
 }
 
+
+//Saeed_Material_SaveBugV1_05_20_2025_Start
+/*
+//Saeed_Material_SaveBugV1_05_20_2025_End
 void Entity::ListShort()
+//Saeed_Material_SaveBugV1_05_20_2025_Start
+*/
+void Entity::ListShort(int iRow)
+//Saeed_Material_SaveBugV1_05_20_2025_End
 {
-    char S1[200];
-    sprintf_s(S1, "%s %i %s %i %s %i  %s", "FNO", iFile, "ID", iID, "TYPE", iType, this->sTitle);
-    outtext1(_T(S1));
+	char S1[200];
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	/*
+	//Saeed_Material_SaveBugV1_05_20_2025_End
+	sprintf_s(S1, "%s %i %s %i %s %i  %s", "FNO", iFile, "ID", iID, "TYPE", iType, this->sTitle);
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	*/
+	sprintf_s(S1, "%i >> %s %i %s %i %s %i  %s", iRow, "FNO", iFile, "Material ID", iID, "TYPE", iType, this->sTitle);
+	//Saeed_Material_SaveBugV1_05_20_2025_End
+	outtext1(_T(S1));
 }
 
 void Entity::ExportNAS(FILE* pFile)
@@ -40898,27 +40913,34 @@ double MAT1::GetV()
 
 void MAT1::Info()
 {
-    char S1[200] = "";
-    outtext1("MATERIAL LISTING:-");
-    sprintf_s(S1, "LAB: %i TITLE: %s", iID, sTitle);
-    outtext1(S1);
-    sprintf_s(S1, "E    : %f", dE);
-    outtext1(S1);
-    if (dG != DBL_MAX)
-        sprintf_s(S1, "G    : %s", float8NAS(dG));
-    else
-        sprintf_s(S1, "G    : %s", "");
-    outtext1(S1);
-    sprintf_s(S1, "NU   : %s", float8NAS(dNU));
-    outtext1(S1);
-    sprintf_s(S1, "RHO  : %s", float8NAS(dRHO));
-    outtext1(S1);
-    sprintf_s(S1, "CTE  : %s", float8NAS(dA));
-    outtext1(S1);
-    sprintf_s(S1, "MCID : %i", iMCSID);
-    outtext1(S1);
-    sprintf_s(S1, "k    : %s", float8NAS(dk));
-    outtext1(S1);
+	char S1[200] = "";
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	/*
+	//Saeed_Material_SaveBugV1_05_20_2025_End
+	outtext1("MATERIAL LISTING:-");
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	*/
+	outtext1("MATERIAL LISTING:");
+	//Saeed_Material_SaveBugV1_05_20_2025_End
+	sprintf_s(S1, "LAB: %i TITLE: %s", iID, sTitle);
+	outtext1(S1);
+	sprintf_s(S1, "E    : %f", dE);
+	outtext1(S1);
+	if (dG != DBL_MAX)
+		sprintf_s(S1, "G    : %s", float8NAS(dG));
+	else
+		sprintf_s(S1, "G    : %s", "");
+	outtext1(S1);
+	sprintf_s(S1, "NU   : %s", float8NAS(dNU));
+	outtext1(S1);
+	sprintf_s(S1, "RHO  : %s", float8NAS(dRHO));
+	outtext1(S1);
+	sprintf_s(S1, "CTE  : %s", float8NAS(dA));
+	outtext1(S1);
+	sprintf_s(S1, "MCID : %i", iMCSID);
+	outtext1(S1);
+	sprintf_s(S1, "k    : %s", float8NAS(dk));
+	outtext1(S1);
 }
 
 int MAT1::GetVarHeaders(CString sVar[])
@@ -57778,7 +57800,14 @@ void Table::ListAll()
     {
         for (i = 0; i < iNo; i++)
         {
-            pEnts[i]->ListShort();
+			//Saeed_Material_SaveBugV1_05_20_2025_Start
+			/*
+			//Saeed_Material_SaveBugV1_05_20_2025_End
+			pEnts[i]->ListShort();
+			//Saeed_Material_SaveBugV1_05_20_2025_Start
+			*/
+			pEnts[i]->ListShort(i + 1);
+			//Saeed_Material_SaveBugV1_05_20_2025_End
         }
     }
     else
@@ -57804,6 +57833,67 @@ int Table::NextID()
     iRet++;
     return (iRet);
 }
+
+
+//Saeed_Material_SaveBugV1_05_20_2025_Start
+int Table::OfferedID(int idIn, bool findNew, int newIdMode) { // newIdMode: 1>> Max of current list + 1 2>>Smallest empty room
+	// fill check matrix:
+	int i, idMaxInList;
+	std::set<int> idSet;
+	for (i = 0; i < iNo; i++)
+	{
+		idSet.insert(pEnts[i]->iID);
+	}
+	if (findNew && newIdMode == 1) { // if we need to find a new offered id in mode 1:
+		idMaxInList = 0;
+		for (i = 0; i < iNo; i++)
+		{
+			if (pEnts[i]->iID > idMaxInList) {
+				idMaxInList = pEnts[i]->iID;
+			}
+		}
+		return idMaxInList + 1;
+	}
+	if (findNew && newIdMode == 2) { // if we need to find a new offered id in mode 2:
+		i = 1;
+		while (i <= MAX_ENTS) {
+			if (idSet.find(i) == idSet.end()) {
+				//std::cout << "                              New ID: ";
+				return i;
+			}
+			i++;
+		}
+		// show "Error: matrix is full."
+		//std::cout << "######## Error: matrix is full. ########\n";
+		return -1;
+	}
+	else { // if we need to find an offered id based on inputed user id (idIn):
+		// if not exist in matrix:
+		if (idSet.find(idIn) == idSet.end() && idIn >= 1 && idIn <= MAX_ENTS) {
+			//std::cout << "                       True Place ID: ";
+			return idIn;
+		}
+		// move down ID
+		for (i = idIn; i >= 1; i--) {
+			if (idSet.find(i) == idSet.end() && i <= MAX_ENTS) {
+				//std::cout << "                       Moved Down ID: ";
+				return i;
+			}
+		}
+		// move up ID
+		for (i = idIn; i <= MAX_ENTS; i++) {
+			if (idSet.find(i) == idSet.end() && i >= 1) {
+				//std::cout << "                         Moved Up ID: ";
+				return i;
+			}
+		}
+		//std::cout << "####### Error: can not update id. ######\n";
+		return -1;
+	}
+}
+//Saeed_Material_SaveBugV1_05_20_2025_End
+
+
 
 void Table::Serialize(CArchive& ar, int iV)
 {
@@ -58997,7 +59087,7 @@ CEntEditDialog::CEntEditDialog()
     pEnt = NULL;
     pO = NULL;
     PT = NULL;
-    m_iItemBeingEdited = 1;
+    m_iItemBeingEdited = -1;
     eEdit = NULL;
     iNoLayers = 0;
     hdcOld = wglGetCurrentDC();
@@ -59100,8 +59190,11 @@ BOOL CEntEditDialog::OnInitDialog()
         pI->EnableWindow(TRUE);
         Populate1();
     }
-    return TRUE; // return TRUE unless you set the focus to a control
-    // EXCEPTION: OCX Property Pages should return FALSE
+	//Saeed_Material_SaveBugV1_05_20_2025_Start
+	//Ed_ID.SetReadOnly(TRUE);
+	//Saeed_Material_SaveBugV1_05_20_2025_End
+	return TRUE; // return TRUE unless you set the focus to a control
+	// EXCEPTION: OCX Property Pages should return FALSE
 }
 
 void CEntEditDialog::Populate1()
@@ -59496,8 +59589,28 @@ void CEntEditDialog::OnBnClickedOk()
         {
             pT->GetWindowTextA(pEnt->sTitle);
             pI->GetWindowTextA(sID);
-            pEnt->iID = atoi(sID); //Need to check we can no id conflics
-        }
+			
+			//Saeed_Material_SaveBugV1_05_20_2025_Start
+			/*
+			//Saeed_Material_SaveBugV1_05_20_2025_End
+			pEnt->iID = atoi(sID); //Need to check we can no id conflics
+			//Saeed_Material_SaveBugV1_05_20_2025_Start
+			*/
+			if (atoi(sID) != pEnt->iID) {
+				pEnt->iID = MatT->OfferedID(atoi(sID), false, 0);
+				if (!MatT->isTemp) {
+					outtextSprintf("\r\nMaterial ID changed to %i", pEnt->iID, 0.0, true, 1);
+				}
+				if (pEnt->iID != atoi(sID)) {
+					sID = std::to_string(pEnt->iID).c_str();
+					pI->SetWindowTextA(sID);
+				}
+			}
+			//Saeed_Material_SaveBugV1_05_20_2025_End
+        
+		
+		
+		}
         else if (pO != NULL)
         {
             if (pO->iObjType == 12) //Coordsys
@@ -59517,6 +59630,14 @@ void CEntEditDialog::OnBnClickedOk()
             pEnt->PutVarValues(iNo, sVVals);
         if (pO != NULL)
             pO->PutVarValues(PT, iNo, sVVals);
+		
+		//Saeed_Material_SaveBugV1_05_20_2025_Start
+		if (MatT->isTemp == true) {
+			outtextSprintf("\r\nMaterial ID %i Created.", MatT->pEnts[MatT->iNo - 1]->iID, 0.0, true, 1);
+			MatT->isTemp = false;
+		}
+		//Saeed_Material_SaveBugV1_05_20_2025_End
+		
     }
     //CDialog::OnOK();
 }

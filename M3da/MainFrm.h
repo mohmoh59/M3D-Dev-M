@@ -2,6 +2,9 @@
 // MainFrm.h : interface of the CMainFrame class
 //
 #include "InputPane.h"
+//Saeed_Material_SaveBugV1_05_20_2025_Start
+#include <vector>
+//Saeed_Material_SaveBugV1_05_20_2025_End
 #pragma once
 
 class CMainFrame : public CFrameWndEx

@@ -514,6 +514,62 @@ void outtext1(CString AAA)
 	Edit2->LineScroll(NoOff, 0);
 }
 
+//Saeed_Material_SaveBugV1_05_20_2025_Start
+void outtextSprintf(CString AAA, int intValue, double floatValue, bool IsInt, int nText)
+{
+	char StOut[100];
+	if (IsInt == 1) {
+		sprintf_s(StOut, AAA, intValue);
+	}
+	else {
+		sprintf_s(StOut, AAA, floatValue);
+	}
+	outtextMultiLine(StOut, nText);
+}
+//Saeed_Material_SaveBugV1_05_20_2025_End
+
+//Saeed_Material_SaveBugV1_05_20_2025_Start
+void outtextMultiLine(CString AAA, int nText)
+{
+	std::vector<CString> breakByLines;
+	CString delimiter = "\r\n";
+	int start = 0;
+
+	for (int i = 1;i <= 10;i++)
+	{
+		int pos = AAA.Find(delimiter, start);
+		if (pos == -1)
+		{
+			if (start < AAA.GetLength())
+				breakByLines.push_back(AAA.Mid(start));
+			break;
+		}
+		if (pos > start)
+			breakByLines.push_back(AAA.Mid(start, pos - start));
+		breakByLines.push_back(delimiter);
+		start = pos + delimiter.GetLength();
+	}
+
+	for (int i = 0;i <= breakByLines.size() - 1;i++) {
+		if (breakByLines[i] == delimiter) {
+			if (nText == 1) {
+				outtext1("");
+			}
+			else {
+				outtext2("");
+			}
+		}
+		else {
+			if (nText == 1) {
+				outtext1(breakByLines[i]);
+			}
+			else {
+				outtext2(breakByLines[i]);
+			}
+		}
+	}
+}
+//Saeed_Material_SaveBugV1_05_20_2025_End
 
 void outtextMSG(CString AAA)
 {
